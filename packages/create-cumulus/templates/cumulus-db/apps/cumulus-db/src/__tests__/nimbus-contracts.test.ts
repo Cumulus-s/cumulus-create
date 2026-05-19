@@ -7,15 +7,15 @@ import { nimbusIrJsonSchemaContract, systemOpenApiContract } from '../contracts.
 import { NIMBUS_API_VERSION, NIMBUS_IR_SCHEMA_ID, NIMBUS_KIND } from '../nimbus-schema.js';
 import { SYSTEM_SCOPE_REGISTRY } from '../system.js';
 
-const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..');
+const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 
 async function readJson(path: string): Promise<unknown> {
-  return JSON.parse(await readFile(resolve(repoRoot, path), 'utf8')) as unknown;
+  return JSON.parse(await readFile(resolve(packageRoot, path), 'utf8')) as unknown;
 }
 
 describe('Nimbus machine contracts', () => {
   it('exports a static Nimbus IR JSON Schema file from the runtime contract', async () => {
-    const file = await readJson('apps/cumulus-db/schemas/nimbus-ir-v1alpha1.schema.json');
+    const file = await readJson('schemas/nimbus-ir-v1alpha1.schema.json');
 
     expect(file).toEqual(nimbusIrJsonSchemaContract);
     expect(nimbusIrJsonSchemaContract).toMatchObject({
@@ -38,7 +38,7 @@ describe('Nimbus machine contracts', () => {
   });
 
   it('exports an OpenAPI 3.1 system contract with current hard scopes', async () => {
-    const file = await readJson('apps/cumulus-db/openapi/system-v1.openapi.json');
+    const file = await readJson('openapi/system-v1.openapi.json');
     const expectedScopes = SYSTEM_SCOPE_REGISTRY.map((item) => item.scope);
 
     expect(file).toEqual(systemOpenApiContract);
