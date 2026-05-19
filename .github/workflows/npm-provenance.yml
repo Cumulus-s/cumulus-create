@@ -36,6 +36,16 @@ jobs:
       - name: npm publish dry-run
         run: |
           set -euo pipefail
+          publish_workspace() {
+            local workspace="$1"
+            local version
+            version="$(npm pkg get version --workspace "$workspace" --json | node -e 'let input = ""; process.stdin.on("data", chunk => input += chunk); process.stdin.on("end", () => console.log(Object.values(JSON.parse(input))[0]));')"
+            if npm view "$workspace@$version" version >/dev/null 2>&1; then
+              echo "Skipping $workspace@$version because it is already published."
+              return 0
+            fi
+            npm publish --workspace "$workspace" --access public --provenance --dry-run
+          }
           for workspace in \
             "@cmls/events" \
             "@cmls/cloud" \
@@ -52,13 +62,23 @@ jobs:
             "@cmls/create" \
             "@cmls/cumulus-db"
           do
-            npm publish --workspace "$workspace" --access public --provenance --dry-run
+            publish_workspace "$workspace"
           done
       - name: npm publish
         if: ${{ inputs.dry_run == 'false' }}
         run: |
           set -euo pipefail
           test -n "${NODE_AUTH_TOKEN:-}"
+          publish_workspace() {
+            local workspace="$1"
+            local version
+            version="$(npm pkg get version --workspace "$workspace" --json | node -e 'let input = ""; process.stdin.on("data", chunk => input += chunk); process.stdin.on("end", () => console.log(Object.values(JSON.parse(input))[0]));')"
+            if npm view "$workspace@$version" version >/dev/null 2>&1; then
+              echo "Skipping $workspace@$version because it is already published."
+              return 0
+            fi
+            npm publish --workspace "$workspace" --access public --provenance
+          }
           for workspace in \
             "@cmls/events" \
             "@cmls/cloud" \
@@ -75,5 +95,5 @@ jobs:
             "@cmls/create" \
             "@cmls/cumulus-db"
           do
-            npm publish --workspace "$workspace" --access public --provenance
+            publish_workspace "$workspace"
           done
