@@ -1,0 +1,51 @@
+{
+  "name": "@cumulus_cloud/events",
+  "version": "0.1.0",
+  "description": "Shared Cumulus event schema, redaction, and local ledger writer.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "keywords": [
+    "cumulus",
+    "events",
+    "ledger",
+    "observability",
+    "privacy"
+  ],
+  "license": "MIT",
+  "homepage": "https://cumulush.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cumulus-s/cumulus-create.git",
+    "directory": "packages/events"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
+  }
+}

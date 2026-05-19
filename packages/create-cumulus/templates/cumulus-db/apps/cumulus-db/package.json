@@ -1,0 +1,24 @@
+{
+  "name": "@cumulus/database",
+  "version": "0.3.0",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.json",
+    "cumulus": "node dist/cumulus-cli.js",
+    "dev": "../../node_modules/.bin/tsc -w -p tsconfig.json",
+    "nimbus": "node dist/nimbus-cli.js",
+    "nimbus:check": "node dist/nimbus-cli.js check",
+    "nimbus:compile": "node dist/nimbus-cli.js compile",
+    "nimbus:fmt": "node dist/nimbus-cli.js fmt",
+    "start": "node dist/server.js",
+    "test": "../../node_modules/.bin/vitest run src/**/*.test.ts",
+    "test:postgres": "CUMULUS_DB_POSTGRES_TESTS=true ../../node_modules/.bin/vitest run src/__tests__/*postgres*.test.ts",
+    "smoke": "node dist/smoke.js",
+    "smoke:postgres": "CUMULUS_DB_POSTGRES_TESTS=true ../../node_modules/.bin/vitest run src/__tests__/postgres-engine.test.ts -t \"serves HTTP through the Postgres engine\""
+  },
+  "dependencies": {
+    "pg": "^8.21.0"
+  }
+}

@@ -1,0 +1,27 @@
+node_modules/
+.agent/
+dist/
+.next/
+.output/
+.swc/
+.vercel/
+target/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.env
+.env.local
+.env.*.local
+!.env.example
+.DS_Store
+* 2.ts
+* 2.tsx
+* 2.js
+* 2.jsx
+*.tsbuildinfo
+.cumulus-db-data/
+apps/cumulus-db/.cumulus-db-data/
+.cumulus/
+coverage/
+tmp/

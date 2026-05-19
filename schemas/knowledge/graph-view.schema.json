@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/graph-view.schema.json",
+  "title": "GraphView",
+  "type": "object",
+  "required": ["id", "preset", "generated_at", "summary", "nodes", "edges", "evidence", "legend", "layout", "filters"],
+  "properties": {
+    "id": { "type": "string" },
+    "preset": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "summary": { "type": "string" },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/node" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/edge" }
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "legend": { "$ref": "#/$defs/legend" },
+    "layout": { "$ref": "#/$defs/layout" },
+    "filters": { "$ref": "#/$defs/filters" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "metadata": { "type": "object", "additionalProperties": true },
+    "node": {
+      "type": "object",
+      "required": ["id", "uri", "display_label", "display_kind", "domain_kind", "importance", "confidence", "source_count", "evidence_count", "metadata"],
+      "properties": {
+        "id": { "type": "string" },
+        "uri": { "type": "string" },
+        "display_label": { "type": "string" },
+        "display_subtitle": { "type": ["string", "null"] },
+        "display_kind": { "type": "string" },
+        "domain_kind": { "type": "string" },
+        "importance": { "type": "number" },
+        "confidence": { "type": "number" },
+        "source_count": { "type": "integer", "minimum": 0 },
+        "evidence_count": { "type": "integer", "minimum": 0 },
+        "metadata": { "$ref": "#/$defs/metadata" }
+      },
+      "additionalProperties": false
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "from_id", "to_id", "label", "kind", "confidence", "metadata"],
+      "properties": {
+        "id": { "type": "string" },
+        "from_id": { "type": "string" },
+        "to_id": { "type": "string" },
+        "label": { "type": "string" },
+        "kind": { "type": "string" },
+        "confidence": { "type": "number" },
+        "metadata": { "$ref": "#/$defs/metadata" }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["id", "node_id", "uri", "label", "metadata"],
+      "properties": {
+        "id": { "type": "string" },
+        "node_id": { "type": "string" },
+        "source_id": { "type": ["string", "null"] },
+        "chunk_id": { "type": ["string", "null"] },
+        "uri": { "type": "string" },
+        "label": { "type": "string" },
+        "excerpt": { "type": ["string", "null"] },
+        "metadata": { "$ref": "#/$defs/metadata" }
+      },
+      "additionalProperties": false
+    },
+    "legend": {
+      "type": "object",
+      "required": ["node_kinds", "edge_kinds"],
+      "properties": {
+        "node_kinds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/legend_entry" }
+        },
+        "edge_kinds": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/legend_entry" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "legend_entry": {
+      "type": "object",
+      "required": ["kind", "label", "color", "icon", "count", "visible"],
+      "properties": {
+        "kind": { "type": "string" },
+        "label": { "type": "string" },
+        "color": { "type": "string" },
+        "icon": { "type": "string" },
+        "count": { "type": "integer", "minimum": 0 },
+        "visible": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    },
+    "layout": {
+      "type": "object",
+      "required": ["preset", "nodes", "lanes"],
+      "properties": {
+        "preset": { "type": "string" },
+        "nodes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/layout_node" }
+        },
+        "lanes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "layout_node": {
+      "type": "object",
+      "required": ["id", "x", "y", "lane"],
+      "properties": {
+        "id": { "type": "string" },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "lane": { "type": "string" },
+        "cluster": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "filters": {
+      "type": "object",
+      "required": ["visible_node_kinds", "visible_edge_kinds", "include_evidence"],
+      "properties": {
+        "visible_node_kinds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "visible_edge_kinds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "include_evidence": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

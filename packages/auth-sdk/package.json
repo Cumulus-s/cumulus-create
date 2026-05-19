@@ -1,0 +1,59 @@
+{
+  "name": "@cumulus/auth",
+  "version": "0.1.0",
+  "description": "Cumulus Auth SDK for human and agent authentication.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "prebuild": "npm --workspace @cumulus_cloud/events run build",
+    "build": "rm -rf dist && tsc",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm --workspace @cumulus_cloud/events run build",
+    "test": "vitest run src",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "relay",
+    "agent",
+    "signup",
+    "webhook",
+    "ai",
+    "mcp"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://cumulush.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cumulus-s/cumulus-create.git",
+    "directory": "packages/auth-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/Cumulus-s/cumulus-create/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@cumulus_cloud/events": "0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
+  }
+}

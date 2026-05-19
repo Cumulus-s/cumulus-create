@@ -1,0 +1,41 @@
+[project]
+name = "cumulus-knowledge"
+version = "0.1.1"
+description = "Python SDK and MCP server for Cumulus Knowledge"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "AGPL-3.0-only"
+authors = [{ name = "Cumulus Knowledge contributors" }]
+dependencies = []
+keywords = ["knowledge-graph", "mcp", "cli", "agents", "sdk"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: GNU Affero General Public License v3",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Text Processing :: Indexing",
+]
+
+[project.urls]
+Homepage = "https://cumulush.com"
+Repository = "https://github.com/Cumulus-s/cumulus-create"
+
+[project.optional-dependencies]
+tui = ["textual>=6.0.0"]
+test = ["pytest>=9.0.0"]
+
+[project.scripts]
+cumulus-knowledge-mcp = "cumulus_knowledge.mcp_server:main"
+cumulus-knowledge-tui = "cumulus_knowledge.tui:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"

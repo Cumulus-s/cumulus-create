@@ -1,0 +1,88 @@
+# ---------------------------------------------------------------------------
+# Dependencies
+# ---------------------------------------------------------------------------
+node_modules/
+packages/*/node_modules/
+examples/*/node_modules/
+
+# ---------------------------------------------------------------------------
+# Build outputs
+# ---------------------------------------------------------------------------
+.next/
+.output/
+.swc/
+.turbo/
+dist/
+packages/*/dist/
+tsconfig.tsbuildinfo
+
+# ---------------------------------------------------------------------------
+# Environment + secrets — NEVER COMMIT
+# ---------------------------------------------------------------------------
+.env
+.env.local
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+.env.local.full
+*.pem
+*.key
+*.p12
+*.cert
+
+# ---------------------------------------------------------------------------
+# Vercel / deployment
+# ---------------------------------------------------------------------------
+.vercel/
+
+# ---------------------------------------------------------------------------
+# CLI runtime state
+# ---------------------------------------------------------------------------
+.relay/
+
+# ---------------------------------------------------------------------------
+# Editor / OS
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+*.swp
+*~
+
+# macOS Finder duplicates from manual file copies / iCloud sync — these are
+# stale broken siblings of real files (e.g. "dev 2.ts" next to "dev.ts").
+# Never tracked.
+* 2.ts
+* 2.tsx
+
+# ---------------------------------------------------------------------------
+# Coverage / test output
+# ---------------------------------------------------------------------------
+coverage/
+.nyc_output/
+
+# ---------------------------------------------------------------------------
+# Video rendering / frame capture (web-to-video skill)
+# ---------------------------------------------------------------------------
+# Puppeteer + ffmpeg pipeline writes thousands of PNG frames into tmp/ and
+# multi-hundred-MB ProRes masters alongside them. Final deliverables go to
+# ~/Downloads/ — never check the rendering scratch into the repo.
+tmp/
+**/*-frames/
+**/*-video-frames/
+# Common large rendering outputs that are clearly intermediate/scratch.
+# If the repo legitimately ships a video asset (e.g. public/videos/hero.mp4),
+# whitelist it explicitly: `!public/videos/hero.mp4` after these patterns.
+*-MASTER.mov
+*-MASTER.mp4
+*.prores
+
+# Local agent/runtime state
+.quarantine/
+.agents/
+.codex/
+sessions/

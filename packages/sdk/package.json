@@ -1,0 +1,49 @@
+{
+  "name": "@cumulus/sdk",
+  "version": "0.1.0",
+  "description": "Composed Cumulus Auth, DB, and system SDK.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "prebuild": "npm --workspace @cumulus/db run build && npm --workspace @cumulus/auth run build",
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "pretest": "npm run build",
+    "test": "vitest run src"
+  },
+  "keywords": [
+    "cumulus",
+    "auth",
+    "database",
+    "agents",
+    "sdk"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@cumulus/auth": "0.1.0",
+    "@cumulus/db": "0.1.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
+  }
+}

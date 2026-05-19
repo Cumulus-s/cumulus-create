@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/embedding.schema.json",
+  "title": "Embedding",
+  "type": "object",
+  "required": ["id", "owner_id", "model", "dimensions", "vector_ref", "metadata"],
+  "properties": {
+    "id": { "type": "string" },
+    "owner_id": { "type": "string" },
+    "model": { "type": "string" },
+    "dimensions": { "type": "integer", "minimum": 1 },
+    "vector_ref": { "type": "string", "description": "Adapter-specific vector location, such as lancedb://table/id." },
+    "metadata": { "type": "object", "additionalProperties": true }
+  },
+  "additionalProperties": false
+}

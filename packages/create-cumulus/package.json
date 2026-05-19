@@ -1,0 +1,54 @@
+{
+  "name": "create-cumulus",
+  "version": "0.3.1",
+  "description": "Create a Cumulus app with Auth, DB, Knowledge, and MCP wiring.",
+  "type": "module",
+  "bin": {
+    "create-cumulus": "dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "templates",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc && chmod +x dist/index.js",
+    "refresh-templates": "node scripts/refresh-templates.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "keywords": [
+    "cumulus",
+    "relay",
+    "create",
+    "nextjs",
+    "agent-auth",
+    "mcp"
+  ],
+  "license": "MIT",
+  "homepage": "https://cumulush.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cumulus-s/cumulus-create.git",
+    "directory": "packages/create-cumulus"
+  },
+  "bugs": {
+    "url": "https://github.com/Cumulus-s/cumulus-create/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
+  }
+}

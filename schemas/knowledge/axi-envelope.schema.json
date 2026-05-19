@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/axi-envelope.schema.json",
+  "title": "AxiEnvelope",
+  "type": "object",
+  "required": ["ok", "data", "meta", "links"],
+  "properties": {
+    "ok": { "type": "boolean" },
+    "data": {},
+    "meta": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "version": { "type": "string" },
+        "command": { "type": "string" },
+        "generated_at": { "type": "string" },
+        "cursor": { "type": ["string", "null"] },
+        "count": { "type": ["integer", "null"] },
+        "budget_tokens": { "type": ["integer", "null"] }
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/link" }
+    },
+    "error": {
+      "type": ["object", "null"],
+      "properties": {
+        "code": { "type": "string" },
+        "message": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "link": {
+      "type": "object",
+      "required": ["rel", "uri"],
+      "properties": {
+        "rel": { "type": "string" },
+        "uri": { "type": "string" },
+        "title": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
+

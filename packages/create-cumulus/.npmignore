@@ -1,0 +1,6 @@
+src/
+*.tsbuildinfo
+node_modules/
+coverage/
+templates/**/node_modules/
+templates/**/dist/

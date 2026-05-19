@@ -1,0 +1,9 @@
+Cumulus Database Provider
+Copyright 2026 Cumulus.
+
+The source code in this directory is licensed under AGPL-3.0-only.
+See LICENSE in this directory.
+
+This license applies only to the Cumulus Database provider in apps/cumulus-db.
+The rest of the Cumulus repository is licensed separately as described in the
+root README and docs/licensing.md.

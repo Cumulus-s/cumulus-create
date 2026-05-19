@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/graph-snapshot.schema.json",
+  "title": "GraphSnapshot",
+  "type": "object",
+  "required": ["generated_at", "nodes", "edges"],
+  "properties": {
+    "root_id": { "type": ["string", "null"] },
+    "generated_at": { "type": "string" },
+    "nodes": {
+      "type": "array",
+      "items": { "$ref": "node.schema.json" }
+    },
+    "edges": {
+      "type": "array",
+      "items": { "$ref": "edge.schema.json" }
+    }
+  }
+}
+

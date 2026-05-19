@@ -1,0 +1,49 @@
+name: npm provenance dry run
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        workspace:
+          - create-cumulus
+          - "@cumulus_cloud/altocumulus"
+          - "@cumulus_cloud/events"
+          - "@cumulus_cloud/cloud-client"
+          - "@cumulus/auth"
+          - "@cumulus/db"
+          - "@cumulus/nimbus"
+          - "@cumulus/sdk"
+          - "@cumulus_cloud/knowledge-sdk"
+          - "@cumulus_cloud/mcp"
+          - "@cumulus_cloud/server"
+          - "@cumulus_cloud/cli"
+          - "@cumulus_cloud/track"
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm --workspace "${{ matrix.workspace }}" run build --if-present
+      - run: npm pack --workspace "${{ matrix.workspace }}" --dry-run
+
+  publish:
+    if: ${{ false }}
+    needs: pack
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Publishing is intentionally disabled."
+          echo "Enable this job only after manual tarball inspection."
+          echo "Use npm publish --provenance --access public from a reviewed release workflow."

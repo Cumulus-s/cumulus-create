@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/project/intent.schema.json",
+  "title": "Cumulus Project Intent",
+  "type": "object",
+  "required": ["intent", "project", "registered_at", "source"],
+  "properties": {
+    "intent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "registered_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string"
+    },
+    "stack": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "milestones": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

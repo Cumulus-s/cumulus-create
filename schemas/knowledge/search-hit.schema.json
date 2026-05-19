@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/search-hit.schema.json",
+  "title": "SearchHit",
+  "type": "object",
+  "required": ["node", "score", "snippet", "resource_uri"],
+  "properties": {
+    "node": { "$ref": "node.schema.json" },
+    "chunk_id": { "type": ["string", "null"] },
+    "score": { "type": "number" },
+    "snippet": { "type": "string" },
+    "resource_uri": { "type": "string" }
+  }
+}
+

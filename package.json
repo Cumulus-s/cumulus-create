@@ -1,0 +1,75 @@
+{
+  "name": "cumulus-create-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "workspaces": [
+    "apps/web",
+    "apps/cumulus-db",
+    "packages/create-cumulus",
+    "packages/auth-sdk",
+    "packages/db-sdk",
+    "packages/sdk",
+    "packages/nimbus",
+    "packages/knowledge-sdk",
+    "packages/cli",
+    "packages/altocumulus",
+    "packages/events",
+    "packages/cloud-client",
+    "packages/server",
+    "packages/mcp",
+    "packages/track-sdk"
+  ],
+  "scripts": {
+    "dev": "npm run web:dev",
+    "build": "npm run web:build && npm run packages:build && npm run db:build && cargo build --workspace",
+    "lint": "npm run typecheck && npm run license:check && npm run security:scan",
+    "web:dev": "npm --workspace @cumulus-create/web run dev",
+    "web:build": "npm --workspace @cumulus-create/web run build",
+    "web:test": "npm --workspace @cumulus-create/web run test",
+    "web:typecheck": "npm --workspace @cumulus-create/web run typecheck",
+    "db:build": "npm --workspace @cumulus/database run build",
+    "db:test": "npm --workspace @cumulus/database run test",
+    "db:smoke": "npm --workspace @cumulus/database run build && npm --workspace @cumulus/database run smoke",
+    "knowledge:build": "npm --workspace @cumulus_cloud/knowledge-sdk run build && cargo build --workspace",
+    "knowledge:test": "npm --workspace @cumulus_cloud/knowledge-sdk run test && cargo test --workspace",
+    "python:test": "PYTHONPATH=python python3 -m pytest python/tests && PYTHONPATH=packages/altocumulus/python python3 -m pytest packages/altocumulus/python/tests",
+    "create-cumulus:build": "npm --workspace create-cumulus run build",
+    "create-cumulus:test": "npm --workspace create-cumulus run test",
+    "create-cumulus:typecheck": "npm --workspace create-cumulus run typecheck",
+    "events:build": "npm --workspace @cumulus_cloud/events run build",
+    "cloud-client:build": "npm --workspace @cumulus_cloud/cloud-client run build",
+    "server:build": "npm --workspace @cumulus_cloud/server run build",
+    "cli:build": "npm --workspace @cumulus_cloud/cli run build",
+    "altocumulus:build": "npm --workspace @cumulus_cloud/altocumulus run build",
+    "altocumulus:test": "npm --workspace @cumulus_cloud/altocumulus run test",
+    "altocumulus:python-test": "npm --workspace @cumulus_cloud/altocumulus run python:test",
+    "mcp:build": "npm --workspace @cumulus_cloud/mcp run build",
+    "packages:build": "npm --workspace @cumulus_cloud/events run build && npm --workspace @cumulus_cloud/cloud-client run build && npm --workspace @cumulus/auth run build && npm --workspace @cumulus/db run build && npm --workspace @cumulus/nimbus run build && npm --workspace @cumulus/sdk run build && npm --workspace @cumulus_cloud/knowledge-sdk run build && npm --workspace @cumulus_cloud/mcp run build && npm --workspace @cumulus_cloud/server run build && npm --workspace @cumulus_cloud/cli run build && npm --workspace @cumulus_cloud/altocumulus run build && npm --workspace @cumulus_cloud/track run build && npm --workspace create-cumulus run build",
+    "release:verify": "npm run license:check && npm run security:scan && npm run typecheck && npm run packages:build && npm run db:test && npm --workspace @cumulus/database run test:postgres && npm run web:test && npm run web:build && npm --workspace @cumulus_cloud/events run test && npm --workspace @cumulus_cloud/cloud-client run test && npm --workspace @cumulus/auth run test && npm --workspace @cumulus/db run test && npm --workspace @cumulus/nimbus run test && npm --workspace @cumulus/sdk run test && npm --workspace @cumulus_cloud/knowledge-sdk run test && npm --workspace @cumulus_cloud/mcp run test && npm --workspace @cumulus_cloud/server run test && npm --workspace @cumulus_cloud/altocumulus run test && npm run python:test && npm --workspace create-cumulus run test && npm run bootstrap:dry-run && cargo test --workspace && npm run release:pack",
+    "release:pack": "npm pack --workspace @cumulus_cloud/events --dry-run && npm pack --workspace @cumulus_cloud/cloud-client --dry-run && npm pack --workspace @cumulus/auth --dry-run && npm pack --workspace @cumulus/db --dry-run && npm pack --workspace @cumulus/nimbus --dry-run && npm pack --workspace @cumulus/sdk --dry-run && npm pack --workspace @cumulus_cloud/knowledge-sdk --dry-run && npm pack --workspace @cumulus_cloud/mcp --dry-run && npm pack --workspace @cumulus_cloud/server --dry-run && npm pack --workspace @cumulus_cloud/cli --dry-run && npm pack --workspace @cumulus_cloud/track --dry-run && npm pack --workspace @cumulus_cloud/altocumulus --dry-run && npm pack --workspace create-cumulus --dry-run",
+    "license:check": "node scripts/check-licenses.mjs",
+    "security:scan": "node scripts/security-scan.mjs",
+    "typecheck": "npm --workspaces --if-present run typecheck",
+    "test": "npm --workspaces --if-present run test && cargo test --workspace",
+    "bootstrap:dry-run": "npm --workspace create-cumulus run build && node packages/create-cumulus/dist/index.js /tmp/cumulus-create-smoke --template agent-auth --agent-auth hosted --cumulus-db cloud --with auth,db,knowledge --install-runtimes --dry-run --no-install --no-git"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
+  },
+  "overrides": {
+    "devalue": "^5.8.0",
+    "esbuild": "^0.28.0",
+    "postcss": "^8.5.14",
+    "@workflow/world-local": {
+      "undici": "^7.25.0"
+    },
+    "@workflow/world-vercel": {
+      "undici": "^7.25.0"
+    }
+  }
+}

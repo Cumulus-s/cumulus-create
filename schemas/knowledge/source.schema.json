@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/source.schema.json",
+  "title": "Source",
+  "type": "object",
+  "required": ["id", "path", "title", "mime_type", "sha256", "size_bytes", "metadata"],
+  "properties": {
+    "id": { "type": "string" },
+    "path": { "type": "string" },
+    "title": { "type": "string" },
+    "mime_type": { "type": "string" },
+    "sha256": { "type": "string" },
+    "size_bytes": { "type": "integer" },
+    "modified_at": { "type": ["string", "null"] },
+    "metadata": { "type": "object", "additionalProperties": true }
+  }
+}
+

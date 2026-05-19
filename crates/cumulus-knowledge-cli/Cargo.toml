@@ -1,0 +1,28 @@
+[package]
+name = "cumulus-knowledge-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Global cumulus CLI, TUI, and MCP server for local-first AI knowledge graphs"
+repository.workspace = true
+homepage.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[[bin]]
+name = "cumulus-knowledge"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+chrono.workspace = true
+clap.workspace = true
+crossterm.workspace = true
+cumulus-knowledge-core = { version = "0.1.0", path = "../cumulus-knowledge-core" }
+ratatui.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

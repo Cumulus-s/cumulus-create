@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/node.schema.json",
+  "title": "Node",
+  "type": "object",
+  "required": ["id", "kind", "label", "uri", "metadata"],
+  "properties": {
+    "id": { "type": "string" },
+    "kind": { "type": "string" },
+    "label": { "type": "string" },
+    "uri": { "type": "string" },
+    "source_id": { "type": ["string", "null"] },
+    "summary": { "type": ["string", "null"] },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" }
+  }
+}
+

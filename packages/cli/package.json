@@ -1,0 +1,51 @@
+{
+  "name": "@cumulus_cloud/cli",
+  "version": "0.1.1",
+  "description": "Command-line tools for Cumulus and Relay workflows.",
+  "type": "module",
+  "bin": {
+    "cumulus": "dist/cumulus.js",
+    "relay": "dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc && chmod +x dist/index.js dist/cumulus.js",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "relay",
+    "cli",
+    "agent",
+    "signup"
+  ],
+  "license": "MIT",
+  "homepage": "https://cumulush.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cumulus-s/cumulus-create.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/Cumulus-s/cumulus-create/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "create-cumulus": "^0.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.9.3"
+  }
+}

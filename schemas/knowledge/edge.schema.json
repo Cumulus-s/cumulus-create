@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/edge.schema.json",
+  "title": "Edge",
+  "type": "object",
+  "required": ["id", "kind", "from_id", "to_id", "metadata"],
+  "properties": {
+    "id": { "type": "string" },
+    "kind": { "type": "string" },
+    "from_id": { "type": "string" },
+    "to_id": { "type": "string" },
+    "label": { "type": ["string", "null"] },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "created_at": { "type": "string" }
+  }
+}
+

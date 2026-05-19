@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.local/index-manifest.schema.json",
+  "title": "IndexManifest",
+  "type": "object",
+  "required": ["version", "root_path", "profile", "updated_at", "source_count", "node_count", "edge_count", "chunk_count"],
+  "properties": {
+    "version": { "type": "string" },
+    "root_path": { "type": "string" },
+    "profile": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_count": { "type": "integer" },
+    "node_count": { "type": "integer" },
+    "edge_count": { "type": "integer" },
+    "chunk_count": { "type": "integer" }
+  }
+}
+

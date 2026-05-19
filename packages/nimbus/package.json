@@ -1,0 +1,44 @@
+{
+  "name": "@cumulus/nimbus",
+  "version": "0.1.0",
+  "description": "Nimbus manifest helpers and contracts for Cumulus DB.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run src"
+  },
+  "keywords": [
+    "cumulus",
+    "nimbus",
+    "schema",
+    "agents"
+  ],
+  "license": "AGPL-3.0-only",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
+  }
+}
+

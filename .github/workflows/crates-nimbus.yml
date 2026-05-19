@@ -1,0 +1,17 @@
+name: Nimbus crate dry run
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test -p cumulus-nimbus
+      - run: cargo package -p cumulus-nimbus --allow-dirty
+

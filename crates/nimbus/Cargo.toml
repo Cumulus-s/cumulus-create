@@ -1,0 +1,30 @@
+[package]
+name = "cumulus-nimbus"
+version.workspace = true
+edition.workspace = true
+license = "AGPL-3.0-only"
+authors.workspace = true
+description = "Rust-first Nimbus compiler core for Cumulus desired-state manifests"
+repository.workspace = true
+homepage.workspace = true
+keywords = ["cumulus", "nimbus", "database", "compiler", "agents"]
+categories = ["command-line-utilities", "development-tools"]
+
+[lib]
+name = "cumulus_nimbus"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cumulus-nimbus"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+clap.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

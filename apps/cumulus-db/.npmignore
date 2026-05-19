@@ -1,0 +1,8 @@
+CUMULUS_CREATE_ARCHIVE.md
+*.tgz
+.env
+.env.*
+!.env.example
+data
+dist/__tests__
+src/__tests__

@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.cumulus.sh/nimbus-ir/v1alpha1.schema.json",
+  "type": "object",
+  "required": [
+    "$schema",
+    "apiVersion",
+    "kind",
+    "metadata",
+    "spec"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://schemas.cumulus.sh/nimbus-ir/v1alpha1.schema.json"
+    },
+    "apiVersion": {
+      "const": "nimbus.cumulus/v1alpha1"
+    },
+    "kind": {
+      "const": "NimbusDocument"
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "name",
+        "compilerVersion",
+        "sourceHash"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "compilerVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "docs": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "namespace",
+        "apps",
+        "collections",
+        "indexes",
+        "policies",
+        "secrets",
+        "backups",
+        "approvals"
+      ],
+      "properties": {
+        "namespace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "apps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/namedObject"
+          }
+        },
+        "collections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/collection"
+          }
+        },
+        "indexes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/namedObject"
+          }
+        },
+        "policies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/namedObject"
+          }
+        },
+        "secrets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/secret"
+          }
+        },
+        "backups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/namedObject"
+          }
+        },
+        "approvals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/namedObject"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "namedObject": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "docs": {
+          "type": "string"
+        },
+        "attributes": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "collection": {
+      "type": "object",
+      "required": [
+        "name",
+        "fields"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "docs": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "object"
+        },
+        "indexes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/namedObject"
+          }
+        },
+        "attributes": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "secret": {
+      "type": "object",
+      "required": [
+        "name",
+        "source"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "docs": {
+          "type": "string"
+        },
+        "source": {
+          "type": "object",
+          "required": [
+            "kind",
+            "name"
+          ],
+          "properties": {
+            "kind": {
+              "const": "envRef"
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "attributes": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}
