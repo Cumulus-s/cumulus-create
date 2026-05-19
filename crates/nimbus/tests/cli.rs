@@ -15,7 +15,7 @@ fn compile_command_prints_schema_bundle() {
     )
     .unwrap();
 
-    let output = Command::new(env!("CARGO_BIN_EXE_cumulus-nimbus"))
+    let output = Command::new(env!("CARGO_BIN_EXE_cls-nimbus"))
         .arg("compile")
         .arg(&path)
         .output()

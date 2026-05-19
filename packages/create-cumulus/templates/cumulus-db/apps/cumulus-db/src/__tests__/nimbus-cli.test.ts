@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { runNimbusCli } from '../nimbus-cli.js';
 
 async function tempWorkspace(): Promise<string> {
-  return mkdtemp(join(tmpdir(), 'cumulus-nimbus-cli-'));
+  return mkdtemp(join(tmpdir(), 'cls-nimbus-cli-'));
 }
 
 describe('Nimbus CLI', () => {

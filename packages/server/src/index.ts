@@ -3,7 +3,7 @@ import {
   hashString,
   type EventEmitterOptions,
   type MetadataValue,
-} from "@cumulus_cloud/events";
+} from "@cls/events";
 
 export interface CumulusServerEventsOptions
   extends Partial<Pick<EventEmitterOptions, "ledgerPath" | "tenantId" | "projectId" | "installationId" | "localProjectRoot" | "onEvent" | "onError">> {}
@@ -39,7 +39,7 @@ export interface ActionInput {
 
 export function createCumulusServerEvents(options: CumulusServerEventsOptions = {}) {
   const emitter = createEventEmitter({
-    sourcePackage: "@cumulus_cloud/server",
+    sourcePackage: "@cls/server",
     surface: "api",
     subsystem: "agent",
     ...options,

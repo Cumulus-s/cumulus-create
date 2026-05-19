@@ -80,8 +80,9 @@ TEXT_EXTENSIONS = {
 }
 
 CUMULUS_NAME_PATTERN = re.compile(
-    r"(@cumulus/[A-Za-z0-9._-]+|@cumulus_cloud/[A-Za-z0-9._-]+|@cumulus-create/[A-Za-z0-9._-]+|"
-    r"create-cumulus|cumulus-knowledge(?:-[A-Za-z0-9._-]+)?|cumulus_knowledge)"
+    r"(@cls/[A-Za-z0-9._-]+|@cumulus/[A-Za-z0-9._-]+|@cumulus_cloud/[A-Za-z0-9._-]+|"
+    r"@cumulus-create/[A-Za-z0-9._-]+|create-cumulus|cls-knowledge(?:-[A-Za-z0-9._-]+)?|"
+    r"cumulus_knowledge)"
 )
 CUMULUS_CLI_COMMAND_PATTERN = re.compile(r"(?:^|[\s;&|()])cumulus(?:\s|$)")
 CUMULUS_KNOWLEDGE_COMMAND_PATTERN = re.compile(r"(?:^|[\s;&|()])cumulus\s+knowledge(?:\s|$)")
@@ -362,7 +363,7 @@ def scan_package_json(
             code_usage.append(
                 {
                     "source": "script",
-                    "name": match.group(1),
+                    "name": normalize_cumulus_name(match.group(1)),
                     "value": script_name,
                     "location": {"file": file},
                 }
@@ -371,7 +372,7 @@ def scan_package_json(
             code_usage.append(
                 {
                     "source": "script",
-                    "name": "cumulus-knowledge",
+                    "name": "cls-knowledge",
                     "value": script_name,
                     "location": {"file": file},
                 }
@@ -380,7 +381,7 @@ def scan_package_json(
             code_usage.append(
                 {
                     "source": "script",
-                    "name": "@cumulus_cloud/cli",
+                    "name": "@cls/cli",
                     "value": script_name,
                     "location": {"file": file},
                 }
@@ -389,7 +390,11 @@ def scan_package_json(
 
 def scan_cargo_toml(text: str, file: str, packages: list[dict[str, Any]]) -> None:
     for line_number, line in enumerate(text.splitlines(), 1):
-        match = re.match(r"^\s*([A-Za-z0-9_-]*cumulus[A-Za-z0-9_-]*)\s*=", line, re.IGNORECASE)
+        match = re.match(
+            r"^\s*((?:[A-Za-z0-9_-]*cumulus|cls-knowledge|cls-nimbus)[A-Za-z0-9_-]*)\s*=",
+            line,
+            re.IGNORECASE,
+        )
         if match:
             packages.append(
                 {"source": "cargo", "name": match.group(1), "location": {"file": file, "line": line_number}}
@@ -398,7 +403,7 @@ def scan_cargo_toml(text: str, file: str, packages: list[dict[str, Any]]) -> Non
 
 def scan_python_package_file(text: str, file: str, packages: list[dict[str, Any]]) -> None:
     for line_number, line in enumerate(text.splitlines(), 1):
-        for match in re.finditer(r"(cumulus-knowledge|cumulus_knowledge)", line):
+        for match in re.finditer(r"(cls-knowledge|cumulus_knowledge)", line):
             packages.append(
                 {"source": "python", "name": match.group(1), "location": {"file": file, "line": line_number}}
             )
@@ -457,13 +462,22 @@ def scan_docs(text: str, file: str, code_usage: list[dict[str, Any]]) -> None:
     for line_number, line in enumerate(text.splitlines(), 1):
         for match in CUMULUS_NAME_PATTERN.finditer(line):
             code_usage.append(
-                {"source": "docs", "name": match.group(1), "location": {"file": file, "line": line_number}}
+                {
+                    "source": "docs",
+                    "name": normalize_cumulus_name(match.group(1)),
+                    "location": {"file": file, "line": line_number},
+                }
             )
+
+
+def normalize_cumulus_name(name: str) -> str:
+    return name.rstrip(".,;:!?)]}")
 
 
 def is_cumulus_package_name(name: str) -> bool:
     return (
-        name in {"create-cumulus", "cumulus-knowledge", "cumulus_knowledge"}
+        name in {"create-cumulus", "@cls/create", "cls-knowledge", "cumulus_knowledge"}
+        or name.startswith("@cls/")
         or name.startswith("@cumulus/")
         or name.startswith("@cumulus_cloud/")
         or name.startswith("@cumulus-create/")

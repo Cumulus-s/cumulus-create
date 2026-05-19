@@ -3,10 +3,10 @@ import { mkdtemp, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { readEvents } from '@cumulus_cloud/events';
+import { readEvents } from '@cls/events';
 import { cumulus, relay } from './index.js';
 
-describe('@cumulus/auth event hooks', () => {
+describe('@cls/auth event hooks', () => {
   it('keeps the relay export as a compatibility alias', () => {
     expect(relay).toBe(cumulus);
   });

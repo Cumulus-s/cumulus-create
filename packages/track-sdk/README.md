@@ -1,17 +1,17 @@
-# @cumulus_cloud/track
+# @cls/track
 
 Tiny fire-and-forget activation tracker for Relay integrations.
 
 ## Install
 
 ```bash
-npm install @cumulus_cloud/track
+npm install @cls/track
 ```
 
 ## Usage
 
 ```ts
-import { createRelayTracker } from '@cumulus_cloud/track';
+import { createRelayTracker } from '@cls/track';
 
 const relay = createRelayTracker({
   secretId: process.env.RELAY_TRACKING_SECRET_ID!,

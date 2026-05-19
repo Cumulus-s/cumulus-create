@@ -1,5 +1,5 @@
 {
-  "name": "@cumulus/db",
+  "name": "@cls/db",
   "version": "0.1.0",
   "description": "HTTP SDK for Cumulus DB.",
   "type": "module",
@@ -17,10 +17,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "prebuild": "npm --workspace @cumulus_cloud/events run build",
     "build": "rm -rf dist && tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "pretest": "npm --workspace @cumulus_cloud/events run build",
     "test": "vitest run src"
   },
   "keywords": [
@@ -43,7 +41,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@cumulus_cloud/events": "0.1.0"
+    "@cls/events": "^0.1.0"
   },
   "publishConfig": {
     "access": "public",

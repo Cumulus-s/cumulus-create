@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { Kicker } from '@/app/components/Kicker';
 
 export const metadata = {
-  title: 'Privacy policy — __COMPANY_NAME__',
+  title: 'Privacy policy — Relay',
   description:
-    "What personal data __COMPANY_NAME__ collects, why, how long it's kept, and the subprocessors that touch it.",
+    "What personal data Relay collects, why, how long it's kept, and the subprocessors that touch it.",
 };
 
 const effective = '2026-04-19';
@@ -45,10 +45,10 @@ export default function PrivacyPage() {
       </p>
 
       <Section title="Who we are">
-        This app is operated by __COMPANY_NAME__. It provides HTTP API and MCP surfaces that
-        AI agents use to sign their users up to third-party products on behalf
-        of their end-users. We are a data processor for integrator tenants and
-        a data controller for our own account records.
+        Relay is operated by __COMPANY_NAME__. Relay provides an HTTP API and
+        MCP server that AI agents use to sign their users up to third-party
+        products on behalf of their end-users. We are a data processor for
+        integrator tenants and a data controller for our own account records.
       </Section>
 
       <Section title="What we collect">
@@ -75,9 +75,9 @@ export default function PrivacyPage() {
             agent can read and extract verification codes. Retained 90 days.
           </li>
           <li>
-            <b>Usage data.</b> Plan state, quota counters, action counts, and
-            abuse-control metadata. Payment wiring is not included in this
-            generated public template.
+            <b>Billing data.</b> external payment provider customer id, subscription state,
+            per-action quota counters, per-action overage invoice items. We
+            do NOT store card numbers — external payment provider holds those directly.
           </li>
         </List>
       </Section>
@@ -103,6 +103,7 @@ export default function PrivacyPage() {
           <li><b>Vercel</b> — application hosting + edge network (compute, logs).</li>
           <li><b>Resend</b> — outbound transactional email (verification codes, receipts).</li>
           <li><b>SendGrid</b> — inbound email parsing (the agent inbox).</li>
+          <li><b>external payment provider</b> — subscription and overage billing; stores card numbers.</li>
           <li><b>Sentry</b> — error and performance monitoring.</li>
         </List>
         A full current list lives at <Link href="/trust">/trust</Link>.
@@ -121,7 +122,7 @@ export default function PrivacyPage() {
       <Section title="Your rights">
         Subject to applicable law (GDPR, CCPA, and similar), you can request
         access, correction, deletion, export, or restriction of processing of
-        your personal data. Email your configured privacy contact from the address
+        your personal data. Email {`privacy@example.com`} from the address
         associated with your account. We aim to respond within 30 days.
       </Section>
 
@@ -138,7 +139,7 @@ export default function PrivacyPage() {
       </Section>
 
       <Section title="Contact">
-        Configure privacy, security, and general support contacts before public launch.
+        {`privacy@example.com`} for privacy requests · {`security@example.com`} for security issues · {`support@example.com`} for general inquiries.
       </Section>
 
       <footer

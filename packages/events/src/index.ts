@@ -10,19 +10,19 @@ export type PrivacyClass =
   | "secret_never_store";
 
 export type SourcePackage =
-  | "@cumulus_cloud/altocumulus"
-  | "@cumulus/auth"
-  | "@cumulus/db"
-  | "@cumulus/nimbus"
-  | "@cumulus/sdk"
-  | "@cumulus_cloud/knowledge-sdk"
-  | "@cumulus_cloud/mcp"
-  | "@cumulus_cloud/server"
-  | "@cumulus_cloud/events"
-  | "@cumulus_cloud/cloud-client"
-  | "@cumulus_cloud/cli"
-  | "@cumulus_cloud/track"
-  | "create-cumulus";
+  | "@cls/altocumulus"
+  | "@cls/auth"
+  | "@cls/db"
+  | "@cls/nimbus"
+  | "@cls/sdk"
+  | "@cls/knowledge"
+  | "@cls/mcp"
+  | "@cls/server"
+  | "@cls/events"
+  | "@cls/cloud"
+  | "@cls/cli"
+  | "@cls/track"
+  | "@cls/create";
 
 export type EventSurface = "tui" | "cli" | "sdk" | "api" | "mcp" | "scanner" | "cloud";
 export type EventSubsystem =
@@ -140,19 +140,19 @@ const VALID_PRIVACY_CLASSES = new Set<PrivacyClass>([
 ]);
 
 const VALID_SOURCE_PACKAGES = new Set<SourcePackage>([
-  "@cumulus_cloud/altocumulus",
-  "@cumulus/auth",
-  "@cumulus/db",
-  "@cumulus/nimbus",
-  "@cumulus/sdk",
-  "@cumulus_cloud/knowledge-sdk",
-  "@cumulus_cloud/mcp",
-  "@cumulus_cloud/server",
-  "@cumulus_cloud/events",
-  "@cumulus_cloud/cloud-client",
-  "@cumulus_cloud/cli",
-  "@cumulus_cloud/track",
-  "create-cumulus",
+  "@cls/altocumulus",
+  "@cls/auth",
+  "@cls/db",
+  "@cls/nimbus",
+  "@cls/sdk",
+  "@cls/knowledge",
+  "@cls/mcp",
+  "@cls/server",
+  "@cls/events",
+  "@cls/cloud",
+  "@cls/cli",
+  "@cls/track",
+  "@cls/create",
 ]);
 
 const VALID_SURFACES = new Set<EventSurface>(["tui", "cli", "sdk", "api", "mcp", "scanner", "cloud"]);

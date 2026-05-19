@@ -628,7 +628,7 @@ POST /v1/user/workspaces/:id/switch`}
         Per-agent-token limits are 60 writes/minute and 300 reads/minute
         (best-effort, per-instance on Fluid Compute). End-users hit a
         per-month signup cap (default 50); request a raise via your
-        integrator or email your configured support contact with your use case.
+        integrator or email {`support@example.com`} with your use case.
       </Section>
 
       <Section title="Pricing">

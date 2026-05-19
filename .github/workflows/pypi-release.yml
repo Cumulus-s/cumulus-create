@@ -1,0 +1,36 @@
+name: PyPI release
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build and check the package without uploading"
+        required: true
+        default: "true"
+        type: choice
+        options: ["true", "false"]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TWINE_USERNAME: __token__
+      TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install build twine pytest
+      - run: PYTHONPATH=python python -m pytest python/tests
+      - run: rm -rf python/dist && python -m build python
+      - run: python -m twine check python/dist/*
+      - name: twine upload
+        if: ${{ inputs.dry_run == 'false' }}
+        run: |
+          set -euo pipefail
+          test -n "${TWINE_PASSWORD:-}"
+          python -m twine upload python/dist/*

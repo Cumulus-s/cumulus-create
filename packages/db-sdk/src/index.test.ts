@@ -2,10 +2,10 @@ import { mkdtemp, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { readEvents } from '@cumulus_cloud/events';
+import { readEvents } from '@cls/events';
 import { CumulusDbClient } from './index.js';
 
-describe('@cumulus/db event hooks', () => {
+describe('@cls/db event hooks', () => {
   it('emits database operation metadata without writing row bodies or tokens', async () => {
     const dir = await mkdtemp(join(tmpdir(), 'cumulus-db-sdk-'));
     const ledgerPath = join(dir, 'events.jsonl');

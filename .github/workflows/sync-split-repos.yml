@@ -1,0 +1,25 @@
+name: sync split repos
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Generate mirror folders without pushing"
+        required: true
+        default: "true"
+        type: choice
+        options: ["true", "false"]
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.MIRROR_PUSH_TOKEN }}
+      CLS_RELEASE_REPOS_DIR: /tmp/cumulus-release-repos
+      CLS_MIRROR_PUSH: ${{ inputs.dry_run == 'false' && '1' || '0' }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/sync-split-repos.mjs

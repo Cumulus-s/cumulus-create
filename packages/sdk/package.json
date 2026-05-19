@@ -1,5 +1,5 @@
 {
-  "name": "@cumulus/sdk",
+  "name": "@cls/sdk",
   "version": "0.1.0",
   "description": "Composed Cumulus Auth, DB, and system SDK.",
   "type": "module",
@@ -17,10 +17,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "prebuild": "npm --workspace @cumulus/db run build && npm --workspace @cumulus/auth run build",
     "build": "rm -rf dist && tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "pretest": "npm run build",
     "test": "vitest run src"
   },
   "keywords": [
@@ -32,8 +30,8 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@cumulus/auth": "0.1.0",
-    "@cumulus/db": "0.1.0"
+    "@cls/auth": "^0.1.0",
+    "@cls/db": "^0.1.0"
   },
   "publishConfig": {
     "access": "public",

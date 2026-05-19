@@ -2,7 +2,7 @@ import {
   createEventEmitter,
   hashString,
   type EventEmitterOptions,
-} from "@cumulus_cloud/events";
+} from "@cls/events";
 
 export type CumulusRecordType =
   | "document"
@@ -69,7 +69,7 @@ export class CumulusDbClient {
     this.fetchImpl = options.fetchImpl ?? fetch;
     this.events = options.events
       ? createEventEmitter({
-          sourcePackage: "@cumulus/db",
+          sourcePackage: "@cls/db",
           surface: "sdk",
           subsystem: "db",
           ...options.events,

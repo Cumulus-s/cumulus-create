@@ -9,7 +9,7 @@ describe('isCliEntrypoint', () => {
   it('recognizes npm .bin symlinks as the CLI entrypoint', async () => {
     const root = await mkdtemp(join(tmpdir(), 'create-cumulus-bin-'));
     const actual = join(root, 'dist', 'index.js');
-    const bin = join(root, 'node_modules', '.bin', 'create-cumulus');
+    const bin = join(root, 'node_modules', '.bin', 'create');
 
     await mkdir(join(root, 'dist'), { recursive: true });
     await mkdir(join(root, 'node_modules', '.bin'), { recursive: true });

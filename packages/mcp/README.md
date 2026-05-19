@@ -1,4 +1,4 @@
-# @cumulus_cloud/mcp
+# @cls/mcp
 
 Safe MCP server for Cumulus agent operations metadata.
 
@@ -25,7 +25,7 @@ CUMULUS_AGENT_TOKEN=agt_...
 CUMULUS_DB_BASE_URL=http://localhost:4317
 CUMULUS_DB_ID=cdb_...
 CUMULUS_DB_TOKEN=cdb_data_...
-CUMULUS_KNOWLEDGE_BIN=cumulus-knowledge
+CUMULUS_KNOWLEDGE_BIN=cls-knowledge
 CUMULUS_KNOWLEDGE_ROOT=.
 ```
 

@@ -26,7 +26,7 @@ export async function main(argv = process.argv.slice(2)): Promise<void> {
       return;
     }
     const message = err instanceof Error ? err.message : String(err);
-    console.error(`create-cumulus: ${message}`);
+    console.error(`@cls/create: ${message}`);
     process.exitCode = 1;
   }
 }

@@ -2,7 +2,7 @@ use serde_json::Value;
 use std::{fs, process::Command};
 
 fn bin() -> &'static str {
-    env!("CARGO_BIN_EXE_cumulus-knowledge")
+    env!("CARGO_BIN_EXE_cls-knowledge")
 }
 
 #[test]

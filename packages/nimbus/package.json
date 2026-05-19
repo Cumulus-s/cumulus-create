@@ -1,5 +1,5 @@
 {
-  "name": "@cumulus/nimbus",
+  "name": "@cls/nimbus",
   "version": "0.1.0",
   "description": "Nimbus manifest helpers and contracts for Cumulus DB.",
   "type": "module",
@@ -41,4 +41,3 @@
     "vitest": "^4.1.4"
   }
 }
-

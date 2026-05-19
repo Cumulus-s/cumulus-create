@@ -5,7 +5,7 @@ Cumulus has two local terminal surfaces today.
 ## `altocumulus`
 
 `altocumulus` is the local Cumulus control TUI. It lives in `packages/altocumulus` and is
-published as `@cumulus_cloud/altocumulus`.
+published as `@cls/altocumulus`.
 
 V3 opens fast from cached local state and does not scan the current directory on
 startup. It scans projects only when the user runs a scan action, records local
@@ -22,7 +22,7 @@ See [altocumulus.md](./altocumulus.md).
 
 ## Knowledge TUI
 
-The Knowledge TUI lives in the Rust runtime under `crates/cumulus-knowledge-cli`
+The Knowledge TUI lives in the Rust runtime under `crates/cls-knowledge-cli`
 and is reached through the unified CLI:
 
 ```bash

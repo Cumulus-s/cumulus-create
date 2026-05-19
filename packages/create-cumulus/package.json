@@ -1,10 +1,10 @@
 {
-  "name": "create-cumulus",
-  "version": "0.3.1",
-  "description": "Create a Cumulus app with Auth, DB, Knowledge, and MCP wiring.",
+  "name": "@cls/create",
+  "version": "0.1.0",
+  "description": "Create a CLS/Cumulus app with Auth, DB, Knowledge, and MCP wiring.",
   "type": "module",
   "bin": {
-    "create-cumulus": "dist/index.js"
+    "create": "dist/index.js"
   },
   "main": "./dist/index.js",
   "files": [
@@ -23,7 +23,6 @@
   },
   "keywords": [
     "cumulus",
-    "relay",
     "create",
     "nextjs",
     "agent-auth",

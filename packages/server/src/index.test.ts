@@ -2,10 +2,10 @@ import { mkdtemp } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { describe, expect, it } from "vitest";
-import { readEvents } from "@cumulus_cloud/events";
+import { readEvents } from "@cls/events";
 import { createCumulusServerEvents } from "./index.js";
 
-describe("@cumulus_cloud/server", () => {
+describe("@cls/server", () => {
   it("records server API metadata without request bodies or credentials", async () => {
     const dir = await mkdtemp(join(tmpdir(), "cumulus-server-"));
     const ledger = join(dir, "events.jsonl");

@@ -4,9 +4,9 @@ Cumulus Knowledge is local-first. The index is stored inside the target folder i
 
 ## Pillars
 
-- **Rust pillar:** `cumulus-knowledge-core` and `cumulus-knowledge-cli`. This is the trusted local engine. It owns indexing, SQLite storage, semantic graph construction, CLI, TUI, local MCP, and local API serving.
-- **TypeScript pillar:** `@cumulus_cloud/knowledge-sdk`. This owns the no-code API shape, browser graph UI, Anime.js interactions, MCP Apps/web surfaces, and the main human-facing SDK.
-- **Python pillar:** `cumulus-knowledge`. This owns operations ingestion helpers, batch enrichment, evals, and AI-agent analysis workflows.
+- **Rust pillar:** `cls-knowledge-core` and `cls-knowledge-cli`. This is the trusted local engine. It owns indexing, SQLite storage, semantic graph construction, CLI, TUI, local MCP, and local API serving.
+- **TypeScript pillar:** `@cls/knowledge`. This owns the no-code API shape, browser graph UI, Anime.js interactions, MCP Apps/web surfaces, and the main human-facing SDK.
+- **Python pillar:** `cls-knowledge`. This owns operations ingestion helpers, batch enrichment, evals, and AI-agent analysis workflows.
 
 ## Components
 

@@ -1,24 +1,63 @@
 {
-  "name": "@cumulus/database",
-  "version": "0.3.0",
-  "private": true,
+  "name": "@cls/cumulus-db",
+  "version": "0.1.0",
   "license": "AGPL-3.0-only",
   "type": "module",
   "scripts": {
-    "build": "../../node_modules/.bin/tsc -p tsconfig.json",
+    "build": "rm -rf dist && tsc -p tsconfig.json",
     "cumulus": "node dist/cumulus-cli.js",
-    "dev": "../../node_modules/.bin/tsc -w -p tsconfig.json",
+    "dev": "tsc -w -p tsconfig.json",
     "nimbus": "node dist/nimbus-cli.js",
     "nimbus:check": "node dist/nimbus-cli.js check",
     "nimbus:compile": "node dist/nimbus-cli.js compile",
     "nimbus:fmt": "node dist/nimbus-cli.js fmt",
     "start": "node dist/server.js",
-    "test": "../../node_modules/.bin/vitest run src/**/*.test.ts",
-    "test:postgres": "CUMULUS_DB_POSTGRES_TESTS=true ../../node_modules/.bin/vitest run src/__tests__/*postgres*.test.ts",
+    "test": "vitest run src/**/*.test.ts",
+    "test:postgres": "CUMULUS_DB_POSTGRES_TESTS=true vitest run src/__tests__/*postgres*.test.ts",
     "smoke": "node dist/smoke.js",
-    "smoke:postgres": "CUMULUS_DB_POSTGRES_TESTS=true ../../node_modules/.bin/vitest run src/__tests__/postgres-engine.test.ts -t \"serves HTTP through the Postgres engine\""
+    "smoke:postgres": "CUMULUS_DB_POSTGRES_TESTS=true vitest run src/__tests__/postgres-engine.test.ts -t \"serves HTTP through the Postgres engine\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "dependencies": {
     "pg": "^8.21.0"
+  },
+  "description": "AGPL Cumulus DB service and Nimbus control-plane runtime.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "openapi",
+    "postgres",
+    "schemas",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cumulus-s/cumulus-create.git",
+    "directory": "apps/cumulus-db"
+  },
+  "bugs": {
+    "url": "https://github.com/Cumulus-s/cumulus-create/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
   }
 }

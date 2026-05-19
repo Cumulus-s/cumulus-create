@@ -4,12 +4,20 @@ import { join } from "node:path";
 const root = process.cwd();
 
 const expectedPackages = [
-  ["packages/auth-sdk/package.json", "@cumulus/auth", "Apache-2.0"],
-  ["packages/db-sdk/package.json", "@cumulus/db", "Apache-2.0"],
-  ["packages/sdk/package.json", "@cumulus/sdk", "Apache-2.0"],
-  ["packages/nimbus/package.json", "@cumulus/nimbus", "AGPL-3.0-only"],
-  ["apps/cumulus-db/package.json", "@cumulus/database", "AGPL-3.0-only"],
-  ["packages/create-cumulus/package.json", "create-cumulus", "MIT"],
+  ["packages/create-cumulus/package.json", "@cls/create", "MIT"],
+  ["packages/events/package.json", "@cls/events", "MIT"],
+  ["packages/cloud-client/package.json", "@cls/cloud", "MIT"],
+  ["packages/auth-sdk/package.json", "@cls/auth", "Apache-2.0"],
+  ["packages/db-sdk/package.json", "@cls/db", "Apache-2.0"],
+  ["packages/sdk/package.json", "@cls/sdk", "Apache-2.0"],
+  ["packages/nimbus/package.json", "@cls/nimbus", "AGPL-3.0-only"],
+  ["apps/cumulus-db/package.json", "@cls/cumulus-db", "AGPL-3.0-only"],
+  ["packages/knowledge-sdk/package.json", "@cls/knowledge", "AGPL-3.0-only"],
+  ["packages/mcp/package.json", "@cls/mcp", "MIT"],
+  ["packages/server/package.json", "@cls/server", "MIT"],
+  ["packages/cli/package.json", "@cls/cli", "MIT"],
+  ["packages/track-sdk/package.json", "@cls/track", "MIT"],
+  ["packages/altocumulus/package.json", "@cls/altocumulus", "MIT"],
 ];
 
 const failures = [];
@@ -68,7 +76,7 @@ for (const packagePath of [
     ...pkg.peerDependencies,
     ...pkg.optionalDependencies,
   };
-  for (const forbidden of ["@cumulus/database", "@cumulus/nimbus"]) {
+  for (const forbidden of ["@cls/cumulus-db", "@cls/nimbus"]) {
     if (deps[forbidden]) {
       failures.push(`${packagePath}/package.json: Apache package must not depend on AGPL ${forbidden}`);
     }
@@ -77,8 +85,22 @@ for (const packagePath of [
   for (const file of await walk(`${packagePath}/src`)) {
     if (!/\.[cm]?[tj]sx?$/.test(file)) continue;
     const text = await readFile(join(root, file), "utf8");
-    if (/(from\s+|import\()(["'])(@cumulus\/database|.*apps\/cumulus-db|.*cumulus-db\/src)/.test(text)) {
+    if (/(from\s+|import\()(["'])(@cls\/cumulus-db|@cumulus\/database|.*apps\/cumulus-db|.*cumulus-db\/src)/.test(text)) {
       failures.push(`${file}: Apache package must not import Cumulus DB provider internals`);
+    }
+  }
+}
+
+for (const [path] of expectedPackages) {
+  const pkg = JSON.parse(await readFile(join(root, path), "utf8"));
+  const deps = {
+    ...pkg.dependencies,
+    ...pkg.peerDependencies,
+    ...pkg.optionalDependencies,
+  };
+  for (const depName of Object.keys(deps)) {
+    if (depName.startsWith("@cumulus_cloud/") || /^@cumulus\/(auth|db|sdk|nimbus|database)$/.test(depName)) {
+      failures.push(`${path}: dependency ${depName} must use the @cls namespace`);
     }
   }
 }

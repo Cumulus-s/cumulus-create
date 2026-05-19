@@ -53,7 +53,7 @@ def handle(client: CumulusKnowledge, method: str, params: dict[str, Any]) -> Any
     if method == "initialize":
         return {
             "protocolVersion": "2025-06-18",
-            "serverInfo": {"name": "cumulus-knowledge", "version": "0.1.0"},
+            "serverInfo": {"name": "cls-knowledge", "version": "0.1.0"},
             "capabilities": {"tools": {}, "resources": {}, "prompts": {}},
         }
     if method == "tools/list":

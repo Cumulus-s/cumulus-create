@@ -77,7 +77,7 @@ function delegateRelay(relayArgs: string[]) {
 }
 
 function delegateKnowledge(knowledgeArgs: string[]) {
-  delegateCommand(env.CUMULUS_KNOWLEDGE_BIN || "cumulus-knowledge", [
+  delegateCommand(env.CUMULUS_KNOWLEDGE_BIN || "cls-knowledge", [
     "knowledge",
     ...knowledgeArgs,
   ]);
@@ -89,9 +89,9 @@ function delegateCommand(bin: string, commandArgs: string[]) {
 
 function delegateCreateCumulus(commandArgs: string[]) {
   try {
-    delegate(execPath, [require.resolve("create-cumulus"), ...commandArgs]);
+    delegate(execPath, [require.resolve("@cls/create"), ...commandArgs]);
   } catch {
-    delegateCommand("create-cumulus", commandArgs);
+    delegateCommand("create", commandArgs);
   }
 }
 
@@ -192,7 +192,7 @@ async function status() {
   } catch (error) {
     checks.db = { ok: false, error: error instanceof Error ? error.message : String(error) };
   }
-  const knowledge = spawnSync(env.CUMULUS_KNOWLEDGE_BIN || "cumulus-knowledge", ["--version"], {
+  const knowledge = spawnSync(env.CUMULUS_KNOWLEDGE_BIN || "cls-knowledge", ["--version"], {
     encoding: "utf8",
   });
   checks.knowledge = {

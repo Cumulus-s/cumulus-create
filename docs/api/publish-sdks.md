@@ -1,141 +1,71 @@
-# Publishing npm Packages
+# Publishing CLS Packages
 
-Cumulus publishes Apache-2.0 SDK packages and AGPL Nimbus/provider tooling from
-this repo:
+Publishing is centralized in `Cumulus-s/cumulus-create`.
 
-The full registry map and release order live in
-[`docs/release/package-registry-map.md`](../release/package-registry-map.md).
+## Required Secrets
 
-| Package | Path | Purpose |
-| --- | --- | --- |
-| `create-cumulus` | `packages/create-cumulus` | app generator |
-| `@cumulus_cloud/altocumulus` | `packages/altocumulus` | local terminal control center |
-| `@cumulus_cloud/events` | `packages/events` | event schema and local ledger |
-| `@cumulus_cloud/cloud-client` | `packages/cloud-client` | read-only cloud inventory client |
-| `@cumulus_cloud/cli` | `packages/cli` | command-line tools |
-| `@cumulus/auth` | `packages/auth-sdk` | Cumulus Auth SDK |
-| `@cumulus/db` | `packages/db-sdk` | Cumulus DB HTTP SDK |
-| `@cumulus/sdk` | `packages/sdk` | composed Auth, DB, and system SDK |
-| `@cumulus/nimbus` | `packages/nimbus` | Nimbus TypeScript contracts |
-| `@cumulus_cloud/knowledge-sdk` | `packages/knowledge-sdk` | Knowledge TypeScript SDK |
-| `@cumulus_cloud/mcp` | `packages/mcp` | safe MCP adapter |
-| `@cumulus_cloud/server` | `packages/server` | server event hooks |
-| `@cumulus_cloud/track` | `packages/track-sdk` | activation tracker |
+Configure these repo secrets on `Cumulus-s/cumulus-create`:
 
-Only publish from a clean worktree after tests pass.
+- `NPM_TOKEN`
+- `CARGO_REGISTRY_TOKEN`
+- `PYPI_API_TOKEN`
+- `MIRROR_PUSH_TOKEN`
 
-## Authenticate
+Do not add these secrets to split repos unless a split repo becomes an
+independent release owner.
 
-Use an npm account or automation token that has publish rights for the package:
+## Before Publish
 
 ```bash
-npm login
-npm whoami
-```
-
-For automation:
-
-```bash
-npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
-```
-
-Do not commit `.npmrc` files or tokens.
-Prefer a temporary npm config for one publish:
-
-```bash
-tmp_npmrc="$(mktemp)"
-printf '//registry.npmjs.org/:_authToken=%s\n' "$NPM_TOKEN" > "$tmp_npmrc"
-npm --userconfig "$tmp_npmrc" publish --access public
-rm -f "$tmp_npmrc"
-```
-
-## Build and Publish
-
-From each package directory:
-
-```bash
-npm run typecheck
-npm run test --if-present
-npm run build
-npm publish --access public --provenance
-```
-
-Before publishing `create-cumulus`, also run the root release checks and the
-local Cumulus DB service checks when templates changed:
-
-```bash
+npm ci
 npm run release:verify
-npm run release:pack
+node scripts/sync-split-repos.mjs
 ```
 
-The package `prepublishOnly` hooks run tests or builds again where configured.
+Then run the manual GitHub workflows in dry-run mode:
 
-For the creator package:
+- `sync split repos`
+- `npm release`
+- `crates release`
+- `PyPI release`
+
+## Public Install Commands
 
 ```bash
-cd packages/create-cumulus
-npm run typecheck
-npm run test
-npm run build
-npm publish --access public --provenance
+npm create @cls@latest my-app -- --with auth,db,knowledge
+npm install @cls/auth @cls/db @cls/sdk
+npm install @cls/nimbus @cls/cumulus-db
+cargo install cls-nimbus
+python3 -m pip install cls-knowledge
 ```
 
-## Smoke Test
+## Production Publish
 
-After publishing `create-cumulus`:
+After dry-run workflows pass and split repo READMEs point to the correct npm
+packages, re-run these workflows with `dry_run=false`:
+
+1. `sync split repos`
+2. `npm release`
+3. `crates release`
+4. `PyPI release`
+
+The npm workflow publishes the `@cls/*` packages in dependency order. The crates
+workflow publishes `cls-nimbus`, `cls-knowledge-core`, then
+`cls-knowledge-cli`. The PyPI workflow uploads `cls-knowledge`.
+
+## After Publish
+
+Run:
 
 ```bash
-npm view create-cumulus@latest version
-npx --yes create-cumulus@latest /tmp/cumulus-smoke \
-  --template agent-auth \
-  --agent-auth hosted \
-  --cumulus-db cloud \
-  --no-install \
-  --no-git
-test -f /tmp/cumulus-smoke/app/api/relay-login/route.ts
-test -f /tmp/cumulus-smoke/app/database/page.tsx
-test ! -d /tmp/cumulus-smoke/apps/cumulus-db
-
-npx --yes create-cumulus@latest /tmp/cumulus-smoke-full \
-  --template full \
-  --agent-auth hosted \
-  --no-install \
-  --no-git
-test -f /tmp/cumulus-smoke-full/apps/cumulus-db/LICENSE
-test -f '/tmp/cumulus-smoke-full/app/api/cumulus-db/databases/[id]/records/route.ts'
-test -f /tmp/cumulus-smoke-full/apps/cumulus-db/src/nimbus.ts
-test -f /tmp/cumulus-smoke-full/apps/cumulus-db/openapi/system-v1.openapi.json
-test -f /tmp/cumulus-smoke-full/app/'(user)'/me/database/page.tsx
-node -e "const pkg=require('/tmp/cumulus-smoke-full/package.json'); if (!pkg.scripts['cumulus-db:start']) process.exit(1)"
-node -e "const pkg=require('/tmp/cumulus-smoke-full/package.json'); if (!pkg.scripts['cumulus-db:nimbus:check'] || !pkg.dependencies.pg) process.exit(1)"
+npm view @cls/auth version license
+npm view @cls/db version license
+npm view @cls/sdk version license
+npm view @cls/nimbus version license
+npm view @cls/cumulus-db version license
+npm create @cls@latest /tmp/cls-smoke -- --template agent-auth --agent-auth hosted --cumulus-db cloud --with auth,db,knowledge --no-git
+cargo install cls-nimbus
+python3 -m pip install cls-knowledge
 ```
 
-`npm create cumulus@latest` is npm shorthand. It resolves to the
-`create-cumulus` package:
-
-```bash
-npm create cumulus@latest /tmp/cumulus-smoke -- \
-  --template outer \
-  --agent-auth hosted \
-  --no-install \
-  --no-git
-```
-
-`outer` defaults to hosted Cumulus DB and should not include
-`apps/cumulus-db` unless `--cumulus-db local` or `--cumulus-db both` is
-explicitly passed.
-
-## Versioning
-
-Use semver. Patch releases are for fixes and docs, minor releases for new
-commands/templates, and major releases for breaking template or SDK changes.
-
-```bash
-cd packages/create-cumulus
-npm version patch
-npm publish --access public --provenance
-```
-
-For `create-cumulus`, use package-specific git tags such as
-`create-cumulus-v0.3.0`. Push the release commit and tag after npm publish
-passes.
+Then deprecate old owned names with messages that point users to `@cls/*`.

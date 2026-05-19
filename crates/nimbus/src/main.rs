@@ -5,7 +5,7 @@ use clap::{Parser, Subcommand};
 use cumulus_nimbus::{canonical_json, compile};
 
 #[derive(Debug, Parser)]
-#[command(name = "cumulus-nimbus")]
+#[command(name = "cls-nimbus")]
 #[command(about = "Compile Nimbus desired-state manifests to canonical JSON")]
 struct Cli {
     #[command(subcommand)]

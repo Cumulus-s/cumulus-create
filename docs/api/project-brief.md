@@ -44,17 +44,17 @@ src/server/             Hono API, auth, billing, providers, database
 src/mcp/                MCP tools
 workflows/              durable signup workflow
 migrations/             SQL migrations
-packages/altocumulus/   @cumulus_cloud/altocumulus
-packages/events/        @cumulus_cloud/events
-packages/cloud-client/  @cumulus_cloud/cloud-client
-packages/cli/           @cumulus_cloud/cli
-packages/auth/      @cumulus/auth
-packages/db/        @cumulus/db
-packages/knowledge-sdk/ @cumulus_cloud/knowledge-sdk
-packages/mcp/           @cumulus_cloud/mcp
-packages/server/        @cumulus_cloud/server
-packages/track-sdk/     @cumulus_cloud/track
-packages/create-cumulus create-cumulus project creator
+packages/altocumulus/   @cls/altocumulus
+packages/events/        @cls/events
+packages/cloud-client/  @cls/cloud
+packages/cli/           @cls/cli
+packages/auth/      @cls/auth
+packages/db/        @cls/db
+packages/knowledge-sdk/ @cls/knowledge
+packages/mcp/           @cls/mcp
+packages/server/        @cls/server
+packages/track-sdk/     @cls/track
+packages/create-cumulus @cls/create project creator
 packages/create-cumulus/templates/cumulus-db
                         vendored local Cumulus DB service template
 docs/                   operator and contributor docs
@@ -95,7 +95,7 @@ Relay exposes:
 - OpenAPI at `/openapi.json`
 - public JWKS at `/.well-known/jwks.json`
 - human dashboards under `/me` and `/dev`
-- package creator through `create-cumulus`
+- package creator through `@cls/create`
 
 Generated `full`, `inner`, and `agent-auth` projects expose a simple Cumulus DB
 UI. `full` and `inner` use `/me/database`; `agent-auth` uses `/database`.
@@ -117,7 +117,7 @@ Postgres database and set `DATABASE_URL`.
 ## Licensing
 
 The Relay/Cumulus server is AGPL-3.0-only. Public SDK packages such as
-`@cumulus/auth`, `@cumulus/db`, and `@cumulus/sdk` are Apache-2.0. Generated
+`@cls/auth`, `@cls/db`, and `@cls/sdk` are Apache-2.0. Generated
 full, inner, self-hosted, and local Cumulus DB templates include AGPL services
 and default to AGPL-3.0-only. Small hosted `agent-auth --cumulus-db cloud`
 projects remain MIT.

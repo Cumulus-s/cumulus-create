@@ -119,7 +119,7 @@ const CELLS: PricingCell[] = [
     ],
     action: {
       label: 'Contact sales →',
-      href: 'mailto:sales@example.com?subject=Cumulus%20Enterprise%20inquiry',
+      href: 'mailto:sales@cumulush.com?subject=Relay%20Enterprise%20inquiry',
       external: true,
     },
     aside: { text: 'SOC 2, HIPAA BAAs.', emphasis: 'Reply same day.' },

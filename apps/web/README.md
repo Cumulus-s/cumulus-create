@@ -18,13 +18,13 @@ is for teams that need ownership, customization, or private infrastructure.
 ## Create An App
 
 ```bash
-npx create-cumulus@latest my-acme
+npm create @cls@latest my-acme
 
 # Equivalent npm create shorthand
-npm create cumulus@latest my-acme
+npm create @cls@latest my-acme
 
 # Keep the smallest agent-auth app on hosted Cumulus DB
-npx create-cumulus@latest my-acme --template agent-auth --cumulus-db cloud
+npm create @cls@latest my-acme -- --template agent-auth --cumulus-db cloud
 ```
 
 Templates:
@@ -174,7 +174,7 @@ where the Relay operator owns the underlying infrastructure.
 
 ```text
 packages/
-├── create-cumulus/  create-cumulus npm creator package
+├── create-cumulus/  @cls/create npm creator package
 ├── server-sdk/      framework-agnostic webhook helper
 ├── cli/             relay CLI source
 └── track-sdk/       activation tracking helper

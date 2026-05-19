@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-`create-cumulus` generates projects that depend on open-source packages such
+`@cls/create` generates projects that depend on open-source packages such
 as Next.js, React, TypeScript, Hono, Drizzle, and jose.
 
 Generated apps receive their own `package.json`; dependency licenses are
@@ -12,7 +12,7 @@ those font files under the upstream font license.
 Local Cumulus DB templates include the AGPL-3.0-only service under
 `apps/cumulus-db` with its own `LICENSE` and `NOTICE` files.
 
-The `create-cumulus` package is MIT-licensed. Generated `full`, `inner`, and
+The `@cls/create` package is MIT-licensed. Generated `full`, `inner`, and
 self-hosted app/server templates default to AGPL-3.0-only. Generated projects
 that include local Cumulus DB also default to AGPL-3.0-only. Small hosted
 integration templates default to MIT.

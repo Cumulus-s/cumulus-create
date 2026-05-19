@@ -26,7 +26,7 @@ The public repo is the shared source of truth. The private production overlay ad
 ## License Boundary
 
 - Full web app/server, local Cumulus DB, local Knowledge runtime, Nimbus provider tooling, and self-hosted generated templates stay AGPL-3.0-only.
-- Public app-side SDKs such as `@cumulus/auth`, `@cumulus/db`, and `@cumulus/sdk` stay Apache-2.0.
+- Public app-side SDKs such as `@cls/auth`, `@cls/db`, and `@cls/sdk` stay Apache-2.0.
 - Private production may configure, deploy, and operate Cumulus DB, but database-provider engine changes should still land in the AGPL-covered public directory when safe.
 - Keep private admin systems outside `apps/cumulus-db` unless they are intended to become AGPL-covered public provider code.
 

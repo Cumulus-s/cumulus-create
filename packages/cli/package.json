@@ -1,6 +1,6 @@
 {
-  "name": "@cumulus_cloud/cli",
-  "version": "0.1.1",
+  "name": "@cls/cli",
+  "version": "0.1.0",
   "description": "Command-line tools for Cumulus and Relay workflows.",
   "type": "module",
   "bin": {
@@ -19,7 +19,7 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "relay",
+    "cumulus",
     "cli",
     "agent",
     "signup"
@@ -42,7 +42,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "create-cumulus": "^0.3.1"
+    "@cls/create": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",

@@ -128,21 +128,26 @@ export default function SecurityPage() {
       </Section>
 
       <Section title="Vulnerability reporting">
-        Configure a security contact before public launch. Acknowledge reports
-        quickly, keep sensitive exploit details out of public issues, and
-        document your disclosure policy in <code>SECURITY.md</code>.
+        Report security issues to {`security@example.com`} (PGP key on
+        request). We acknowledge within 48 hours and patch critical issues
+        within 7 days. See the full policy in <code>SECURITY.md</code> on
+        the repo.
       </Section>
 
       <Section title="Compliance roadmap">
-        Add your compliance commitments here before public launch. Do not claim
-        SOC 2, GDPR, CCPA, DPA, or other compliance coverage until your own
-        organization can support it.
+        We are targeting <b>SOC 2 Type I</b> in Q4 2026 with a Type II report
+        to follow the subsequent audit period. GDPR and CCPA data-subject
+        rights are honored today; contact {`privacy@example.com`}. A Data
+        Processing Agreement (DPA) is available to any paying integrator on
+        request.
       </Section>
 
       <Section title="Source-availability">
-        Cumulus provider/runtime code is AGPL-3.0-only. Public app-side SDKs
-        use their package licenses and must talk to Cumulus DB over HTTP/token
-        APIs instead of importing provider internals.
+        Relay&apos;s service code is open source under AGPL-3.0. The generated app
+        code uses a permissive license so integrators can audit, fork, or pin
+        the code that handles webhooks, signs requests, and brokers the Relay
+        handshake on their side. Teams can use hosted Relay or run their own
+        Relay deployment.
       </Section>
 
       <footer

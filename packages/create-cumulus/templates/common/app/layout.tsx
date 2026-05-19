@@ -4,23 +4,23 @@ import { ThemeInit } from './components/ThemeInit';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('__APP_BASE_URL__'),
-  title: '__COMPANY_NAME__ — Cumulus app',
+  metadataBase: new URL('https://relay.cumulush.com'),
+  title: 'Relay — signup endpoint for API companies whose users arrive via AI agents',
   description:
-    'A Cumulus app with Auth, DB, Knowledge, SDK, API, and MCP wiring.',
+    'Let AI coding agents sign your users up to your API. Drop a 20-line webhook into your existing auth. You pay only when the signup makes a real first call.',
   openGraph: {
     type: 'website',
-    siteName: '__COMPANY_NAME__',
-    title: '__COMPANY_NAME__ — Cumulus app',
+    siteName: 'Relay',
+    title: 'Relay — signup endpoint for API companies whose users arrive via AI agents',
     description:
-      'A Cumulus app with Auth, DB, Knowledge, SDK, API, and MCP wiring.',
+      'When Cursor, Claude Code, or a custom agent needs an API key from you, Relay handles signup, email verification, and key handoff. You pay per delivered signup.',
     url: '/',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '__COMPANY_NAME__ — Cumulus app',
+    title: 'Relay — signup endpoint for API companies whose users arrive via AI agents',
     description:
-      'A Cumulus app with Auth, DB, Knowledge, SDK, API, and MCP wiring.',
+      'AI coding agents sign your users up. Drop a webhook. Pay per delivered signup.',
   },
 };
 
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 // before any descendants paint. Set on <html> so the custom-property
 // overrides cascade to html itself — otherwise overscroll/rubber-band
 // reveals the default light --color-paper behind dark mode.
-const themeBootScript = `(function(){try{var k='cumulus:theme';var s=localStorage.getItem(k);var t=(s==='light'||s==='dark'||s==='marquee'||s==='system')?s:'system';var r=t==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;document.documentElement.setAttribute('data-theme',r);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
+const themeBootScript = `(function(){try{var k='relay:theme';var s=localStorage.getItem(k);var t=(s==='light'||s==='dark'||s==='marquee'||s==='system')?s:'system';var r=t==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;document.documentElement.setAttribute('data-theme',r);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

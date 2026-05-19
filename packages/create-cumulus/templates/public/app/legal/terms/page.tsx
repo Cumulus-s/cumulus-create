@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Kicker } from '@/app/components/Kicker';
 
 export const metadata = {
-  title: 'Terms of service — __COMPANY_NAME__',
-  description: 'Terms governing your use of this Cumulus app, API, dashboard, SDK, and CLI.',
+  title: 'Terms of service — Relay',
+  description: 'Terms governing your use of the Relay API, dashboard, SDK, and CLI.',
 };
 
 const effective = '2026-04-19';
@@ -45,7 +45,7 @@ export default function TermsPage() {
 
       <Section title="1. Agreement">
         These Terms of Service (the &ldquo;Terms&rdquo;) govern your use of the
-        API, dashboard, MCP server, SDK, and CLI (the &ldquo;Service&rdquo;),
+        Relay API, dashboard, MCP server, SDK, and CLI (the &ldquo;Service&rdquo;),
         operated by __COMPANY_NAME__ (&ldquo;we,&rdquo; &ldquo;us&rdquo;). By creating an
         account or signing a subscription you agree to these Terms.
       </Section>
@@ -58,9 +58,13 @@ export default function TermsPage() {
       </Section>
 
       <Section title="3. Fees and billing">
-        Payment wiring is not included in this generated public template.
-        If you add paid plans, publish the exact fees, renewal terms, taxes,
-        cancellation behavior, and refund policy before accepting payment.
+        Integrator subscriptions are billed monthly via external payment provider at the plan
+        rate plus per-signup overage beyond the included quota. All fees are
+        in US Dollars and exclusive of taxes. Subscriptions renew
+        automatically until canceled; downgrades take effect at the end of
+        the current billing period. Failed signups refund the corresponding
+        quota slot automatically; charges that have already been invoiced are
+        non-refundable except where required by law.
       </Section>
 
       <Section title="4. Acceptable use">
@@ -69,7 +73,7 @@ export default function TermsPage() {
           <li>Use the Service for unlawful activity or to harass, threaten, or defraud.</li>
           <li>Circumvent rate limits, quotas, or authentication controls.</li>
           <li>Reverse-engineer, decompile, or attempt to derive source code (except where permitted by law).</li>
-          <li>Use the Service to build a competing product that resells private platform functionality.</li>
+          <li>Use the Service to build a competing product that resells Relay functionality.</li>
           <li>
             Submit content that infringes a third party&apos;s intellectual
             property, privacy, or publicity rights.
@@ -139,7 +143,7 @@ export default function TermsPage() {
       </Section>
 
       <Section title="14. Contact">
-        Configure your legal contact before public launch.
+        {`support@example.com`} · replace with your business mailing address.
       </Section>
 
       <footer

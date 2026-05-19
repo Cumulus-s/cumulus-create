@@ -4,6 +4,10 @@ Cumulus Database is a standalone agent-owned database service. Relay provisions
 workspaces through `POST /v1/relay/signup`; agents then use the returned
 endpoint, database id, data token, and admin token.
 
+Source of truth: https://github.com/Cumulus-s/cumulus-create
+Public mirror: https://github.com/Cumulus-s/cumulus-db
+Package: `@cls/cumulus-db`
+
 Cumulus DB v1 now has two storage roles:
 
 - hosted provider runtime: PostgreSQL with `cumulus_system` and `cumulus_data`

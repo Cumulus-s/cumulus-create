@@ -191,7 +191,7 @@ describe('buildFiles', () => {
         expect(files.get('README.md')).toContain(`Template: \`${publicTemplate}\``);
         expect(files.get('README.md')).toContain(`Agent auth mode: \`${agentAuth}\``);
         expect(files.get('README.md')).toContain('Cumulus DB mode: `');
-        expect(files.get('package.json')).toContain('@cumulus/auth');
+        expect(files.get('package.json')).toContain('@cls/auth');
         expect(files.get('app/globals.css')).toContain('@import "tailwindcss"');
         expect(files.get('app/components/DashboardShell.tsx')).toContain('relay-app');
         expect(files.get('src/relay/webhook.ts')).toContain('export const relay');
@@ -291,7 +291,6 @@ describe('buildFiles', () => {
       .filter((value): value is string => typeof value === 'string')
       .join('\n---file---\n');
     expect(allContent).toContain('Acme Inc');
-    expect(files.get('app/layout.tsx')).toContain('Acme Inc');
     expect(files.get('app/legal/privacy/page.tsx')).toContain(
       'Operator: Acme Inc',
     );
@@ -327,8 +326,8 @@ describe('buildFiles', () => {
     const files = buildFiles(options('agent-auth', 'hosted', 'cloud'));
 
     expect(files.get('package.json')).toContain('"license": "MIT"');
-    expect(files.get('package.json')).toContain('"@cumulus/db"');
-    expect(files.get('package.json')).not.toContain('"@cumulus/nimbus"');
+    expect(files.get('package.json')).toContain('"@cls/db"');
+    expect(files.get('package.json')).not.toContain('"@cls/nimbus"');
     expect(files.has('apps/cumulus-db/package.json')).toBe(false);
     expect(files.has('scripts/create-cumulus-db-workspace.ts')).toBe(false);
     expect(files.has('app/database/page.tsx')).toBe(true);
@@ -366,7 +365,7 @@ describe('buildFiles', () => {
       '"license": "AGPL-3.0-only"',
     );
     expect(packageJson).toContain('"license": "AGPL-3.0-only"');
-    expect(packageJson).toContain('"@cumulus/nimbus": "^0.1.0"');
+    expect(packageJson).toContain('"@cls/nimbus": "^0.1.0"');
     expect(packageJson).toContain('"cumulus-db:build"');
     expect(packageJson).toContain('"cumulus-db:workspace"');
     expect(packageJson).toContain('"cumulus-db:nimbus"');

@@ -180,7 +180,7 @@ export default function Home() {
             <div style={kicker}>Intent Console</div>
             <h1 style={h1}>Tell the agent what to build. Cumulus creates the working project.</h1>
             <p style={lead}>
-              The agent signs up, registers the intent, runs create-cumulus, wires Auth, DB,
+              The agent signs up, registers the intent, runs `npm create @cls`, wires Auth, DB,
               Knowledge, SDKs, APIs, MCP, CLI, and TUI, then keeps progress in the cloud database.
             </p>
 
@@ -241,7 +241,7 @@ export default function Home() {
         >
           {[
             ['01', 'Agent signs up', 'Agent Auth links the user, agent, tenant, and project intent.'],
-            ['02', 'Project bootstraps', 'create-cumulus installs npm, Rust, and Python runtime wiring.'],
+            ['02', 'Project bootstraps', '@cls/create installs npm, Rust, and Python runtime wiring.'],
             ['03', 'Progress persists', 'SDK/API calls update Cumulus DB while Knowledge serves context.'],
           ].map(([index, title, text]) => (
             <article key={index} style={panel}>
@@ -261,7 +261,7 @@ export default function Home() {
             </p>
           </div>
           <pre style={command}>
-            npx create-cumulus@latest my-project --with auth,db,knowledge --install-runtimes
+            npm create @cls@latest my-project -- --with auth,db,knowledge --install-runtimes
           </pre>
         </section>
       </div>

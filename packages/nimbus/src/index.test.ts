@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { canonicalJson, stableHash, NIMBUS_LAYOUT } from "./index.js";
 
-describe("@cumulus/nimbus", () => {
+describe("@cls/nimbus", () => {
   it("defines the standard local project layout", () => {
     expect(NIMBUS_LAYOUT.root).toBe("nimbus/schema.nimbus");
     expect(NIMBUS_LAYOUT.compiled).toBe(".cumulus/compiled");

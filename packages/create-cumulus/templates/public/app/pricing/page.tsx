@@ -142,8 +142,8 @@ export default function PricingPage() {
         </div>
         <div style={{ ...small, marginTop: 18 }}>
           Or email{' '}
-          <a href="mailto:sales@example.com" style={{ color: 'var(--color-ink)' }}>
-            sales@example.com
+          <a href="mailto:support@example.com" style={{ color: 'var(--color-ink)' }}>
+            support@example.com
           </a>{' '}
           first.
         </div>

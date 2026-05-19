@@ -1,6 +1,6 @@
 /**
  * Mint a per-tenant low-privilege HMAC tracking secret for use with
- * @cumulus_cloud/track. The secret is for a single purpose:
+ * @cls/track. The secret is for a single purpose:
  * authenticating POST /v1/activations from the integrator's
  * key-validation middleware. It cannot mint API keys, read accounts,
  * or call any other route.

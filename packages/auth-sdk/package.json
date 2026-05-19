@@ -1,5 +1,5 @@
 {
-  "name": "@cumulus/auth",
+  "name": "@cls/auth",
   "version": "0.1.0",
   "description": "Cumulus Auth SDK for human and agent authentication.",
   "type": "module",
@@ -17,15 +17,13 @@
     "LICENSE"
   ],
   "scripts": {
-    "prebuild": "npm --workspace @cumulus_cloud/events run build",
     "build": "rm -rf dist && tsc",
     "typecheck": "tsc --noEmit",
-    "pretest": "npm --workspace @cumulus_cloud/events run build",
     "test": "vitest run src",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "relay",
+    "cumulus",
     "agent",
     "signup",
     "webhook",
@@ -50,7 +48,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@cumulus_cloud/events": "0.1.0"
+    "@cls/events": "^0.1.0"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

@@ -29,7 +29,7 @@ use std::{
 
 #[derive(Debug, Parser)]
 #[command(
-    name = "cumulus-knowledge",
+    name = "cls-knowledge",
     version,
     about = "Local-first knowledge graph tools for AI agents"
 )]
@@ -1165,7 +1165,7 @@ fn handle_json_rpc(root: &Path, request: Value) -> Option<Value> {
     let response = match method {
         "initialize" => Ok(json!({
             "protocolVersion": "2025-06-18",
-            "serverInfo": {"name": "cumulus-knowledge", "version": env!("CARGO_PKG_VERSION")},
+            "serverInfo": {"name": "cls-knowledge", "version": env!("CARGO_PKG_VERSION")},
             "capabilities": {
                 "tools": {},
                 "resources": {},

@@ -28,9 +28,9 @@ action cards and confirmation rules.
 
 - npm workspaces,
 - `@cumulus_cloud/*`, legacy `@cumulus/*`, `@cumulus-create/*`,
-  `create-cumulus`, and `cumulus-knowledge`,
+  `create-cumulus`, and `cls-knowledge`,
 - Rust `Cargo.toml` Cumulus crate references,
-- Python `cumulus-knowledge` / `cumulus_knowledge` references,
+- Python `cls-knowledge` / `cumulus_knowledge` references,
 - TypeScript, JavaScript, and Python imports,
 - package scripts that call Cumulus tools,
 - docs references,
@@ -97,13 +97,13 @@ state folders from being scanned back into later snapshots.
 
 ## Package Boundary
 
-`@cumulus_cloud/altocumulus` follows the small-package MIT pattern.
+`@cls/altocumulus` follows the small-package MIT pattern.
 
 It must not import AGPL provider internals from `apps/cumulus-db` or `apps/web`.
 Future hosted integration should use HTTP APIs or SDK boundaries, not direct
 server imports.
 
-`@cumulus_cloud/events` is the shared ledger dependency. SDKs can import events.
+`@cls/events` is the shared ledger dependency. SDKs can import events.
 Events must not import the TUI, SDKs, app code, or AGPL provider internals.
 
 ## Development Brief

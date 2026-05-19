@@ -1,9 +1,9 @@
 /**
- * @cumulus_cloud/track — fire-and-forget activation tracker.
+ * @cls/track — fire-and-forget activation tracker.
  *
  * Drop one line into your key-validation middleware:
  *
- *   import { createRelayTracker } from '@cumulus_cloud/track';
+ *   import { createRelayTracker } from '@cls/track';
  *   const relay = createRelayTracker({
  *     secretId: process.env.RELAY_TRACKING_SECRET_ID!,
  *     secretValue: process.env.RELAY_TRACKING_SECRET!,
@@ -61,7 +61,7 @@ export type RelayTracker = {
 
 export function createRelayTracker(opts: RelayTrackerOptions): RelayTracker {
   if (!opts.secretId || !opts.secretValue) {
-    throw new Error('@cumulus_cloud/track: secretId and secretValue are required');
+    throw new Error('@cls/track: secretId and secretValue are required');
   }
   const endpoint = (opts.endpoint ?? DEFAULT_ENDPOINT).replace(/\/+$/, '');
   const maxRetries = opts.maxRetries ?? DEFAULT_MAX_RETRIES;

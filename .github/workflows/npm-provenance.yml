@@ -1,49 +1,79 @@
-name: npm provenance dry run
+name: npm release
 
 on:
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run verification and npm publish --dry-run only"
+        required: true
+        default: "true"
+        type: choice
+        options: ["true", "false"]
 
 permissions:
   contents: read
   id-token: write
 
 jobs:
-  pack:
+  release:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        workspace:
-          - create-cumulus
-          - "@cumulus_cloud/altocumulus"
-          - "@cumulus_cloud/events"
-          - "@cumulus_cloud/cloud-client"
-          - "@cumulus/auth"
-          - "@cumulus/db"
-          - "@cumulus/nimbus"
-          - "@cumulus/sdk"
-          - "@cumulus_cloud/knowledge-sdk"
-          - "@cumulus_cloud/mcp"
-          - "@cumulus_cloud/server"
-          - "@cumulus_cloud/cli"
-          - "@cumulus_cloud/track"
-
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update && sudo apt-get install -y postgresql
       - run: npm ci
-      - run: npm --workspace "${{ matrix.workspace }}" run build --if-present
-      - run: npm pack --workspace "${{ matrix.workspace }}" --dry-run
-
-  publish:
-    if: ${{ false }}
-    needs: pack
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "Publishing is intentionally disabled."
-          echo "Enable this job only after manual tarball inspection."
-          echo "Use npm publish --provenance --access public from a reviewed release workflow."
+      - run: python -m pip install pytest
+      - run: npm run release:verify
+      - name: npm publish dry-run
+        run: |
+          set -euo pipefail
+          for workspace in \
+            "@cls/events" \
+            "@cls/cloud" \
+            "@cls/auth" \
+            "@cls/db" \
+            "@cls/sdk" \
+            "@cls/nimbus" \
+            "@cls/knowledge" \
+            "@cls/mcp" \
+            "@cls/server" \
+            "@cls/cli" \
+            "@cls/track" \
+            "@cls/altocumulus" \
+            "@cls/create" \
+            "@cls/cumulus-db"
+          do
+            npm publish --workspace "$workspace" --access public --provenance --dry-run
+          done
+      - name: npm publish
+        if: ${{ inputs.dry_run == 'false' }}
+        run: |
+          set -euo pipefail
+          test -n "${NODE_AUTH_TOKEN:-}"
+          for workspace in \
+            "@cls/events" \
+            "@cls/cloud" \
+            "@cls/auth" \
+            "@cls/db" \
+            "@cls/sdk" \
+            "@cls/nimbus" \
+            "@cls/knowledge" \
+            "@cls/mcp" \
+            "@cls/server" \
+            "@cls/cli" \
+            "@cls/track" \
+            "@cls/altocumulus" \
+            "@cls/create" \
+            "@cls/cumulus-db"
+          do
+            npm publish --workspace "$workspace" --access public --provenance
+          done

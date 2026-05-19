@@ -471,7 +471,11 @@ export async function createProject(options: CreateOptions): Promise<CreateResul
     await run(options.packageManager, ['install'], options.targetDir);
   }
   if (options.installRuntimes) {
-    await run('npx', ['--yes', 'cumulus-knowledge-setup', '--all'], options.targetDir);
+    await run(
+      'npx',
+      ['--yes', '--package', '@cls/knowledge', 'cls-knowledge-setup', '--all'],
+      options.targetDir,
+    );
   }
   if (options.git) {
     await run('git', ['init'], options.targetDir);
@@ -481,12 +485,12 @@ export async function createProject(options: CreateOptions): Promise<CreateResul
 }
 
 export function helpText(): string {
-  return `create-cumulus — bootstrap a Cumulus project
+  return `@cls/create — bootstrap a Cumulus project
 
 Usage:
-  npx create-cumulus@latest <project-name>
-  npm create cumulus@latest <project-name>
-  create-cumulus <project-name> --template full --agent-auth hosted
+  npm create @cls@latest <project-name>
+  npm exec @cls/create@latest -- <project-name>
+  create <project-name> --template full --agent-auth hosted
 
 Options:
   --template full|outer|inner|agent-auth

@@ -26,8 +26,8 @@ license and public-safety scans.
 
 - Full app/server, local Cumulus DB, local Knowledge runtime, Nimbus tooling,
   and self-hosted generated templates: AGPL-3.0-only.
-- `@cumulus/auth`, `@cumulus/db`, and `@cumulus/sdk`: Apache-2.0.
-- `@cumulus/nimbus`: AGPL-3.0-only.
+- `@cls/auth`, `@cls/db`, and `@cls/sdk`: Apache-2.0.
+- `@cls/nimbus`: AGPL-3.0-only.
 - App-side code must talk to Cumulus DB over HTTP/token APIs.
 - Do not import AGPL database-provider code into Apache-side SDK code.
 

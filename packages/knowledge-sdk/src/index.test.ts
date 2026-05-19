@@ -2,18 +2,18 @@ import { mkdtemp, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { readEvents } from '@cumulus_cloud/events';
+import { readEvents } from '@cls/events';
 import { CumulusKnowledge } from './index.js';
 
 const originalFetch = globalThis.fetch;
 
-describe('@cumulus_cloud/knowledge-sdk event hooks', () => {
+describe('@cls/knowledge event hooks', () => {
   afterEach(() => {
     globalThis.fetch = originalFetch;
   });
 
   it('emits retrieval metadata without writing raw queries or snippets', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'cumulus-knowledge-sdk-'));
+    const dir = await mkdtemp(join(tmpdir(), 'cls-knowledge-sdk-'));
     const ledgerPath = join(dir, 'events.jsonl');
     const fetchImpl = vi.fn(async () =>
       new Response(

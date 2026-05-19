@@ -1,8 +1,8 @@
-# cumulus-knowledge
+# cls-knowledge
 
 Python SDK, operations ingestion helpers, graph QA helpers, MCP server, and ops-review TUI mode for Cumulus Knowledge.
 
-The SDK uses the `cumulus-knowledge` binary by default. Set `CUMULUS_BIN` to point at another binary.
+The SDK uses the `cls-knowledge` binary by default. Set `CUMULUS_BIN` to point at another binary.
 
 ```python
 from cumulus_knowledge import CumulusKnowledge

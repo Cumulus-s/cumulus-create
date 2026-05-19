@@ -1,5 +1,5 @@
 {
-  "name": "@cumulus_cloud/altocumulus",
+  "name": "@cls/altocumulus",
   "version": "0.1.0",
   "description": "Local terminal control center for Cumulus projects and usage.",
   "type": "module",
@@ -24,13 +24,12 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json && chmod +x dist/index.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "pretest": "npm --workspace @cumulus_cloud/events run build",
     "test": "vitest run src",
     "python:test": "python3 -m pytest python/tests",
     "prepublishOnly": "npm run test && npm run python:test && npm run build"
   },
   "dependencies": {
-    "@cumulus_cloud/events": "0.1.0"
+    "@cls/events": "^0.1.0"
   },
   "keywords": [
     "cumulus",

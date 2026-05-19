@@ -6,7 +6,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 let child: ReturnType<typeof spawn> | undefined;
 
-describe('@cumulus_cloud/mcp schema surface', () => {
+describe('@cls/mcp schema surface', () => {
   afterEach(() => {
     child?.kill();
     child = undefined;

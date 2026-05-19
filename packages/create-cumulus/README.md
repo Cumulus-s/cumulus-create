@@ -1,25 +1,25 @@
-# create-cumulus
+# @cls/create
 
 Create a Cumulus app with Agent Auth, Cumulus DB, Cumulus Knowledge, SDK,
 API, CLI, TUI, and MCP wiring in one generated project.
 
 ```bash
-npx create-cumulus@latest my-acme
+npm create @cls@latest my-acme
 
 # Equivalent npm create shorthand
-npm create cumulus@latest my-acme
+npm create @cls@latest my-acme
 
 # Non-interactive
-npx create-cumulus@latest my-acme --template full --agent-auth hosted --company "Acme Inc"
-npx create-cumulus@latest my-acme --template outer --agent-auth hosted
-npx create-cumulus@latest my-acme --template inner --agent-auth hosted
-npx create-cumulus@latest my-acme --template full --agent-auth self-hosted --with auth,db,knowledge --install-runtimes
-npx create-cumulus@latest my-acme --template agent-auth --cumulus-db cloud
+npm create @cls@latest my-acme -- --template full --agent-auth hosted --company "Acme Inc"
+npm create @cls@latest my-acme -- --template outer --agent-auth hosted
+npm create @cls@latest my-acme -- --template inner --agent-auth hosted
+npm create @cls@latest my-acme -- --template full --agent-auth self-hosted --with auth,db,knowledge --install-runtimes
+npm create @cls@latest my-acme -- --template agent-auth --cumulus-db cloud
 ```
 
-`npm create cumulus@latest` is npm shorthand for `create-cumulus@latest`.
-Both commands download the same package from npm and run its `create-cumulus`
-binary. They work only after `create-cumulus` has been published to npm.
+`npm create @cls@latest` is npm shorthand for `@cls/create@latest`.
+Both commands download the same package from npm and run its `create` binary.
+They work only after `@cls/create` has been published to npm.
 
 For local development before publishing:
 
@@ -125,7 +125,7 @@ needs cloud credentials from hosted Relay/Cumulus Cloud.
 ## Flags
 
 ```bash
-create-cumulus <project-name>
+create <project-name>
   --template full|outer|inner|agent-auth
   --agent-auth hosted|self-hosted
   --cumulus-db cloud|local|both
@@ -143,7 +143,7 @@ for the core Cumulus Create flow: user intent, agent signup, project bootstrap,
 Knowledge second brain, and Cumulus DB progress writes.
 
 `--install-runtimes` runs dependency install and then installs the optional
-Rust and Python Knowledge runtimes through `cumulus-knowledge-setup --all`.
+Rust and Python Knowledge runtimes through `cls-knowledge-setup --all`.
 
 If flags are missing in a TTY, the CLI asks for them. In non-interactive
 mode it defaults to `full`, `hosted`, `npm`, no install, and no git init.
@@ -155,7 +155,7 @@ when you need an exact folder name.
 
 ## Licenses
 
-The `create-cumulus` package is MIT-licensed.
+The `@cls/create` package is MIT-licensed.
 
 Generated `full`, `inner`, and self-hosted templates include the Relay app and
 server and default to AGPL-3.0-only. Small hosted `outer` and `agent-auth`

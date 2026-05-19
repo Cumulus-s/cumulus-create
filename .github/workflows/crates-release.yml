@@ -1,0 +1,44 @@
+name: crates release
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Package crates without publishing"
+        required: true
+        default: "true"
+        type: choice
+        options: ["true", "false"]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test --workspace
+      - run: cargo package -p cls-nimbus
+      - run: cargo package -p cls-knowledge-core
+      - name: Package CLI crate dry-run
+        if: ${{ inputs.dry_run == 'true' }}
+        run: cargo package -p cls-knowledge-cli --config 'patch.crates-io.cls-knowledge-core.path="crates/cumulus-knowledge-core"'
+      - name: cargo publish
+        if: ${{ inputs.dry_run == 'false' }}
+        run: |
+          set -euo pipefail
+          test -n "${CARGO_REGISTRY_TOKEN:-}"
+          cargo publish -p cls-nimbus
+          cargo publish -p cls-knowledge-core
+          for attempt in $(seq 1 30); do
+            if cargo search cls-knowledge-core --limit 1 | grep -q '^cls-knowledge-core = '; then
+              break
+            fi
+            sleep 10
+          done
+          cargo package -p cls-knowledge-cli
+          cargo publish -p cls-knowledge-cli

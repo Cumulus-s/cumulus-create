@@ -1,5 +1,5 @@
 {
-  "name": "@cumulus_cloud/events",
+  "name": "@cls/events",
   "version": "0.1.0",
   "description": "Shared Cumulus event schema, redaction, and local ledger writer.",
   "type": "module",

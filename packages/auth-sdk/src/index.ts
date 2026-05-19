@@ -1,11 +1,11 @@
 /**
- * @cumulus/auth — drop a webhook into your existing auth and accept
+ * @cls/auth — drop a webhook into your existing auth and accept
  * agent-driven signups for your app.
  *
  * Usage (framework-agnostic, returns a `(Request) => Promise<Response>` handler):
  *
  * ```ts
- * import { cumulus } from '@cumulus/auth';
+ * import { cumulus } from '@cls/auth';
  *
  * export const POST = cumulus.webhook({
  *   secret: process.env.RELAY_WEBHOOK_SECRET!,
@@ -27,7 +27,7 @@ import {
   createEventEmitter,
   hashString,
   type EventEmitterOptions,
-} from '@cumulus_cloud/events';
+} from '@cls/events';
 
 
 /**
@@ -158,7 +158,7 @@ function jsonResponse(status: number, body: unknown): Response {
 function webhook(options: WebhookOptions) {
   const events = options.events
     ? createEventEmitter({
-        sourcePackage: '@cumulus/auth',
+        sourcePackage: '@cls/auth',
         surface: 'sdk',
         subsystem: 'auth',
         ...options.events,

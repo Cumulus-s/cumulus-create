@@ -1,6 +1,6 @@
 {
-  "name": "@cumulus_cloud/track",
-  "version": "0.2.0",
+  "name": "@cls/track",
+  "version": "0.1.0",
   "description": "Small activation tracker for Cumulus integrations.",
   "type": "module",
   "main": "./dist/index.js",
@@ -22,7 +22,7 @@
     "prepublishOnly": "npm run build"
   },
   "keywords": [
-    "relay",
+    "cumulus",
     "agent",
     "activation",
     "analytics",

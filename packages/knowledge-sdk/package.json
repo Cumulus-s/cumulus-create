@@ -1,12 +1,12 @@
 {
-  "name": "@cumulus_cloud/knowledge-sdk",
+  "name": "@cls/knowledge",
   "version": "0.1.0",
   "description": "TypeScript SDK and MCP helpers for Cumulus Knowledge.",
   "type": "module",
   "bin": {
-    "cumulus-knowledge-mcp": "dist/mcp.js",
-    "cumulus-knowledge-api": "dist/api.js",
-    "cumulus-knowledge-setup": "dist/setup.js"
+    "cls-knowledge-mcp": "dist/mcp.js",
+    "cls-knowledge-api": "dist/api.js",
+    "cls-knowledge-setup": "dist/setup.js"
   },
   "exports": {
     ".": {
@@ -22,7 +22,6 @@
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "pretest": "npm --workspace @cumulus_cloud/events run build",
     "test": "vitest run src",
     "postinstall": "node -e \"import('./dist/postinstall.js').catch(() => {})\""
   },
@@ -42,7 +41,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@cumulus_cloud/events": "0.1.0"
+    "@cls/events": "^0.1.0"
   },
   "publishConfig": {
     "access": "public",

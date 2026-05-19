@@ -41,7 +41,7 @@ function installRust(options: RuntimeInstallOptions): RuntimeInstallResult {
   if (!commandExists(cargo)) {
     return skipped("rust", "cargo was not found");
   }
-  const rustPackage = process.env.CUMULUS_KNOWLEDGE_RUST_PACKAGE ?? "cumulus-knowledge-cli";
+  const rustPackage = process.env.CUMULUS_KNOWLEDGE_RUST_PACKAGE ?? "cls-knowledge-cli";
   const rustPath = options.rustPath ?? process.env.CUMULUS_KNOWLEDGE_RUST_PATH;
   const args = rustPath ? ["install", "--path", rustPath] : ["install", rustPackage, "--locked"];
   if (options.force || process.env.CUMULUS_KNOWLEDGE_INSTALL_FORCE === "1") args.push("--force");
@@ -53,7 +53,7 @@ function installPython(options: RuntimeInstallOptions): RuntimeInstallResult {
   if (!python) {
     return skipped("python", "python3/python was not found");
   }
-  const pythonPackage = process.env.CUMULUS_KNOWLEDGE_PYTHON_PACKAGE ?? "cumulus-knowledge";
+  const pythonPackage = process.env.CUMULUS_KNOWLEDGE_PYTHON_PACKAGE ?? "cls-knowledge";
   const pythonPath = options.pythonPath ?? process.env.CUMULUS_KNOWLEDGE_PYTHON_PATH;
   const target = pythonPath ?? pythonPackage;
   const useUser = options.pythonUser ?? shouldUseUserInstall();
@@ -72,10 +72,10 @@ function shouldUseUserInstall(): boolean {
 function run(runtime: "rust" | "python", command: string, args: string[], options: RuntimeInstallOptions): RuntimeInstallResult {
   const rendered = [command, ...args].join(" ");
   if (options.dryRun) {
-    if (!options.quiet) process.stderr.write(`[cumulus-knowledge] dry-run: ${rendered}\n`);
+    if (!options.quiet) process.stderr.write(`[cls-knowledge] dry-run: ${rendered}\n`);
     return { runtime, skipped: false, ok: true, command: rendered };
   }
-  if (!options.quiet) process.stderr.write(`[cumulus-knowledge] installing ${runtime}: ${rendered}\n`);
+  if (!options.quiet) process.stderr.write(`[cls-knowledge] installing ${runtime}: ${rendered}\n`);
   const completed = spawnSync(command, args, { stdio: options.quiet ? "pipe" : "inherit" });
   if (completed.status === 0) return { runtime, skipped: false, ok: true, command: rendered };
   return { runtime, skipped: false, ok: false, command: rendered, reason: `${command} exited with ${completed.status ?? "unknown status"}` };

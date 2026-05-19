@@ -25,7 +25,7 @@ describe("renderFrame", () => {
         packages: [
           {
             source: "package-json",
-            name: "@cumulus/db",
+            name: "@cls/db",
             location: { file: "package.json" },
           },
         ],

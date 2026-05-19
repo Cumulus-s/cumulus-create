@@ -18,8 +18,8 @@ describe("scanProject", () => {
           name: "demo",
           workspaces: ["apps/*"],
           dependencies: {
-            "@cumulus/db": "^0.1.0",
-            "create-cumulus": "^0.3.1",
+            "@cls/db": "^0.1.0",
+            "@cls/create": "^0.1.0",
           },
           scripts: {
             index: "cumulus knowledge index .",
@@ -33,7 +33,7 @@ describe("scanProject", () => {
     await writeFile(
       join(root, "src", "index.ts"),
       [
-        "import { CumulusDbClient } from '@cumulus/db';",
+        "import { CumulusDbClient } from '@cls/db';",
         "const path = '/v1/signups';",
       ].join("\n"),
     );
@@ -43,11 +43,11 @@ describe("scanProject", () => {
     expect(snapshot.project.name).toBe("demo");
     expect(snapshot.project.workspaces).toEqual(["apps/*"]);
     expect(snapshot.packages.map((item) => item.name)).toEqual([
-      "@cumulus/db",
-      "create-cumulus",
+      "@cls/create",
+      "@cls/db",
     ]);
-    expect(snapshot.codeUsage.some((item) => item.source === "import" && item.name === "@cumulus/db")).toBe(true);
-    expect(snapshot.codeUsage.some((item) => item.source === "script" && item.name === "cumulus-knowledge")).toBe(true);
+    expect(snapshot.codeUsage.some((item) => item.source === "import" && item.name === "@cls/db")).toBe(true);
+    expect(snapshot.codeUsage.some((item) => item.source === "script" && item.name === "cls-knowledge")).toBe(true);
     expect(snapshot.apiReferences.some((item) => item.name === "/v1/signups")).toBe(true);
   });
 
@@ -56,14 +56,14 @@ describe("scanProject", () => {
     await mkdir(join(root, "packages", "altocumulus"), { recursive: true });
     await writeFile(
       join(root, "packages", "altocumulus", "package.json"),
-      JSON.stringify({ name: "@cumulus_cloud/altocumulus", version: "0.1.0" }),
+      JSON.stringify({ name: "@cls/altocumulus", version: "0.1.0" }),
     );
 
     const snapshot = await scanProject(root);
 
     expect(snapshot.packages).toContainEqual({
       source: "package-json",
-      name: "@cumulus_cloud/altocumulus",
+      name: "@cls/altocumulus",
       spec: "0.1.0",
       location: { file: "packages/altocumulus/package.json" },
     });
@@ -76,7 +76,7 @@ describe("scanProject", () => {
       JSON.stringify({
         name: "script-demo",
         scripts: {
-          create: "npx create-cumulus@latest demo",
+          create: "npm create @cls@latest demo",
           status: "cumulus status",
         },
       }),
@@ -86,12 +86,12 @@ describe("scanProject", () => {
 
     expect(
       snapshot.codeUsage.some(
-        (item) => item.source === "script" && item.name === "@cumulus_cloud/cli" && item.value === "create",
+        (item) => item.source === "script" && item.name === "@cls/cli" && item.value === "create",
       ),
     ).toBe(false);
     expect(
       snapshot.codeUsage.some(
-        (item) => item.source === "script" && item.name === "@cumulus_cloud/cli" && item.value === "status",
+        (item) => item.source === "script" && item.name === "@cls/cli" && item.value === "status",
       ),
     ).toBe(true);
   });
@@ -161,7 +161,7 @@ describe("scanProject", () => {
     await writeFile(join(root, "package.json"), JSON.stringify({ name: "ignore-demo" }));
     for (const folder of ["node_modules", "dist", "target", ".deps", ".pnpm-store", ".yarn", "out", "vendor", ".venv"]) {
       await mkdir(join(root, folder), { recursive: true });
-      await writeFile(join(root, folder, "leak.ts"), "import '@cumulus_cloud/track';");
+      await writeFile(join(root, folder, "leak.ts"), "import '@cls/track';");
     }
 
     const snapshot = await scanProject(root);
@@ -180,15 +180,15 @@ describe("scanProject", () => {
 
   it("detects Rust and Python Cumulus package references", async () => {
     const root = await tempProject();
-    await writeFile(join(root, "Cargo.toml"), '[dependencies]\ncumulus-knowledge-core = "0.1"\n');
-    await writeFile(join(root, "pyproject.toml"), 'dependencies = ["cumulus-knowledge"]\n');
+    await writeFile(join(root, "Cargo.toml"), '[dependencies]\ncls-knowledge-core = "0.1"\n');
+    await writeFile(join(root, "pyproject.toml"), 'dependencies = ["cls-knowledge"]\n');
     await writeFile(join(root, "worker.py"), "from cumulus_knowledge import CumulusKnowledge\n");
 
     const snapshot = await scanProject(root);
     const packageNames = snapshot.packages.map((item) => item.name);
 
-    expect(packageNames).toContain("cumulus-knowledge-core");
-    expect(packageNames).toContain("cumulus-knowledge");
+    expect(packageNames).toContain("cls-knowledge-core");
+    expect(packageNames).toContain("cls-knowledge");
     expect(snapshot.codeUsage.some((item) => item.name === "cumulus_knowledge")).toBe(true);
   });
 });
