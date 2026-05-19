@@ -217,13 +217,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c8d4a3bb8b1e0c1050499d1815f5ab16d04f0959b233085fb31653fbfc9d98f9"
 
 [[package]]
-name = "cls-knowledge-cli"
+name = "cmls-knowledge-cli"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "chrono",
  "clap",
- "cls-knowledge-core",
+ "cmls-knowledge-core",
  "crossterm",
  "ratatui",
  "serde",
@@ -232,7 +232,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "cls-knowledge-core"
+name = "cmls-knowledge-core"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -249,7 +249,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "cls-nimbus"
+name = "cmls-nimbus"
 version = "0.1.0"
 dependencies = [
  "anyhow",

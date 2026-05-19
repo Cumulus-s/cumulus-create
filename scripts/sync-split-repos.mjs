@@ -13,48 +13,48 @@ import { dirname, join, resolve } from "node:path";
 
 const root = process.cwd();
 const releaseRoot = resolve(
-  process.env.CLS_RELEASE_REPOS_DIR ||
+  process.env.CMLS_RELEASE_REPOS_DIR ||
     (process.env.HOME === "/Users/miguel"
       ? "/Users/miguel/Documents/cumulus-release-repos"
       : ".split-repos"),
 );
-const push = process.env.CLS_MIRROR_PUSH === "1";
+const push = process.env.CMLS_MIRROR_PUSH === "1";
 
 const mirrors = [
   {
     name: "auth",
     repo: "Cumulus-s/auth",
     source: "packages/auth-sdk",
-    packageName: "@cls/auth",
+    packageName: "@cmls/auth",
     license: "Apache-2.0",
-    install: "npm install @cls/auth",
+    install: "npm install @cmls/auth",
     ci: ["npm run build", "npm run test"],
   },
   {
     name: "sdk",
     repo: "Cumulus-s/sdk",
     source: "packages/sdk",
-    packageName: "@cls/sdk",
+    packageName: "@cmls/sdk",
     license: "Apache-2.0",
-    install: "npm install @cls/sdk",
+    install: "npm install @cmls/sdk",
     ci: ["npm run build", "npm run test"],
   },
   {
     name: "cumulus-db",
     repo: "Cumulus-s/cumulus-db",
     source: "apps/cumulus-db",
-    packageName: "@cls/cumulus-db",
+    packageName: "@cmls/cumulus-db",
     license: "AGPL-3.0-only",
-    install: "npm install @cls/cumulus-db",
+    install: "npm install @cmls/cumulus-db",
     ci: ["npm run build", "npm run test"],
   },
   {
     name: "nimbus",
     repo: "Cumulus-s/nimbus",
-    packageName: "@cls/nimbus",
+    packageName: "@cmls/nimbus",
     license: "AGPL-3.0-only",
-    install: "npm install @cls/nimbus && cargo install cls-nimbus",
-    ci: ["npm run build", "npm run test", "cargo test -p cls-nimbus"],
+    install: "npm install @cmls/nimbus && cargo install cmls-nimbus",
+    ci: ["npm run build", "npm run test", "cargo test -p cmls-nimbus"],
     nimbus: true,
   },
 ];
@@ -142,14 +142,14 @@ function syncNimbus(mirror, dest) {
     join(dest, "package.json"),
     `${JSON.stringify(
       {
-        name: "cls-nimbus-repo",
+        name: "cmls-nimbus-repo",
         private: true,
         type: "module",
         workspaces: ["packages/nimbus"],
         scripts: {
-          build: "npm --workspace @cls/nimbus run build",
-          test: "npm --workspace @cls/nimbus run test && cargo test -p cls-nimbus",
-          pack: "npm pack --workspace @cls/nimbus --dry-run && cargo package -p cls-nimbus",
+          build: "npm --workspace @cmls/nimbus run build",
+          test: "npm --workspace @cmls/nimbus run test && cargo test -p cmls-nimbus",
+          pack: "npm pack --workspace @cmls/nimbus --dry-run && cargo package -p cmls-nimbus",
         },
         devDependencies: {
           "@types/node": "^25.6.0",
@@ -229,7 +229,7 @@ function writeCi(mirror, dest) {
   const dir = join(dest, ".github/workflows");
   mkdirSync(dir, { recursive: true });
   const steps = mirror.ci
-    .map((cmd) => `      - run: ${cmd}\n        if: steps.cls-deps.outputs.ready == 'true'`)
+    .map((cmd) => `      - run: ${cmd}\n        if: steps.cmls-deps.outputs.ready == 'true'`)
     .join("\n");
   writeFileSync(
     join(dir, "ci.yml"),
@@ -252,8 +252,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      ${mirror.nimbus ? "- uses: dtolnay/rust-toolchain@stable\n      " : ""}- id: cls-deps
-        name: Check published CLS dependencies
+      ${mirror.nimbus ? "- uses: dtolnay/rust-toolchain@stable\n      " : ""}- id: cmls-deps
+        name: Check published CMLS dependencies
         run: |
           set -euo pipefail
           deps=$(node - <<'NODE'
@@ -265,7 +265,7 @@ jobs:
             const pkg = JSON.parse(readFileSync(path, 'utf8'));
             for (const group of ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']) {
               for (const name of Object.keys(pkg[group] || {})) {
-                if (name.startsWith('@cls/')) names.add(name);
+                if (name.startsWith('@cmls/')) names.add(name);
               }
             }
           }
@@ -286,9 +286,9 @@ jobs:
             echo "ready=true" >> "$GITHUB_OUTPUT"
           fi
       - run: npm install
-        if: steps.cls-deps.outputs.ready == 'true'
-      - run: echo "CLS dependencies are not published yet; mirror build/test will run after publication."
-        if: steps.cls-deps.outputs.ready != 'true'
+        if: steps.cmls-deps.outputs.ready == 'true'
+      - run: echo "CMLS dependencies are not published yet; mirror build/test will run after publication."
+        if: steps.cmls-deps.outputs.ready != 'true'
 ${steps}
 `,
   );

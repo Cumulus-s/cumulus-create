@@ -89,7 +89,7 @@ describe('Nimbus compiler', () => {
   });
 
   it('resolves relative local imports before compiling canonical IR', async () => {
-    const dir = await mkdtemp(join(tmpdir(), 'cls-nimbus-imports-'));
+    const dir = await mkdtemp(join(tmpdir(), 'cmls-nimbus-imports-'));
     await writeFile(
       join(dir, 'collections.nimbus'),
       `

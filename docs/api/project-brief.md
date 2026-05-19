@@ -44,17 +44,17 @@ src/server/             Hono API, auth, billing, providers, database
 src/mcp/                MCP tools
 workflows/              durable signup workflow
 migrations/             SQL migrations
-packages/altocumulus/   @cls/altocumulus
-packages/events/        @cls/events
-packages/cloud-client/  @cls/cloud
-packages/cli/           @cls/cli
-packages/auth/      @cls/auth
-packages/db/        @cls/db
-packages/knowledge-sdk/ @cls/knowledge
-packages/mcp/           @cls/mcp
-packages/server/        @cls/server
-packages/track-sdk/     @cls/track
-packages/create-cumulus @cls/create project creator
+packages/altocumulus/   @cmls/altocumulus
+packages/events/        @cmls/events
+packages/cloud-client/  @cmls/cloud
+packages/cli/           @cmls/cli
+packages/auth/      @cmls/auth
+packages/db/        @cmls/db
+packages/knowledge-sdk/ @cmls/knowledge
+packages/mcp/           @cmls/mcp
+packages/server/        @cmls/server
+packages/track-sdk/     @cmls/track
+packages/create-cumulus @cmls/create project creator
 packages/create-cumulus/templates/cumulus-db
                         vendored local Cumulus DB service template
 docs/                   operator and contributor docs
@@ -95,7 +95,7 @@ Relay exposes:
 - OpenAPI at `/openapi.json`
 - public JWKS at `/.well-known/jwks.json`
 - human dashboards under `/me` and `/dev`
-- package creator through `@cls/create`
+- package creator through `@cmls/create`
 
 Generated `full`, `inner`, and `agent-auth` projects expose a simple Cumulus DB
 UI. `full` and `inner` use `/me/database`; `agent-auth` uses `/database`.
@@ -117,7 +117,7 @@ Postgres database and set `DATABASE_URL`.
 ## Licensing
 
 The Relay/Cumulus server is AGPL-3.0-only. Public SDK packages such as
-`@cls/auth`, `@cls/db`, and `@cls/sdk` are Apache-2.0. Generated
+`@cmls/auth`, `@cmls/db`, and `@cmls/sdk` are Apache-2.0. Generated
 full, inner, self-hosted, and local Cumulus DB templates include AGPL services
 and default to AGPL-3.0-only. Small hosted `agent-auth --cumulus-db cloud`
 projects remain MIT.

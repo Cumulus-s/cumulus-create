@@ -5,7 +5,7 @@ Hono, Drizzle, Neon, external payment provider, Vercel, MCP, WebAuthn, Sentry, a
 ecosystems. See `package-lock.json` and package-level lockfiles for the exact
 dependency graph.
 
-Generated apps from `@cls/create` depend on open-source packages such as
+Generated apps from `@cmls/create` depend on open-source packages such as
 Next.js, React, TypeScript, Hono, jose, and zod depending on the selected
 template and auth mode.
 

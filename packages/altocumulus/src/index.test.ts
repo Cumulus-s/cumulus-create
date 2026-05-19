@@ -9,7 +9,7 @@ async function tempProject(name = "cli-demo") {
   const root = await mkdtemp(join(tmpdir(), "altocumulus-cli-"));
   await writeFile(
     join(root, "package.json"),
-    JSON.stringify({ name, dependencies: { "@cls/track": "^0.2.0" } }),
+    JSON.stringify({ name, dependencies: { "@cmls/track": "^0.2.0" } }),
   );
   return root;
 }
@@ -45,7 +45,7 @@ describe("runCli", () => {
     expect(code).toBe(0);
     expect(parsed.ok).toBe(true);
     expect(parsed.snapshot.project.name).toBe("cli-demo");
-    expect(parsed.snapshot.packages[0].name).toBe("@cls/track");
+    expect(parsed.snapshot.packages[0].name).toBe("@cmls/track");
     expect(testIo.error()).toContain("altocumulus scan: starting ");
     expect(testIo.error()).toContain("altocumulus scan: done");
   });

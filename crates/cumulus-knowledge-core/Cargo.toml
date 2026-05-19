@@ -1,5 +1,5 @@
 [package]
-name = "cls-knowledge-core"
+name = "cmls-knowledge-core"
 version.workspace = true
 edition.workspace = true
 license.workspace = true

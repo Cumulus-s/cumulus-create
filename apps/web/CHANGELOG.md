@@ -52,7 +52,7 @@ All notable changes to Relay. Format: [Keep a Changelog](https://keepachangelog.
 ### Added
 
 - Open-source release posture for the Relay server under AGPL-3.0-only.
-- `@cls/create` project creator with `full`, `outer`, `inner`, and
+- `@cmls/create` project creator with `full`, `outer`, `inner`, and
   `agent-auth` templates.
 - Hosted and self-hosted agent-auth bootstrap modes in generated projects.
 - Public self-hosting, commercial licensing, trademark, third-party notice, and
@@ -140,7 +140,7 @@ First release. Everything below is new.
 
 ### Packages
 
-- `@cls/auth` — framework-agnostic webhook handler (zero deps beyond Web Crypto).
+- `@cmls/auth` — framework-agnostic webhook handler (zero deps beyond Web Crypto).
 - `@cumulus/cli` — `login`, `whoami`, `logout`, `init`.
 
 ### Migrations

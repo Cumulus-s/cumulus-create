@@ -473,7 +473,7 @@ export async function createProject(options: CreateOptions): Promise<CreateResul
   if (options.installRuntimes) {
     await run(
       'npx',
-      ['--yes', '--package', '@cls/knowledge', 'cls-knowledge-setup', '--all'],
+      ['--yes', '--package', '@cmls/knowledge', 'cmls-knowledge-setup', '--all'],
       options.targetDir,
     );
   }
@@ -485,11 +485,11 @@ export async function createProject(options: CreateOptions): Promise<CreateResul
 }
 
 export function helpText(): string {
-  return `@cls/create — bootstrap a Cumulus project
+  return `@cmls/create — bootstrap a Cumulus project
 
 Usage:
-  npm create @cls@latest <project-name>
-  npm exec @cls/create@latest -- <project-name>
+  npm create @cmls@latest <project-name>
+  npm exec @cmls/create@latest -- <project-name>
   create <project-name> --template full --agent-auth hosted
 
 Options:

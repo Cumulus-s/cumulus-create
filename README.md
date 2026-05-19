@@ -7,7 +7,7 @@ It centralizes the working systems that used to live in separate projects:
 - Agent Auth API/UI from `Documents/api`
 - Agent DB from `Documents/cumulus/site/cumulus/apps/cumulus-db`
 - Agent Knowledge from `Documents/knowledge`
-- the `@cls/create` npm package
+- the `@cmls/create` npm package
 - shared SDKs, MCPs, CLI/TUI surfaces, schemas, and public docs
 
 The old repos are source imports only. New development should happen here.
@@ -19,7 +19,7 @@ The core use case is:
 1. User says: "I want to build X."
 2. Agent signs up to Cumulus through Agent Auth.
 3. Agent registers the project intent and core metadata.
-4. Agent runs `npm create @cls`.
+4. Agent runs `npm create @cmls`.
 5. Bootstrap installs npm packages, Rust crates, and Python libraries when requested.
 6. Generated code includes Auth, DB, Knowledge, SDK, API, MCP, CLI, and TUI wiring.
 7. Agent indexes the project into Cumulus Knowledge.
@@ -32,7 +32,7 @@ The core use case is:
 ```txt
 apps/web                 Intent console, docs, dashboards, and Cumulus Auth API
 apps/cumulus-db          Agent DB service
-packages/create-cumulus  `@cls/create` npm bootstrapper
+packages/create-cumulus  `@cmls/create` npm bootstrapper
 packages/altocumulus     Local terminal control center
 packages/events          Shared event schema, redaction, and JSONL ledger
 packages/cloud-client    Read-only Cumulus Cloud inventory client
@@ -82,7 +82,7 @@ python3 -m pytest python/tests
 The generated bootstrap command can install extra runtimes:
 
 ```bash
-npm create @cls@latest my-project -- --with auth,db,knowledge --install-runtimes
+npm create @cmls@latest my-project -- --with auth,db,knowledge --install-runtimes
 ```
 
 `--install-runtimes` delegates to the Knowledge setup installer. It can install:

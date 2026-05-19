@@ -26,7 +26,7 @@
  * HMAC verifies the *exact* raw bytes of the body — any zod-openapi
  * re-serialization would invalidate the signature. The shape is still
  * documented for agents via app/docs/api/activations.md and the
- * @cls/track SDK.
+ * @cmls/track SDK.
  *
  * Response: always 202 (best-effort). Internal failures log to Sentry
  * and still return 202 — the integrator's hot path must never block on

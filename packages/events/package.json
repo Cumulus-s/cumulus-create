@@ -1,5 +1,5 @@
 {
-  "name": "@cls/events",
+  "name": "@cmls/events",
   "version": "0.1.0",
   "description": "Shared Cumulus event schema, redaction, and local ledger writer.",
   "type": "module",
@@ -47,5 +47,8 @@
     "@types/node": "^25.6.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.4"
+  },
+  "bugs": {
+    "url": "https://github.com/Cumulus-s/cumulus-create/issues"
   }
 }

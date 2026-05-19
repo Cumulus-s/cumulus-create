@@ -1,25 +1,25 @@
-# @cls/create
+# @cmls/create
 
 Create a Cumulus app with Agent Auth, Cumulus DB, Cumulus Knowledge, SDK,
 API, CLI, TUI, and MCP wiring in one generated project.
 
 ```bash
-npm create @cls@latest my-acme
+npm create @cmls@latest my-acme
 
 # Equivalent npm create shorthand
-npm create @cls@latest my-acme
+npm create @cmls@latest my-acme
 
 # Non-interactive
-npm create @cls@latest my-acme -- --template full --agent-auth hosted --company "Acme Inc"
-npm create @cls@latest my-acme -- --template outer --agent-auth hosted
-npm create @cls@latest my-acme -- --template inner --agent-auth hosted
-npm create @cls@latest my-acme -- --template full --agent-auth self-hosted --with auth,db,knowledge --install-runtimes
-npm create @cls@latest my-acme -- --template agent-auth --cumulus-db cloud
+npm create @cmls@latest my-acme -- --template full --agent-auth hosted --company "Acme Inc"
+npm create @cmls@latest my-acme -- --template outer --agent-auth hosted
+npm create @cmls@latest my-acme -- --template inner --agent-auth hosted
+npm create @cmls@latest my-acme -- --template full --agent-auth self-hosted --with auth,db,knowledge --install-runtimes
+npm create @cmls@latest my-acme -- --template agent-auth --cumulus-db cloud
 ```
 
-`npm create @cls@latest` is npm shorthand for `@cls/create@latest`.
+`npm create @cmls@latest` is npm shorthand for `@cmls/create@latest`.
 Both commands download the same package from npm and run its `create` binary.
-They work only after `@cls/create` has been published to npm.
+They work only after `@cmls/create` has been published to npm.
 
 For local development before publishing:
 
@@ -143,7 +143,7 @@ for the core Cumulus Create flow: user intent, agent signup, project bootstrap,
 Knowledge second brain, and Cumulus DB progress writes.
 
 `--install-runtimes` runs dependency install and then installs the optional
-Rust and Python Knowledge runtimes through `cls-knowledge-setup --all`.
+Rust and Python Knowledge runtimes through `cmls-knowledge-setup --all`.
 
 If flags are missing in a TTY, the CLI asks for them. In non-interactive
 mode it defaults to `full`, `hosted`, `npm`, no install, and no git init.
@@ -155,7 +155,7 @@ when you need an exact folder name.
 
 ## Licenses
 
-The `@cls/create` package is MIT-licensed.
+The `@cmls/create` package is MIT-licensed.
 
 Generated `full`, `inner`, and self-hosted templates include the Relay app and
 server and default to AGPL-3.0-only. Small hosted `outer` and `agent-auth`

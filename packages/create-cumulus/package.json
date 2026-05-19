@@ -1,5 +1,5 @@
 {
-  "name": "@cls/create",
+  "name": "@cmls/create",
   "version": "0.1.0",
   "description": "Create a CLS/Cumulus app with Auth, DB, Knowledge, and MCP wiring.",
   "type": "module",

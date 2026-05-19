@@ -1,5 +1,5 @@
 {
-  "name": "@cls/altocumulus",
+  "name": "@cmls/altocumulus",
   "version": "0.1.0",
   "description": "Local terminal control center for Cumulus projects and usage.",
   "type": "module",
@@ -29,7 +29,7 @@
     "prepublishOnly": "npm run test && npm run python:test && npm run build"
   },
   "dependencies": {
-    "@cls/events": "^0.1.0"
+    "@cmls/events": "^0.1.0"
   },
   "keywords": [
     "cumulus",

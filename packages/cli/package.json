@@ -1,5 +1,5 @@
 {
-  "name": "@cls/cli",
+  "name": "@cmls/cli",
   "version": "0.1.0",
   "description": "Command-line tools for Cumulus and Relay workflows.",
   "type": "module",
@@ -42,7 +42,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@cls/create": "^0.1.0"
+    "@cmls/create": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",

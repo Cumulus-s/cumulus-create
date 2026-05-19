@@ -7,7 +7,7 @@ import {
   appendEvent,
   defaultProjectLedgerPath,
   readEvents,
-} from "@cls/events";
+} from "@cmls/events";
 import { scanProject } from "./scanner.js";
 import {
   emptyScanSnapshot,
@@ -181,7 +181,7 @@ async function recordScanEvent(
 ) {
   try {
     await appendEvent(defaultProjectLedgerPath(storage.projectStateDir), {
-      sourcePackage: "@cls/altocumulus",
+      sourcePackage: "@cmls/altocumulus",
       surface: "scanner",
       subsystem: "scanner",
       operation: "scan",

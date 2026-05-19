@@ -1,5 +1,5 @@
 [project]
-name = "cls-knowledge"
+name = "cmls-knowledge"
 version = "0.1.0"
 description = "Python SDK and MCP server for Cumulus Knowledge"
 readme = "README.md"
@@ -30,8 +30,8 @@ tui = ["textual>=6.0.0"]
 test = ["pytest>=9.0.0"]
 
 [project.scripts]
-cls-knowledge-mcp = "cumulus_knowledge.mcp_server:main"
-cls-knowledge-tui = "cumulus_knowledge.tui:main"
+cmls-knowledge-mcp = "cumulus_knowledge.mcp_server:main"
+cmls-knowledge-tui = "cumulus_knowledge.tui:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

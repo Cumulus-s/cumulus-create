@@ -17,8 +17,8 @@ def test_detects_packages_imports_scripts_docs_and_api_paths(tmp_path: Path) -> 
                 "name": "demo",
                 "workspaces": ["apps/*"],
                 "dependencies": {
-                    "@cls/db": "^0.1.0",
-                    "@cls/create": "^0.1.0",
+                    "@cmls/db": "^0.1.0",
+                    "@cmls/create": "^0.1.0",
                 },
                 "scripts": {"index": "cumulus knowledge index ."},
             }
@@ -29,21 +29,21 @@ def test_detects_packages_imports_scripts_docs_and_api_paths(tmp_path: Path) -> 
     (src / "index.ts").write_text(
         "\n".join(
             [
-                "import { CumulusDbClient } from '@cls/db';",
+                "import { CumulusDbClient } from '@cmls/db';",
                 "const path = '/v1/signups';",
             ]
         )
     )
-    (tmp_path / "README.md").write_text("Use @cls/db with @cls/create.\n")
+    (tmp_path / "README.md").write_text("Use @cmls/db with @cmls/create.\n")
 
     snapshot = scan_project(str(tmp_path), now="2026-01-01T00:00:00.000Z")
 
     assert snapshot["project"]["name"] == "demo"
     assert snapshot["project"]["workspaces"] == ["apps/*"]
-    assert [item["name"] for item in snapshot["packages"]] == ["@cls/create", "@cls/db"]
-    assert any(item["source"] == "import" and item["name"] == "@cls/db" for item in snapshot["codeUsage"])
-    assert any(item["source"] == "script" and item["name"] == "cls-knowledge" for item in snapshot["codeUsage"])
-    assert any(item["source"] == "docs" and item["name"] == "@cls/create" for item in snapshot["codeUsage"])
+    assert [item["name"] for item in snapshot["packages"]] == ["@cmls/create", "@cmls/db"]
+    assert any(item["source"] == "import" and item["name"] == "@cmls/db" for item in snapshot["codeUsage"])
+    assert any(item["source"] == "script" and item["name"] == "cmls-knowledge" for item in snapshot["codeUsage"])
+    assert any(item["source"] == "docs" and item["name"] == "@cmls/create" for item in snapshot["codeUsage"])
     assert any(item["name"] == "/v1/signups" for item in snapshot["apiReferences"])
 
 
@@ -118,21 +118,21 @@ def test_ignores_generated_directories_and_explicit_state_paths(tmp_path: Path) 
 
 
 def test_detects_rust_and_python_references(tmp_path: Path) -> None:
-    (tmp_path / "Cargo.toml").write_text('[dependencies]\ncls-knowledge-core = "0.1"\n')
-    (tmp_path / "pyproject.toml").write_text('dependencies = ["cls-knowledge"]\n')
+    (tmp_path / "Cargo.toml").write_text('[dependencies]\ncmls-knowledge-core = "0.1"\n')
+    (tmp_path / "pyproject.toml").write_text('dependencies = ["cmls-knowledge"]\n')
     (tmp_path / "worker.py").write_text("from cumulus_knowledge import CumulusKnowledge\n")
 
     snapshot = scan_project(str(tmp_path))
     package_names = [item["name"] for item in snapshot["packages"]]
 
-    assert "cls-knowledge-core" in package_names
-    assert "cls-knowledge" in package_names
+    assert "cmls-knowledge-core" in package_names
+    assert "cmls-knowledge" in package_names
     assert any(item["source"] == "import" and item["name"] == "cumulus_knowledge" for item in snapshot["codeUsage"])
 
 
 def test_skips_files_that_timeout_while_reading(tmp_path: Path, monkeypatch) -> None:
     (tmp_path / "package.json").write_text(json.dumps({"name": "timeout-demo"}))
-    (tmp_path / "stuck.md").write_text("@cls/db\n")
+    (tmp_path / "stuck.md").write_text("@cmls/db\n")
     original_read = scan_module.read_text_with_timeout
 
     def fake_read(path: Path) -> str:
@@ -146,7 +146,7 @@ def test_skips_files_that_timeout_while_reading(tmp_path: Path, monkeypatch) -> 
     serialized = json.dumps(snapshot)
 
     assert "stuck.md" in snapshot["ignored"]
-    assert "@cls/db" not in serialized
+    assert "@cmls/db" not in serialized
 
 
 def test_cli_emits_json_to_stdout_and_progress_to_stderr(tmp_path: Path) -> None:

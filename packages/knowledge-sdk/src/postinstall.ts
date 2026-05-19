@@ -14,10 +14,10 @@ const results = installRuntimes({
 const failed = results.filter((result) => !result.ok && !result.skipped);
 const skipped = results.filter((result) => result.skipped);
 for (const result of skipped) {
-  process.stderr.write(`[cls-knowledge] skipped ${result.runtime}: ${result.reason}\n`);
+  process.stderr.write(`[cmls-knowledge] skipped ${result.runtime}: ${result.reason}\n`);
 }
 for (const result of failed) {
-  process.stderr.write(`[cls-knowledge] failed ${result.runtime}: ${result.reason}\n`);
+  process.stderr.write(`[cmls-knowledge] failed ${result.runtime}: ${result.reason}\n`);
 }
 
 if (failed.length > 0 && process.env.CUMULUS_KNOWLEDGE_INSTALL_STRICT === "1") {

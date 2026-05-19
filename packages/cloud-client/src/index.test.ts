@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { CumulusCloudClient } from "./index.js";
-import { createCumulusEvent } from "@cls/events";
+import { createCumulusEvent } from "@cmls/events";
 
 function response(body: unknown, init: ResponseInit = {}) {
   return new Response(JSON.stringify(body), {
@@ -10,7 +10,7 @@ function response(body: unknown, init: ResponseInit = {}) {
   });
 }
 
-describe("@cls/cloud", () => {
+describe("@cmls/cloud", () => {
   it("uses GET for read-only inventory calls", async () => {
     const calls: Array<{ url: string; method?: string }> = [];
     const client = new CumulusCloudClient({
@@ -37,7 +37,7 @@ describe("@cls/cloud", () => {
   it("prepares only sync-eligible safe events", () => {
     const client = new CumulusCloudClient();
     const safe = createCumulusEvent({
-      sourcePackage: "@cls/cloud",
+      sourcePackage: "@cmls/cloud",
       surface: "cloud",
       subsystem: "agent",
       operation: "prepare",

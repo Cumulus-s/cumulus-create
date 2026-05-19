@@ -36,7 +36,7 @@ jobs:
       - run: npm run license:check
       - run: npm run security:scan
       - run: npm run release:pack
-      - run: npm --workspace @cls/cumulus-db run test:postgres
+      - run: npm --workspace @cmls/cumulus-db run test:postgres
         env:
           CUMULUS_DB_POSTGRES_TESTS: "true"
-      - run: cargo package -p cls-nimbus --allow-dirty
+      - run: cargo package -p cmls-nimbus --allow-dirty

@@ -41,7 +41,7 @@ async function handle(method: string, params: any): Promise<unknown> {
   if (method === "initialize") {
     return {
       protocolVersion: "2025-06-18",
-      serverInfo: { name: "cls-knowledge", version: "0.1.0" },
+      serverInfo: { name: "cmls-knowledge", version: "0.1.0" },
       capabilities: { tools: {}, resources: {}, prompts: {} },
     };
   }

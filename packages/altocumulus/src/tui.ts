@@ -2,7 +2,7 @@ import { join } from "node:path";
 import { stdin as defaultStdin, stdout as defaultStdout } from "node:process";
 import readline from "node:readline";
 import type { ReadStream, WriteStream } from "node:tty";
-import type { ReadEventsResult } from "@cls/events";
+import type { ReadEventsResult } from "@cmls/events";
 import type { ProjectRegistry, ScanHistory, ScanSnapshot, StorageResolution } from "./types.js";
 
 export const pages = [
@@ -170,7 +170,7 @@ function contentLines(page: (typeof pages)[number], state: TuiState): string[] {
       "",
       "Action cards:",
       "[scan] run altocumulus scan <project> --json",
-      "[cloud] read-only inventory through @cls/cloud",
+      "[cloud] read-only inventory through @cmls/cloud",
       "[sync] safe event upload is disabled until the next explicit plan",
       "",
       privacyLegend(),
@@ -241,20 +241,20 @@ function contentLines(page: (typeof pages)[number], state: TuiState): string[] {
       ? names
       : [
           "No Cumulus packages detected in the latest snapshot.",
-          "Catalog targets: @cls/create, @cls/* SDKs, MCP, server, and cloud client.",
+          "Catalog targets: @cmls/create, @cmls/* SDKs, MCP, server, and cloud client.",
         ];
   }
   if (page === "Create-Cumulus") {
     return [
-      "@cls/create scaffolds. It does not own runtime observability.",
+      "@cmls/create scaffolds. It does not own runtime observability.",
       "",
       "Expected generated setup:",
-      "  - installs @cls/auth, @cls/db, @cls/knowledge, @cls/mcp, and @cls/cli",
+      "  - installs @cmls/auth, @cmls/db, @cmls/knowledge, @cmls/mcp, and @cmls/cli",
       "  - writes local Cumulus/Altocumulus manifest",
       "  - can optionally register a cloud project in a future guarded flow",
       "",
       "Current action card:",
-      "  npm create @cls@latest my-app -- --template full --agent-auth hosted",
+      "  npm create @cmls@latest my-app -- --template full --agent-auth hosted",
     ];
   }
   if (page === "Scanner") {

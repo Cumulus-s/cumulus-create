@@ -293,7 +293,7 @@ ${dayKeys.length === 0 ? '| _no activity in window_ | — | — |' : dayKeys.map
 ${baselineSection}
 ## 6. Methodology
 
-- **Activation** = first successful \`authenticated_api_call_succeeded\` event, reported by your middleware via \`@cls/track\`, occurring within 24 hours of the genuine key handoff (\`signup_jobs.handoff_at\`).
+- **Activation** = first successful \`authenticated_api_call_succeeded\` event, reported by your middleware via \`@cmls/track\`, occurring within 24 hours of the genuine key handoff (\`signup_jobs.handoff_at\`).
 - The 7d window is reported alongside as context.
 - Test traffic, healthchecks, and docs/playground pings are excluded if your middleware filters them before calling \`relay.track\`.
 - Idempotency: dedupe on \`(tenant, idempotency_key)\` — duplicate events are no-ops.

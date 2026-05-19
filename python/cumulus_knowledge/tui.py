@@ -26,7 +26,7 @@ def main() -> None:
     try:
         subprocess.run(["cumulus", "knowledge", *sys.argv[1:]], check=True)
     except FileNotFoundError:
-        print("cls-knowledge binary was not found. Build it with `cargo build --release`.", file=sys.stderr)
+        print("cmls-knowledge binary was not found. Build it with `cargo build --release`.", file=sys.stderr)
         raise SystemExit(1)
     except subprocess.CalledProcessError as exc:
         print({"ok": False, "error": str(exc)}, file=sys.stderr)

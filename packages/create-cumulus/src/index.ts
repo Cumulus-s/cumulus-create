@@ -26,7 +26,7 @@ export async function main(argv = process.argv.slice(2)): Promise<void> {
       return;
     }
     const message = err instanceof Error ? err.message : String(err);
-    console.error(`@cls/create: ${message}`);
+    console.error(`@cmls/create: ${message}`);
     process.exitCode = 1;
   }
 }

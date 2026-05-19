@@ -1,4 +1,4 @@
-# @cls/auth
+# @cmls/auth
 
 Apache-2.0 server SDK for Cumulus Auth. It lets an app accept agent-driven
 signup, action, API-key, and teardown webhooks without importing any AGPL
@@ -8,13 +8,13 @@ Source of truth: https://github.com/Cumulus-s/cumulus-create
 Public mirror: https://github.com/Cumulus-s/auth
 
 ```bash
-npm install @cls/auth
+npm install @cmls/auth
 ```
 
 ## 60-second integration
 
 ```ts
-import { cumulus } from "@cls/auth";
+import { cumulus } from "@cmls/auth";
 
 export const POST = cumulus.webhook({
   secret: process.env.CUMULUS_AUTH_WEBHOOK_SECRET!,
@@ -35,7 +35,7 @@ system.
 
 ## Compatibility
 
-Older integrations can keep importing `relay` from `@cls/auth`. It is now a
+Older integrations can keep importing `relay` from `@cmls/auth`. It is now a
 compatibility alias for `cumulus`.
 
 ## Local usage ledger

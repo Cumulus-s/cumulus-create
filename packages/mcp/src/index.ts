@@ -9,7 +9,7 @@ import {
   defaultProjectLedgerPath,
   readEvents,
   toSyncPayload,
-} from "@cls/events";
+} from "@cmls/events";
 
 type JsonRpcRequest = {
   jsonrpc?: "2.0";
@@ -129,7 +129,7 @@ const resources = [
 ];
 
 const mcpEvents = createEventEmitter({
-  sourcePackage: "@cls/mcp",
+  sourcePackage: "@cmls/mcp",
   surface: "mcp",
   subsystem: "agent",
   ledgerPath: process.env.CUMULUS_EVENTS_LEDGER,

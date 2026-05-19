@@ -1,4 +1,4 @@
-# @cls/events
+# @cmls/events
 
 Shared event schema and local ledger writer for Cumulus agent operations.
 
@@ -6,10 +6,10 @@ This package is the dependency every SDK may use. It does not import
 Altocumulus, the cloud client, or any product SDK.
 
 ```ts
-import { createEventEmitter } from "@cls/events";
+import { createEventEmitter } from "@cmls/events";
 
 const events = createEventEmitter({
-  sourcePackage: "@cls/db",
+  sourcePackage: "@cmls/db",
   surface: "sdk",
   subsystem: "db",
   ledgerPath: ".cumulus/altocumulus/events.jsonl",

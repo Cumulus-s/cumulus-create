@@ -80,8 +80,8 @@ TEXT_EXTENSIONS = {
 }
 
 CUMULUS_NAME_PATTERN = re.compile(
-    r"(@cls/[A-Za-z0-9._-]+|@cumulus/[A-Za-z0-9._-]+|@cumulus_cloud/[A-Za-z0-9._-]+|"
-    r"@cumulus-create/[A-Za-z0-9._-]+|create-cumulus|cls-knowledge(?:-[A-Za-z0-9._-]+)?|"
+    r"(@cmls/[A-Za-z0-9._-]+|@cumulus/[A-Za-z0-9._-]+|@cumulus_cloud/[A-Za-z0-9._-]+|"
+    r"@cumulus-create/[A-Za-z0-9._-]+|create-cumulus|cmls-knowledge(?:-[A-Za-z0-9._-]+)?|"
     r"cumulus_knowledge)"
 )
 CUMULUS_CLI_COMMAND_PATTERN = re.compile(r"(?:^|[\s;&|()])cumulus(?:\s|$)")
@@ -372,7 +372,7 @@ def scan_package_json(
             code_usage.append(
                 {
                     "source": "script",
-                    "name": "cls-knowledge",
+                    "name": "cmls-knowledge",
                     "value": script_name,
                     "location": {"file": file},
                 }
@@ -381,7 +381,7 @@ def scan_package_json(
             code_usage.append(
                 {
                     "source": "script",
-                    "name": "@cls/cli",
+                    "name": "@cmls/cli",
                     "value": script_name,
                     "location": {"file": file},
                 }
@@ -391,7 +391,7 @@ def scan_package_json(
 def scan_cargo_toml(text: str, file: str, packages: list[dict[str, Any]]) -> None:
     for line_number, line in enumerate(text.splitlines(), 1):
         match = re.match(
-            r"^\s*((?:[A-Za-z0-9_-]*cumulus|cls-knowledge|cls-nimbus)[A-Za-z0-9_-]*)\s*=",
+            r"^\s*((?:[A-Za-z0-9_-]*cumulus|cmls-knowledge|cmls-nimbus)[A-Za-z0-9_-]*)\s*=",
             line,
             re.IGNORECASE,
         )
@@ -403,7 +403,7 @@ def scan_cargo_toml(text: str, file: str, packages: list[dict[str, Any]]) -> Non
 
 def scan_python_package_file(text: str, file: str, packages: list[dict[str, Any]]) -> None:
     for line_number, line in enumerate(text.splitlines(), 1):
-        for match in re.finditer(r"(cls-knowledge|cumulus_knowledge)", line):
+        for match in re.finditer(r"(cmls-knowledge|cumulus_knowledge)", line):
             packages.append(
                 {"source": "python", "name": match.group(1), "location": {"file": file, "line": line_number}}
             )
@@ -476,8 +476,8 @@ def normalize_cumulus_name(name: str) -> str:
 
 def is_cumulus_package_name(name: str) -> bool:
     return (
-        name in {"create-cumulus", "@cls/create", "cls-knowledge", "cumulus_knowledge"}
-        or name.startswith("@cls/")
+        name in {"create-cumulus", "@cmls/create", "cmls-knowledge", "cumulus_knowledge"}
+        or name.startswith("@cmls/")
         or name.startswith("@cumulus/")
         or name.startswith("@cumulus_cloud/")
         or name.startswith("@cumulus-create/")

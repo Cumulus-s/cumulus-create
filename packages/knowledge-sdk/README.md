@@ -1,22 +1,22 @@
-# @cls/knowledge
+# @cmls/knowledge
 
 TypeScript SDK, local API server, MCP server, and browser graph UI helpers for Cumulus Knowledge.
 
-The npm package is now `@cls/knowledge`. The runtime binary names
-stay `cls-knowledge-*` for compatibility. The SDK uses the
-`cls-knowledge` binary by default. Set `CUMULUS_BIN` to point at another
+The npm package is now `@cmls/knowledge`. The runtime binary names
+stay `cmls-knowledge-*` for compatibility. The SDK uses the
+`cmls-knowledge` binary by default. Set `CUMULUS_BIN` to point at another
 binary.
 
 Optional runtime setup:
 
 ```bash
-npx cls-knowledge-setup --all
+npx cmls-knowledge-setup --all
 ```
 
-This installs the Rust CLI with `cargo install cls-knowledge-cli` and the Python package with `python -m pip install --upgrade cls-knowledge`. Normal `npm install` does not do this unless `CUMULUS_KNOWLEDGE_INSTALL_RUNTIMES=all` is set.
+This installs the Rust CLI with `cargo install cmls-knowledge-cli` and the Python package with `python -m pip install --upgrade cmls-knowledge`. Normal `npm install` does not do this unless `CUMULUS_KNOWLEDGE_INSTALL_RUNTIMES=all` is set.
 
 ```ts
-import { CumulusKnowledge } from "@cls/knowledge";
+import { CumulusKnowledge } from "@cmls/knowledge";
 
 const knowledge = new CumulusKnowledge({ root: "Documents/rune" });
 await knowledge.index({ profile: "all" });
@@ -38,13 +38,13 @@ const html = await client.exportHtml();
 Run the package API server:
 
 ```bash
-CUMULUS_ROOT=./demo-project CUMULUS_API_PORT=8788 npx cls-knowledge-api
+CUMULUS_ROOT=./demo-project CUMULUS_API_PORT=8788 npx cmls-knowledge-api
 ```
 
 Render a standalone graph page from a `GraphView`:
 
 ```ts
-import { renderGraphHtml } from "@cls/knowledge/ui";
+import { renderGraphHtml } from "@cmls/knowledge/ui";
 
 const html = renderGraphHtml(graph.data);
 ```
@@ -54,6 +54,6 @@ The browser renderer uses Cytoscape.js for graph layout and Anime.js for readabl
 ## Local usage ledger
 
 Pass `events.ledgerPath` to record safe retrieval metadata into
-`@cls/events`. The SDK stores query hashes, source/knowledge refs,
+`@cmls/events`. The SDK stores query hashes, source/knowledge refs,
 retrieved chunk counts, duration, status, and error class. It does not store raw
 queries, raw snippets, private knowledge text, or prompts.

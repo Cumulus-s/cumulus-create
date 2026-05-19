@@ -3,7 +3,7 @@ import {
   createEventEmitter,
   hashString,
   type EventEmitterOptions,
-} from "@cls/events";
+} from "@cmls/events";
 
 export type JsonValue =
   | null
@@ -222,12 +222,12 @@ export class CumulusKnowledge {
 
   constructor(options: CumulusKnowledgeOptions = {}) {
     this.root = options.root ?? ".";
-    this.bin = options.bin ?? process.env.CUMULUS_BIN ?? "cls-knowledge";
+    this.bin = options.bin ?? process.env.CUMULUS_BIN ?? "cmls-knowledge";
     this.apiBaseUrl = options.apiBaseUrl ?? process.env.CUMULUS_API_URL;
     this.projectId = options.projectId ?? process.env.CUMULUS_PROJECT_ID ?? "local";
     this.events = options.events
       ? createEventEmitter({
-          sourcePackage: "@cls/knowledge",
+          sourcePackage: "@cmls/knowledge",
           surface: "sdk",
           subsystem: "knowledge",
           projectId: options.events.projectId ?? this.projectId,

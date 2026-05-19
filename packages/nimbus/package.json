@@ -1,5 +1,5 @@
 {
-  "name": "@cls/nimbus",
+  "name": "@cmls/nimbus",
   "version": "0.1.0",
   "description": "Nimbus manifest helpers and contracts for Cumulus DB.",
   "type": "module",
@@ -39,5 +39,14 @@
     "@types/node": "^25.6.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cumulus-s/cumulus-create.git",
+    "directory": "packages/nimbus"
+  },
+  "bugs": {
+    "url": "https://github.com/Cumulus-s/cumulus-create/issues"
+  },
+  "homepage": "https://cumulush.com"
 }

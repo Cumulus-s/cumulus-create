@@ -1,5 +1,5 @@
-export * from "@cls/auth";
-export * from "@cls/db";
+export * from "@cmls/auth";
+export * from "@cmls/db";
 
 export interface CumulusSystemClientOptions {
   baseUrl: string;

@@ -1,5 +1,5 @@
 {
-  "name": "@cls/sdk",
+  "name": "@cmls/sdk",
   "version": "0.1.0",
   "description": "Composed Cumulus Auth, DB, and system SDK.",
   "type": "module",
@@ -30,8 +30,8 @@
   ],
   "license": "Apache-2.0",
   "dependencies": {
-    "@cls/auth": "^0.1.0",
-    "@cls/db": "^0.1.0"
+    "@cmls/auth": "^0.1.0",
+    "@cmls/db": "^0.1.0"
   },
   "publishConfig": {
     "access": "public",
@@ -43,5 +43,14 @@
   "devDependencies": {
     "typescript": "^5.9.3",
     "vitest": "^4.1.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cumulus-s/cumulus-create.git",
+    "directory": "packages/sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/Cumulus-s/cumulus-create/issues"
+  },
+  "homepage": "https://cumulush.com"
 }

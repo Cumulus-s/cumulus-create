@@ -13,7 +13,7 @@ import {
 } from "./index.js";
 
 const base = {
-  sourcePackage: "@cls/events" as const,
+  sourcePackage: "@cmls/events" as const,
   surface: "sdk" as const,
   subsystem: "agent" as const,
   operation: "test",
@@ -21,7 +21,7 @@ const base = {
   privacy: { class: "creator_safe_metadata" as const, redacted: false },
 };
 
-describe("@cls/events", () => {
+describe("@cmls/events", () => {
   it("creates valid events with ids and timestamps", () => {
     const event = createCumulusEvent(base);
 
@@ -75,7 +75,7 @@ describe("@cls/events", () => {
     const dir = await mkdtemp(join(tmpdir(), "cumulus-events-"));
     const ledger = join(dir, "events.jsonl");
     const emitter = createEventEmitter({
-      sourcePackage: "@cls/db",
+      sourcePackage: "@cmls/db",
       surface: "sdk",
       subsystem: "db",
       ledgerPath: ledger,
@@ -88,7 +88,7 @@ describe("@cls/events", () => {
       metadata: { table: "agent_tasks", row_count: 1 },
     });
 
-    expect(event.sourcePackage).toBe("@cls/db");
+    expect(event.sourcePackage).toBe("@cmls/db");
     expect((await readEvents(ledger)).events).toHaveLength(1);
   });
 

@@ -5,7 +5,7 @@
  *
  * 1. Insert a synthetic signup_jobs row owned by the seed tenant, with
  *    handoff_at stamped 2 hours ago.
- * 2. Compute the HMAC signature the @cls/track SDK would
+ * 2. Compute the HMAC signature the @cmls/track SDK would
  *    produce and POST /v1/activations with valid headers.
  * 3. Re-POST with the same idempotency_key — expect duplicate=true.
  * 4. POST with a busted signature — expect 401.

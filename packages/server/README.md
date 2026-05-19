@@ -1,4 +1,4 @@
-# @cls/server
+# @cmls/server
 
 Server-side integration helpers for Cumulus agent operations.
 
@@ -7,7 +7,7 @@ does not store credential values, request bodies, private customer rows, or raw
 agent prompts.
 
 ```ts
-import { createCumulusServerEvents } from "@cls/server";
+import { createCumulusServerEvents } from "@cmls/server";
 
 const events = createCumulusServerEvents({
   ledgerPath: ".cumulus/altocumulus/events.jsonl",

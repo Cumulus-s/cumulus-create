@@ -19,7 +19,7 @@ class CumulusKnowledge:
         project_id: str = "local",
     ) -> None:
         self.root = str(root)
-        self.bin = bin or os.environ.get("CUMULUS_BIN", "cls-knowledge")
+        self.bin = bin or os.environ.get("CUMULUS_BIN", "cmls-knowledge")
         self.api_base_url = api_base_url or os.environ.get("CUMULUS_API_URL")
         self.project_id = project_id or os.environ.get("CUMULUS_PROJECT_ID", "local")
 

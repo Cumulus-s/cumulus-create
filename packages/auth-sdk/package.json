@@ -1,5 +1,5 @@
 {
-  "name": "@cls/auth",
+  "name": "@cmls/auth",
   "version": "0.1.0",
   "description": "Cumulus Auth SDK for human and agent authentication.",
   "type": "module",
@@ -48,7 +48,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@cls/events": "^0.1.0"
+    "@cmls/events": "^0.1.0"
   },
   "devDependencies": {
     "typescript": "^5.9.3",

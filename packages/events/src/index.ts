@@ -10,19 +10,19 @@ export type PrivacyClass =
   | "secret_never_store";
 
 export type SourcePackage =
-  | "@cls/altocumulus"
-  | "@cls/auth"
-  | "@cls/db"
-  | "@cls/nimbus"
-  | "@cls/sdk"
-  | "@cls/knowledge"
-  | "@cls/mcp"
-  | "@cls/server"
-  | "@cls/events"
-  | "@cls/cloud"
-  | "@cls/cli"
-  | "@cls/track"
-  | "@cls/create";
+  | "@cmls/altocumulus"
+  | "@cmls/auth"
+  | "@cmls/db"
+  | "@cmls/nimbus"
+  | "@cmls/sdk"
+  | "@cmls/knowledge"
+  | "@cmls/mcp"
+  | "@cmls/server"
+  | "@cmls/events"
+  | "@cmls/cloud"
+  | "@cmls/cli"
+  | "@cmls/track"
+  | "@cmls/create";
 
 export type EventSurface = "tui" | "cli" | "sdk" | "api" | "mcp" | "scanner" | "cloud";
 export type EventSubsystem =
@@ -140,19 +140,19 @@ const VALID_PRIVACY_CLASSES = new Set<PrivacyClass>([
 ]);
 
 const VALID_SOURCE_PACKAGES = new Set<SourcePackage>([
-  "@cls/altocumulus",
-  "@cls/auth",
-  "@cls/db",
-  "@cls/nimbus",
-  "@cls/sdk",
-  "@cls/knowledge",
-  "@cls/mcp",
-  "@cls/server",
-  "@cls/events",
-  "@cls/cloud",
-  "@cls/cli",
-  "@cls/track",
-  "@cls/create",
+  "@cmls/altocumulus",
+  "@cmls/auth",
+  "@cmls/db",
+  "@cmls/nimbus",
+  "@cmls/sdk",
+  "@cmls/knowledge",
+  "@cmls/mcp",
+  "@cmls/server",
+  "@cmls/events",
+  "@cmls/cloud",
+  "@cmls/cli",
+  "@cmls/track",
+  "@cmls/create",
 ]);
 
 const VALID_SURFACES = new Set<EventSurface>(["tui", "cli", "sdk", "api", "mcp", "scanner", "cloud"]);

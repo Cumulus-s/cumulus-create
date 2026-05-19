@@ -1,4 +1,4 @@
-# @cls/cli
+# @cmls/cli
 
 Unified CLI for Cumulus Create. It keeps the existing Relay/Auth commands and
 adds the top-level `cumulus` command for intent registration, bootstrap,
@@ -7,9 +7,9 @@ Knowledge, DB progress, and MCP startup.
 ## Install
 
 ```bash
-npm i -g @cls/cli
+npm i -g @cmls/cli
 # or:
-npx @cls/cli <cmd>
+npx @cmls/cli <cmd>
 ```
 
 ## Unified Command

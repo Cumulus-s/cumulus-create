@@ -1,7 +1,7 @@
 # Cumulus Agent Operations Control Plane
 
 Cumulus is the cloud control plane. Altocumulus is the local terminal control
-center. `@cls/create` is the project generator. SDKs and MCP adapters are the
+center. `@cmls/create` is the project generator. SDKs and MCP adapters are the
 instrumentation surfaces.
 
 ## Planes
@@ -37,23 +37,23 @@ prompts/completions without explicit tenant opt-in.
 
 | Package | Responsibility |
 | --- | --- |
-| `@cls/create` | Scaffold projects, install selected SDKs, write local config. |
-| `@cls/altocumulus` | Local CLI/TUI, scanner bridge, cache, ledger viewer. |
-| `@cls/events` | Shared event schema, redaction, privacy checks, JSONL writer. |
-| `@cls/cloud` | Read-only cloud inventory client and safe sync payload prep. |
-| `@cls/auth` | Agent Auth webhook helpers and safe account/key-ref events. |
-| `@cls/db` | Agent DB HTTP client and safe operation metadata events. |
-| `@cls/knowledge` | Knowledge SDK/runtime setup and safe retrieval metadata events. |
-| `@cls/mcp` | MCP resources, tools, and prompts for safe agent metadata. |
-| `@cls/server` | Server-side signup/action/API event hooks. |
-| `@cls/cli` | Non-TUI command surface. |
+| `@cmls/create` | Scaffold projects, install selected SDKs, write local config. |
+| `@cmls/altocumulus` | Local CLI/TUI, scanner bridge, cache, ledger viewer. |
+| `@cmls/events` | Shared event schema, redaction, privacy checks, JSONL writer. |
+| `@cmls/cloud` | Read-only cloud inventory client and safe sync payload prep. |
+| `@cmls/auth` | Agent Auth webhook helpers and safe account/key-ref events. |
+| `@cmls/db` | Agent DB HTTP client and safe operation metadata events. |
+| `@cmls/knowledge` | Knowledge SDK/runtime setup and safe retrieval metadata events. |
+| `@cmls/mcp` | MCP resources, tools, and prompts for safe agent metadata. |
+| `@cmls/server` | Server-side signup/action/API event hooks. |
+| `@cmls/cli` | Non-TUI command surface. |
 
-Hard dependency rule: SDKs can import `@cls/events`; events cannot
+Hard dependency rule: SDKs can import `@cmls/events`; events cannot
 import SDKs, Altocumulus, app code, or AGPL provider internals.
 
 ## V3 Cloud Rule
 
-Altocumulus may read cloud inventory through `@cls/cloud`.
+Altocumulus may read cloud inventory through `@cmls/cloud`.
 Altocumulus v3 must not call cloud mutation endpoints. Key minting, key
 rotation, checkout, product creation, and project creation appear as disabled
 action cards until a later plan defines confirmation and privacy behavior.

@@ -5,18 +5,18 @@ It gives Cumulus a website people can open from a terminal.
 The interactive frame uses ASCII Cumulus branding, a horizontal page link row,
 and a Tado mark on the `/tado` page.
 
-The TUI also advertises `@cls/create`, the public package for creating a new
+The TUI also advertises `@cmls/create`, the public package for creating a new
 Relay/Cumulus app. The Documents page is the terminal version of the package
 guide.
 
-## @cls/create From The TUI
+## @cmls/create From The TUI
 
 The TUI home page shows the fastest project-start commands:
 
 ```bash
-npm create @cls@latest my-acme
-npm create @cls@latest my-acme
-npm create @cls@latest my-acme -- --template full --agent-auth hosted
+npm create @cmls@latest my-acme
+npm create @cmls@latest my-acme
+npm create @cmls@latest my-acme -- --template full --agent-auth hosted
 ```
 
 The Documents page covers:
@@ -50,7 +50,7 @@ npx cumulush /contact
 ## Pages
 
 - `/` is the detailed Cumulus home page.
-- `/documents` explains how to install and use `@cls/create`.
+- `/documents` explains how to install and use `@cmls/create`.
 - `/relay` explains agent-safe SaaS onboarding.
 - `/tado` explains the AI agent terminal canvas.
 - `/rune` explains the automation engine story.
@@ -76,7 +76,7 @@ CUMULUS_TUI_DRY_RUN=1
 Run the TUI locally:
 
 ```bash
-npm --workspace @cls/altocumulus run build
+npm --workspace @cmls/altocumulus run build
 node packages/altocumulus/dist/index.js
 ```
 
@@ -89,11 +89,11 @@ node packages/altocumulus/dist/index.js --smoke .
 Run tests:
 
 ```bash
-npm --workspace @cls/altocumulus run test
+npm --workspace @cmls/altocumulus run test
 ```
 
 Check the npm package contents before publishing:
 
 ```bash
-npm pack --workspace @cls/altocumulus --dry-run
+npm pack --workspace @cmls/altocumulus --dry-run
 ```

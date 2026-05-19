@@ -1,17 +1,17 @@
-# @cls/track
+# @cmls/track
 
 Tiny fire-and-forget activation tracker for Relay integrations.
 
 ## Install
 
 ```bash
-npm install @cls/track
+npm install @cmls/track
 ```
 
 ## Usage
 
 ```ts
-import { createRelayTracker } from '@cls/track';
+import { createRelayTracker } from '@cmls/track';
 
 const relay = createRelayTracker({
   secretId: process.env.RELAY_TRACKING_SECRET_ID!,

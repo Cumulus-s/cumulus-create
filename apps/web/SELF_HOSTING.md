@@ -218,7 +218,7 @@ Then verify:
 If operating all of this is not your goal, use hosted mode instead:
 
 ```bash
-npm create @cls@latest my-app -- --template full --agent-auth hosted
+npm create @cmls@latest my-app -- --template full --agent-auth hosted
 ```
 
 Hosted mode keeps the generated app small and lets Cumulus operate the Relay

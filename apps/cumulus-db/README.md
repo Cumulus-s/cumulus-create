@@ -6,7 +6,7 @@ endpoint, database id, data token, and admin token.
 
 Source of truth: https://github.com/Cumulus-s/cumulus-create
 Public mirror: https://github.com/Cumulus-s/cumulus-db
-Package: `@cls/cumulus-db`
+Package: `@cmls/cumulus-db`
 
 Cumulus DB v1 now has two storage roles:
 

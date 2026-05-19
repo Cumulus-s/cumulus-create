@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { CumulusSystemClient } from "./index.js";
 
-describe("@cls/sdk", () => {
+describe("@cmls/sdk", () => {
   it("calls system endpoints with bearer auth", async () => {
     const seen: Record<string, string | null> = {};
     const client = new CumulusSystemClient({

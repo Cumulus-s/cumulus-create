@@ -18,4 +18,4 @@ cumulus auth login
 relay login
 ```
 
-Knowledge commands delegate to the Rust binary `cls-knowledge`.
+Knowledge commands delegate to the Rust binary `cmls-knowledge`.

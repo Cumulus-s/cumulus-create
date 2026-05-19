@@ -25,7 +25,7 @@ describe("renderFrame", () => {
         packages: [
           {
             source: "package-json",
-            name: "@cls/db",
+            name: "@cmls/db",
             location: { file: "package.json" },
           },
         ],

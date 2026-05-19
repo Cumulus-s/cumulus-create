@@ -1,5 +1,5 @@
 {
-  "name": "@cls/server",
+  "name": "@cmls/server",
   "version": "0.1.0",
   "description": "Server hooks for Cumulus signups, actions, and safe events.",
   "type": "module",
@@ -44,11 +44,14 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@cls/events": "^0.1.0"
+    "@cmls/events": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
     "typescript": "^5.9.3",
     "vitest": "^4.1.4"
+  },
+  "bugs": {
+    "url": "https://github.com/Cumulus-s/cumulus-create/issues"
   }
 }

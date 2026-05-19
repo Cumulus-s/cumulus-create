@@ -1,4 +1,4 @@
-# @cls/altocumulus
+# @cmls/altocumulus
 
 `altocumulus` is the local terminal control center for Cumulus agent operations.
 
@@ -9,13 +9,13 @@ later explicit sync plan.
 ## Install
 
 ```bash
-npm install -g @cls/altocumulus
+npm install -g @cmls/altocumulus
 ```
 
 From this monorepo:
 
 ```bash
-npm --workspace @cls/altocumulus run build
+npm --workspace @cmls/altocumulus run build
 node packages/altocumulus/dist/index.js
 ```
 

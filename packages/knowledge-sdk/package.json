@@ -1,12 +1,12 @@
 {
-  "name": "@cls/knowledge",
+  "name": "@cmls/knowledge",
   "version": "0.1.0",
   "description": "TypeScript SDK and MCP helpers for Cumulus Knowledge.",
   "type": "module",
   "bin": {
-    "cls-knowledge-mcp": "dist/mcp.js",
-    "cls-knowledge-api": "dist/api.js",
-    "cls-knowledge-setup": "dist/setup.js"
+    "cmls-knowledge-mcp": "dist/mcp.js",
+    "cmls-knowledge-api": "dist/api.js",
+    "cmls-knowledge-setup": "dist/setup.js"
   },
   "exports": {
     ".": {
@@ -41,7 +41,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@cls/events": "^0.1.0"
+    "@cmls/events": "^0.1.0"
   },
   "publishConfig": {
     "access": "public",

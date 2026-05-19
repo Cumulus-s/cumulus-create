@@ -75,7 +75,7 @@ export default function DeveloperDocs() {
       </header>
 
       <Row label="60-second integration">
-        1. <code style={inlineCode}>npm create @cls@latest my-app</code>
+        1. <code style={inlineCode}>npm create @cmls@latest my-app</code>
         <br />
         2. Choose the hosted Relay agent-auth mode.
         <br />

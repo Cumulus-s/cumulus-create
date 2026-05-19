@@ -1,5 +1,5 @@
 {
-  "name": "@cls/track",
+  "name": "@cmls/track",
   "version": "0.1.0",
   "description": "Small activation tracker for Cumulus integrations.",
   "type": "module",

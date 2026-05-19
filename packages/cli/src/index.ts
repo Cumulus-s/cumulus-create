@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @cls/cli — first-class command surface for Relay.
+ * @cmls/cli — first-class command surface for Relay.
  *
  * Zero runtime dependencies. Subcommands dispatched from `main()` into
  * per-command modules below. Every command prints either a human table
@@ -29,7 +29,7 @@
  *   relay logs [--limit N]
  *   relay scan <slug> [--full] [--i-know]
  *
- *   relay init        (scaffold @cls/auth webhook into a Next.js project)
+ *   relay init        (scaffold @cmls/auth webhook into a Next.js project)
  *
  * Config: ~/.relay/config.json
  * Env:    RELAY_BASE_URL
@@ -1438,7 +1438,7 @@ async function cmdScan(args: ParsedArgs): Promise<void> {
 const ROUTE_TEMPLATE = `/**
  * Relay agent-signup webhook.
  */
-import { relay } from '@cls/auth';
+import { relay } from '@cmls/auth';
 
 export const POST = relay.webhook({
   secret: process.env.RELAY_WEBHOOK_SECRET!,
@@ -1502,7 +1502,7 @@ async function cmdInit(): Promise<void> {
     }
   }
   console.log(
-    `\nNext steps:\n  1. npm install @cls/auth\n  2. relay products  (register this app)\n  3. Put the minted secret in .env.local as RELAY_WEBHOOK_SECRET\n  4. Fill in the TODOs in app/api/agent-signup/route.ts\n  5. relay scan <slug>   (end-to-end health check)\n`,
+    `\nNext steps:\n  1. npm install @cmls/auth\n  2. relay products  (register this app)\n  3. Put the minted secret in .env.local as RELAY_WEBHOOK_SECRET\n  4. Fill in the TODOs in app/api/agent-signup/route.ts\n  5. relay scan <slug>   (end-to-end health check)\n`,
   );
 }
 

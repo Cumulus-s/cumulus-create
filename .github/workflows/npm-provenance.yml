@@ -37,20 +37,20 @@ jobs:
         run: |
           set -euo pipefail
           for workspace in \
-            "@cls/events" \
-            "@cls/cloud" \
-            "@cls/auth" \
-            "@cls/db" \
-            "@cls/sdk" \
-            "@cls/nimbus" \
-            "@cls/knowledge" \
-            "@cls/mcp" \
-            "@cls/server" \
-            "@cls/cli" \
-            "@cls/track" \
-            "@cls/altocumulus" \
-            "@cls/create" \
-            "@cls/cumulus-db"
+            "@cmls/events" \
+            "@cmls/cloud" \
+            "@cmls/auth" \
+            "@cmls/db" \
+            "@cmls/sdk" \
+            "@cmls/nimbus" \
+            "@cmls/knowledge" \
+            "@cmls/mcp" \
+            "@cmls/server" \
+            "@cmls/cli" \
+            "@cmls/track" \
+            "@cmls/altocumulus" \
+            "@cmls/create" \
+            "@cmls/cumulus-db"
           do
             npm publish --workspace "$workspace" --access public --provenance --dry-run
           done
@@ -60,20 +60,20 @@ jobs:
           set -euo pipefail
           test -n "${NODE_AUTH_TOKEN:-}"
           for workspace in \
-            "@cls/events" \
-            "@cls/cloud" \
-            "@cls/auth" \
-            "@cls/db" \
-            "@cls/sdk" \
-            "@cls/nimbus" \
-            "@cls/knowledge" \
-            "@cls/mcp" \
-            "@cls/server" \
-            "@cls/cli" \
-            "@cls/track" \
-            "@cls/altocumulus" \
-            "@cls/create" \
-            "@cls/cumulus-db"
+            "@cmls/events" \
+            "@cmls/cloud" \
+            "@cmls/auth" \
+            "@cmls/db" \
+            "@cmls/sdk" \
+            "@cmls/nimbus" \
+            "@cmls/knowledge" \
+            "@cmls/mcp" \
+            "@cmls/server" \
+            "@cmls/cli" \
+            "@cmls/track" \
+            "@cmls/altocumulus" \
+            "@cmls/create" \
+            "@cmls/cumulus-db"
           do
             npm publish --workspace "$workspace" --access public --provenance
           done

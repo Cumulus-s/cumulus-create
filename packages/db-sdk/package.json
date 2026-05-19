@@ -1,5 +1,5 @@
 {
-  "name": "@cls/db",
+  "name": "@cmls/db",
   "version": "0.1.0",
   "description": "HTTP SDK for Cumulus DB.",
   "type": "module",
@@ -41,7 +41,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@cls/events": "^0.1.0"
+    "@cmls/events": "^0.1.0"
   },
   "publishConfig": {
     "access": "public",

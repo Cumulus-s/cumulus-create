@@ -5,10 +5,10 @@ const options = parseArgs(process.argv.slice(2));
 const results = installRuntimes(options);
 const failed = results.filter((result) => !result.ok && !result.skipped);
 for (const result of results) {
-  if (result.skipped) process.stderr.write(`[cls-knowledge] skipped ${result.runtime}: ${result.reason}\n`);
+  if (result.skipped) process.stderr.write(`[cmls-knowledge] skipped ${result.runtime}: ${result.reason}\n`);
 }
 if (failed.length > 0) {
-  for (const result of failed) process.stderr.write(`[cls-knowledge] failed ${result.runtime}: ${result.reason}\n`);
+  for (const result of failed) process.stderr.write(`[cmls-knowledge] failed ${result.runtime}: ${result.reason}\n`);
   process.exit(1);
 }
 
@@ -48,7 +48,7 @@ function parseArgs(args: string[]): RuntimeInstallOptions {
 }
 
 function printHelp(): void {
-  process.stdout.write(`Usage: cls-knowledge-setup [--all|--rust|--python] [options]
+  process.stdout.write(`Usage: cmls-knowledge-setup [--all|--rust|--python] [options]
 
 Options:
   --all             Install Rust CLI and Python package. This is the default.

@@ -1,6 +1,6 @@
 # Cumulus Knowledge
 
-`cls-knowledge` is a local-first knowledge graph framework for AI agents and human operators.
+`cmls-knowledge` is a local-first knowledge graph framework for AI agents and human operators.
 
 It provides:
 
@@ -22,11 +22,11 @@ AXI is the public interface rule for this project:
 ## Quick Start
 
 ```bash
-cargo run -p cls-knowledge-cli -- knowledge index .
-cargo run -p cls-knowledge-cli -- knowledge graph view --path . --preset finance --format json
-cargo run -p cls-knowledge-cli -- knowledge viz export --path . --format html --output graph.html
-cargo run -p cls-knowledge-cli -- knowledge query "README" --path . --format json
-cargo run -p cls-knowledge-cli -- knowledge .
+cargo run -p cmls-knowledge-cli -- knowledge index .
+cargo run -p cmls-knowledge-cli -- knowledge graph view --path . --preset finance --format json
+cargo run -p cmls-knowledge-cli -- knowledge viz export --path . --format html --output graph.html
+cargo run -p cmls-knowledge-cli -- knowledge query "README" --path . --format json
+cargo run -p cmls-knowledge-cli -- knowledge .
 ```
 
 After indexing, the target folder contains:
@@ -58,7 +58,7 @@ cumulus knowledge doctor --path <path>
 Install the Rust binary from this workspace with:
 
 ```bash
-cargo install --path crates/cls-knowledge-cli
+cargo install --path crates/cmls-knowledge-cli
 ```
 
 That installs the global `cumulus` command.
@@ -66,48 +66,48 @@ That installs the global `cumulus` command.
 After crates.io publishing, install it with:
 
 ```bash
-cargo install cls-knowledge-cli
+cargo install cmls-knowledge-cli
 ```
 
 Install the TypeScript SDK from npm with:
 
 ```bash
-npm install @cls/knowledge
+npm install @cmls/knowledge
 ```
 
 The npm package can also install the Rust CLI and Python package. This is opt-in because it changes tools outside `node_modules`.
 
 ```bash
-npx cls-knowledge-setup --all
+npx cmls-knowledge-setup --all
 ```
 
 For automated installs:
 
 ```bash
-CUMULUS_KNOWLEDGE_INSTALL_RUNTIMES=all npm install @cls/knowledge
+CUMULUS_KNOWLEDGE_INSTALL_RUNTIMES=all npm install @cmls/knowledge
 ```
 
 Useful installer options:
 
 ```bash
-npx cls-knowledge-setup --rust
-npx cls-knowledge-setup --python
-npx cls-knowledge-setup --all --dry-run
-CUMULUS_KNOWLEDGE_RUST_PATH=crates/cls-knowledge-cli npx cls-knowledge-setup --rust
-CUMULUS_KNOWLEDGE_PYTHON_PATH=python npx cls-knowledge-setup --python
+npx cmls-knowledge-setup --rust
+npx cmls-knowledge-setup --python
+npx cmls-knowledge-setup --all --dry-run
+CUMULUS_KNOWLEDGE_RUST_PATH=crates/cmls-knowledge-cli npx cmls-knowledge-setup --rust
+CUMULUS_KNOWLEDGE_PYTHON_PATH=python npx cmls-knowledge-setup --python
 ```
 
 Install the Python SDK from PyPI with:
 
 ```bash
-python3 -m pip install cls-knowledge
+python3 -m pip install cmls-knowledge
 ```
 
 ## Repository Layout
 
 ```txt
-crates/cls-knowledge-core   Rust core index, graph, search, export (`cls-knowledge-core`)
-crates/cls-knowledge-cli    Rust CLI, TUI, MCP stdio server (`cls-knowledge-cli`)
+crates/cmls-knowledge-core   Rust core index, graph, search, export (`cmls-knowledge-core`)
+crates/cmls-knowledge-cli    Rust CLI, TUI, MCP stdio server (`cmls-knowledge-cli`)
 packages/knowledge-sdk          TypeScript SDK and lightweight MCP server
 python                          Python SDK and lightweight MCP server
 schemas/              Shared JSON Schemas
@@ -117,9 +117,9 @@ fixtures/             Test fixture projects
 
 ## Package Pillars
 
-- **Rust:** `cls-knowledge-core` and `cls-knowledge-cli` own indexing, SQLite storage, semantic graph views, local TUI, local MCP, and local API serving.
-- **TypeScript:** `@cls/knowledge` owns the hosted/no-code API shape, browser graph UI, Anime.js interactions, MCP Apps/web surfaces, and the main web SDK.
-- **Python:** `cls-knowledge` owns operations ingestion helpers, enrichment experiments, graph quality audits, evals, and AI-agent analysis workflows.
+- **Rust:** `cmls-knowledge-core` and `cmls-knowledge-cli` own indexing, SQLite storage, semantic graph views, local TUI, local MCP, and local API serving.
+- **TypeScript:** `@cmls/knowledge` owns the hosted/no-code API shape, browser graph UI, Anime.js interactions, MCP Apps/web surfaces, and the main web SDK.
+- **Python:** `cmls-knowledge` owns operations ingestion helpers, enrichment experiments, graph quality audits, evals, and AI-agent analysis workflows.
 
 ## Human Graph Views
 

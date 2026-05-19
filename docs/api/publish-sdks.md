@@ -1,4 +1,4 @@
-# Publishing CLS Packages
+# Publishing CMLS Packages
 
 Publishing is centralized in `Cumulus-s/cumulus-create`.
 
@@ -32,11 +32,11 @@ Then run the manual GitHub workflows in dry-run mode:
 ## Public Install Commands
 
 ```bash
-npm create @cls@latest my-app -- --with auth,db,knowledge
-npm install @cls/auth @cls/db @cls/sdk
-npm install @cls/nimbus @cls/cumulus-db
-cargo install cls-nimbus
-python3 -m pip install cls-knowledge
+npm create @cmls@latest my-app -- --with auth,db,knowledge
+npm install @cmls/auth @cmls/db @cmls/sdk
+npm install @cmls/nimbus @cmls/cumulus-db
+cargo install cmls-nimbus
+python3 -m pip install cmls-knowledge
 ```
 
 ## Production Publish
@@ -49,23 +49,23 @@ packages, re-run these workflows with `dry_run=false`:
 3. `crates release`
 4. `PyPI release`
 
-The npm workflow publishes the `@cls/*` packages in dependency order. The crates
-workflow publishes `cls-nimbus`, `cls-knowledge-core`, then
-`cls-knowledge-cli`. The PyPI workflow uploads `cls-knowledge`.
+The npm workflow publishes the `@cmls/*` packages in dependency order. The crates
+workflow publishes `cmls-nimbus`, `cmls-knowledge-core`, then
+`cmls-knowledge-cli`. The PyPI workflow uploads `cmls-knowledge`.
 
 ## After Publish
 
 Run:
 
 ```bash
-npm view @cls/auth version license
-npm view @cls/db version license
-npm view @cls/sdk version license
-npm view @cls/nimbus version license
-npm view @cls/cumulus-db version license
-npm create @cls@latest /tmp/cls-smoke -- --template agent-auth --agent-auth hosted --cumulus-db cloud --with auth,db,knowledge --no-git
-cargo install cls-nimbus
-python3 -m pip install cls-knowledge
+npm view @cmls/auth version license
+npm view @cmls/db version license
+npm view @cmls/sdk version license
+npm view @cmls/nimbus version license
+npm view @cmls/cumulus-db version license
+npm create @cmls@latest /tmp/cmls-smoke -- --template agent-auth --agent-auth hosted --cumulus-db cloud --with auth,db,knowledge --no-git
+cargo install cmls-nimbus
+python3 -m pip install cmls-knowledge
 ```
 
-Then deprecate old owned names with messages that point users to `@cls/*`.
+Then deprecate old owned names with messages that point users to `@cmls/*`.

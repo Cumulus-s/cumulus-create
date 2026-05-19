@@ -2,7 +2,7 @@ import {
   type CumulusEvent,
   toSyncPayload,
   validateCumulusEvent,
-} from "@cls/events";
+} from "@cmls/events";
 
 export interface CumulusCloudClientOptions {
   baseUrl?: string;

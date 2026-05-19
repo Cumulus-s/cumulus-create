@@ -525,7 +525,7 @@ function SceneProvider({ start = 6, duration = 16 }: { start?: number; duration?
                     x={0}
                     y={0}
                     prefix={<span style={{ color: INK3 }}>$ </span>}
-                    text={'npm create @cls@latest acme'}
+                    text={'npm create @cmls@latest acme'}
                     size={15}
                     charsPerSec={34}
                     spriteLocal={cmdLocal}
@@ -1677,7 +1677,7 @@ function SceneOutro({ start = 52, duration = 8 }: { start?: number; duration?: n
                 color: INK,
               }}
             >
-              <div>npm create @cls@latest acme</div>
+              <div>npm create @cmls@latest acme</div>
               <div>04 / 04 · Ship</div>
               <div>Cumulus · 2026</div>
             </div>
