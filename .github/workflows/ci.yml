@@ -27,8 +27,8 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y postgresql
       - run: npm ci
       - run: python -m pip install pytest
-      - run: npm run typecheck
       - run: npm run packages:build
+      - run: npm run typecheck
       - run: npm run test
       - run: PYTHONPATH=python python -m pytest python/tests
       - run: PYTHONPATH=packages/altocumulus/python python -m pytest packages/altocumulus/python/tests

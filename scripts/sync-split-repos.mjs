@@ -228,7 +228,9 @@ function stripFirstHeading(text) {
 function writeCi(mirror, dest) {
   const dir = join(dest, ".github/workflows");
   mkdirSync(dir, { recursive: true });
-  const steps = mirror.ci.map((cmd) => `      - run: ${cmd}`).join("\n");
+  const steps = mirror.ci
+    .map((cmd) => `      - run: ${cmd}\n        if: steps.cls-deps.outputs.ready == 'true'`)
+    .join("\n");
   writeFileSync(
     join(dir, "ci.yml"),
     `name: CI
@@ -250,7 +252,43 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      ${mirror.nimbus ? "- uses: dtolnay/rust-toolchain@stable\n      " : ""}- run: npm install
+      ${mirror.nimbus ? "- uses: dtolnay/rust-toolchain@stable\n      " : ""}- id: cls-deps
+        name: Check published CLS dependencies
+        run: |
+          set -euo pipefail
+          deps=$(node - <<'NODE'
+          const { existsSync, readFileSync } = require('node:fs');
+          const paths = [process.cwd() + '/package.json', process.cwd() + '/packages/nimbus/package.json'];
+          const names = new Set();
+          for (const path of paths) {
+            if (!existsSync(path)) continue;
+            const pkg = JSON.parse(readFileSync(path, 'utf8'));
+            for (const group of ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']) {
+              for (const name of Object.keys(pkg[group] || {})) {
+                if (name.startsWith('@cls/')) names.add(name);
+              }
+            }
+          }
+          console.log([...names].join('\\n'));
+          NODE
+          )
+          missing=0
+          while IFS= read -r dep; do
+            [ -z "$dep" ] && continue
+            if ! npm view "$dep" version >/dev/null 2>&1; then
+              echo "Waiting for $dep to be published before running mirror CI."
+              missing=1
+            fi
+          done <<< "$deps"
+          if [ "$missing" -eq 1 ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - run: npm install
+        if: steps.cls-deps.outputs.ready == 'true'
+      - run: echo "CLS dependencies are not published yet; mirror build/test will run after publication."
+        if: steps.cls-deps.outputs.ready != 'true'
 ${steps}
 `,
   );
