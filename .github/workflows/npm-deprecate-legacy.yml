@@ -1,0 +1,54 @@
+name: npm deprecate legacy names
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print the deprecation commands without applying them"
+        required: true
+        default: "true"
+        type: choice
+        options: ["true", "false"]
+
+permissions:
+  contents: read
+
+jobs:
+  deprecate:
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - name: Deprecate old Cumulus npm names
+        run: |
+          set -euo pipefail
+          test -n "${NODE_AUTH_TOKEN:-}"
+
+          deprecate() {
+            package="$1"
+            message="$2"
+            if [ "${{ inputs.dry_run }}" = "true" ]; then
+              printf 'npm deprecate %s@* %s\n' "$package" "$message"
+            else
+              npm deprecate "$package@*" "$message"
+            fi
+          }
+
+          deprecate "create-cumulus" "Cumulus Create moved to @cmls/create. Use: npm create @cmls@latest"
+          deprecate "cumulus-knowledge" "Cumulus Knowledge moved to @cmls/knowledge for npm and cmls-knowledge for PyPI."
+
+          deprecate "@cumulus_cloud/events" "Cumulus public packages moved to @cmls/events."
+          deprecate "@cumulus_cloud/cloud-client" "Cumulus public packages moved to @cmls/cloud."
+          deprecate "@cumulus_cloud/auth-sdk" "Cumulus Auth moved to @cmls/auth."
+          deprecate "@cumulus_cloud/db-sdk" "Cumulus DB SDK moved to @cmls/db."
+          deprecate "@cumulus_cloud/knowledge-sdk" "Cumulus Knowledge moved to @cmls/knowledge."
+          deprecate "@cumulus_cloud/mcp" "Cumulus MCP moved to @cmls/mcp."
+          deprecate "@cumulus_cloud/server" "Cumulus server helpers moved to @cmls/server."
+          deprecate "@cumulus_cloud/cli" "Cumulus CLI moved to @cmls/cli."
+          deprecate "@cumulus_cloud/track" "Cumulus tracking moved to @cmls/track."
+          deprecate "@cumulus_cloud/altocumulus" "Altocumulus moved to @cmls/altocumulus."
+          deprecate "@cumulus_cloud/tado" "Cumulus public packages moved to the @cmls npm scope. See https://github.com/Cumulus-s/cumulus-create."
