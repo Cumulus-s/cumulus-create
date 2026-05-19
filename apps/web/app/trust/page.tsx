@@ -146,7 +146,7 @@ export default function TrustPage() {
         Report vulnerabilities to {`security@cumulush.com`}. Please do not
         include exploit details in the subject line. PGP key available on
         request; see the repo&apos;s{' '}
-        <Link href="https://github.com/Cumulus-s/relay/blob/main/SECURITY.md">
+        <Link href="https://github.com/Cumulus-s/cumulus-create/blob/main/SECURITY.md">
           SECURITY.md
         </Link>{' '}
         for the full disclosure policy.
@@ -154,7 +154,7 @@ export default function TrustPage() {
 
       <Section title="Changelog">
         We publish a user-visible changelog in the repo&apos;s{' '}
-        <Link href="https://github.com/Cumulus-s/relay/blob/main/CHANGELOG.md">
+        <Link href="https://github.com/Cumulus-s/cumulus-create/blob/main/CHANGELOG.md">
           CHANGELOG.md
         </Link>
         .

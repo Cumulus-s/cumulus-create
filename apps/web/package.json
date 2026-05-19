@@ -1,6 +1,7 @@
 {
   "name": "@cumulus-create/web",
   "version": "0.4.0",
+  "description": "Intent Console, Auth UI, API routes, dashboards, and docs for Cumulus Create.",
   "private": true,
   "type": "module",
   "scripts": {
@@ -65,9 +66,10 @@
   "homepage": "https://relay.cumulush.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cumulus-s/relay.git"
+    "url": "git+https://github.com/Cumulus-s/cumulus-create.git",
+    "directory": "apps/web"
   },
   "bugs": {
-    "url": "https://github.com/Cumulus-s/relay/issues"
+    "url": "https://github.com/Cumulus-s/cumulus-create/issues"
   }
 }

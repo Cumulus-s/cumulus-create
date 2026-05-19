@@ -9,8 +9,8 @@ license files.
 ## Development
 
 ```bash
-git clone https://github.com/Cumulus-s/relay.git
-cd relay
+git clone https://github.com/Cumulus-s/cumulus-create.git
+cd cumulus-create
 npm install
 cp .env.example .env.local
 npm run dev

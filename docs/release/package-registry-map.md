@@ -4,6 +4,9 @@
 Split repos are mirrors. Do not publish from split repos unless ownership is
 changed later.
 
+The GitHub repo description should say what the repo is, not list supporting
+automation. Release workflows are publishing and sync tools, not the product.
+
 Do not commit registry tokens. The central GitHub repo needs these secrets:
 
 - `NPM_TOKEN` for the `@cmls` npm scope.
@@ -37,6 +40,18 @@ Do not commit registry tokens. The central GitHub repo needs these secrets:
 Private workspaces:
 
 - `@cumulus-create/web`: hosted web app and dashboards.
+
+## Public Split Repos
+
+These repos are generated from this monorepo. Their descriptions should stay
+short, plain, and tied back to this source of truth.
+
+| Repo | Description |
+| --- | --- |
+| `Cumulus-s/auth` | Agent Auth webhook and action SDK for Cumulus apps. Source of truth: `Cumulus-s/cumulus-create`. |
+| `Cumulus-s/sdk` | Combined Auth, DB, and system SDK for Cumulus apps. Source of truth: `Cumulus-s/cumulus-create`. |
+| `Cumulus-s/cumulus-db` | Agent-owned database service with HTTP APIs and Nimbus contracts. Source of truth: `Cumulus-s/cumulus-create`. |
+| `Cumulus-s/nimbus` | Desired-state manifest contracts and compiler tooling for Cumulus DB. Source of truth: `Cumulus-s/cumulus-create`. |
 
 ## Release Order
 

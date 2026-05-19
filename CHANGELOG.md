@@ -9,6 +9,7 @@ Metadata cleanup for the CMLS public package registry and release workflow.
 ### Changed
 
 - **CMLS create metadata** - Updates `@cmls/create` package metadata so npm shows the current CMLS naming instead of the older public-scope wording.
+- **Repository descriptions** - Replaces vague GitHub and split-mirror descriptions with short source-of-truth descriptions for each public repo.
 - **npm release workflow** - Skips workspace versions that are already published, so a targeted package patch can ship without republishing every public package.
 
 ## [0.1.0] - 2026-05-19

@@ -26,6 +26,7 @@ const mirrors = [
     repo: "Cumulus-s/auth",
     source: "packages/auth-sdk",
     packageName: "@cmls/auth",
+    description: "Agent Auth webhook and action SDK for Cumulus apps.",
     license: "Apache-2.0",
     install: "npm install @cmls/auth",
     ci: ["npm run build", "npm run test"],
@@ -35,6 +36,7 @@ const mirrors = [
     repo: "Cumulus-s/sdk",
     source: "packages/sdk",
     packageName: "@cmls/sdk",
+    description: "Combined Auth, DB, and system SDK for Cumulus apps.",
     license: "Apache-2.0",
     install: "npm install @cmls/sdk",
     ci: ["npm run build", "npm run test"],
@@ -44,6 +46,7 @@ const mirrors = [
     repo: "Cumulus-s/cumulus-db",
     source: "apps/cumulus-db",
     packageName: "@cmls/cumulus-db",
+    description: "Agent-owned database service with HTTP APIs and Nimbus contracts.",
     license: "AGPL-3.0-only",
     install: "npm install @cmls/cumulus-db",
     ci: ["npm run build", "npm run test"],
@@ -52,6 +55,7 @@ const mirrors = [
     name: "nimbus",
     repo: "Cumulus-s/nimbus",
     packageName: "@cmls/nimbus",
+    description: "Desired-state manifest contracts and compiler tooling for Cumulus DB.",
     license: "AGPL-3.0-only",
     install: "npm install @cmls/nimbus && cargo install cmls-nimbus",
     ci: ["npm run build", "npm run test", "cargo test -p cmls-nimbus"],
@@ -93,7 +97,7 @@ function ensureGitHubRepo(mirror) {
       mirror.repo,
       "--public",
       "--description",
-      `${mirror.packageName} public mirror. Source of truth: Cumulus-s/cumulus-create.`,
+      `${mirror.description} Source of truth: Cumulus-s/cumulus-create.`,
     ], { stdio: "inherit" });
   }
 }
@@ -207,7 +211,10 @@ function writeMirrorReadme(mirror, dest) {
     : "";
   const header = `# ${mirror.packageName}
 
-This repository is a public mirror for ${mirror.packageName}.
+${mirror.description}
+
+This repository is a public mirror. New development happens in the Cumulus
+Create monorepo.
 
 Source of truth: https://github.com/Cumulus-s/cumulus-create
 Package: https://www.npmjs.com/package/${encodeURIComponent(mirror.packageName)}
@@ -218,11 +225,21 @@ ${mirror.install}
 \`\`\`
 
 `;
-  writeFileSync(join(dest, "README.md"), `${header}${stripFirstHeading(existing)}`);
+  writeFileSync(join(dest, "README.md"), `${header}${stripMirrorReadme(existing)}`);
 }
 
 function stripFirstHeading(text) {
   return text.replace(/^# .*(?:\r?\n)+/, "");
+}
+
+function stripMirrorReadme(text) {
+  return stripFirstHeading(text)
+    .replace(/\n?Source of truth: .*(?:\r?\n)/g, "\n")
+    .replace(/\n?Public mirror: .*(?:\r?\n)/g, "\n")
+    .replace(/\n?Package: `?@cmls\/[^`\r\n]+`?(?:\r?\n)/g, "\n")
+    .replace(/\n```bash\r?\nnpm install @cmls\/[^\r\n]+\r?\n```\r?\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trimStart();
 }
 
 function writeCi(mirror, dest) {
