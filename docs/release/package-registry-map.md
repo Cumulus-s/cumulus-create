@@ -53,6 +53,9 @@ short, plain, and tied back to this source of truth.
 | `Cumulus-s/cumulus-db` | Agent-owned database service with HTTP APIs and Nimbus contracts. Source of truth: `Cumulus-s/cumulus-create`. |
 | `Cumulus-s/nimbus` | Desired-state manifest contracts and compiler tooling for Cumulus DB. Source of truth: `Cumulus-s/cumulus-create`. |
 
+Each split mirror should have a root `LICENSE` file that GitHub can detect and
+a README header with package, registry, source-of-truth, and license links.
+
 ## Release Order
 
 1. Sync split repos with `node scripts/sync-split-repos.mjs`.

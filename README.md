@@ -95,6 +95,9 @@ npm create @cmls@latest my-project -- --with auth,db,knowledge --install-runtime
 
 This monorepo contains packages with different licenses.
 
+- The root `LICENSE` is AGPL-3.0-only so GitHub shows the monorepo default
+  license clearly.
 - Full web app/server, local Agent DB, local Knowledge runtime, Nimbus provider tooling, and self-hosted templates are AGPL-3.0-only.
 - Public SDK/auth helper packages are Apache-2.0 unless their package file states a stricter license.
+- MIT helper packages have their own package-level `LICENSE` files.
 - App-side DB integration must use HTTP/token APIs. Do not import Agent DB provider internals into permissive packages.

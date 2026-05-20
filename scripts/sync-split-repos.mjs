@@ -137,6 +137,7 @@ function syncNimbus(mirror, dest) {
     recursive: true,
     filter: (source) => !source.includes("/target/"),
   });
+  cpSync(join(root, "packages/nimbus/LICENSE"), join(dest, "LICENSE"));
   rewritePackageMetadata(join(dest, "packages/nimbus/package.json"), {
     ...mirror,
     repo: "Cumulus-s/nimbus",
@@ -219,6 +220,7 @@ Create monorepo.
 Source of truth: https://github.com/Cumulus-s/cumulus-create
 Package: https://www.npmjs.com/package/${encodeURIComponent(mirror.packageName)}
 License: ${mirror.license}
+Issues: https://github.com/Cumulus-s/cumulus-create/issues
 
 \`\`\`bash
 ${mirror.install}
@@ -236,8 +238,12 @@ function stripMirrorReadme(text) {
   return stripFirstHeading(text)
     .replace(/\n?Source of truth: .*(?:\r?\n)/g, "\n")
     .replace(/\n?Public mirror: .*(?:\r?\n)/g, "\n")
-    .replace(/\n?Package: `?@cmls\/[^`\r\n]+`?(?:\r?\n)/g, "\n")
-    .replace(/\n```bash\r?\nnpm install @cmls\/[^\r\n]+\r?\n```\r?\n/g, "\n")
+    .replace(/\n?Package: .*(?:\r?\n)/g, "\n")
+    .replace(/\n?License: .*(?:\r?\n)/g, "\n")
+    .replace(
+      /\n```bash\r?\nnpm install @cmls\/[^\r\n]+\r?\n(?:cargo install cmls-[^\r\n]+\r?\n)?```\r?\n/g,
+      "\n",
+    )
     .replace(/\n{3,}/g, "\n\n")
     .trimStart();
 }
