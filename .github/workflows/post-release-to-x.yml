@@ -1,0 +1,62 @@
+name: Post release to X
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Print the X post text without posting.
+        required: true
+        default: true
+        type: boolean
+      release_name:
+        description: Release name for the test post.
+        required: true
+        default: Test Release
+        type: string
+      release_version:
+        description: Release tag/version for the test post.
+        required: true
+        default: v0.0.0-test
+        type: string
+      release_url:
+        description: Release URL for the test post.
+        required: true
+        default: https://github.com/example-org/example-repo/releases/tag/v0.0.0-test
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: x-release-${{ github.event.release.id }}
+  cancel-in-progress: false
+
+jobs:
+  post-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Post release to X
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_KEY_SECRET: ${{ secrets.X_API_KEY_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          X_POST_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || 'false' }}
+          X_INCLUDE_PRERELEASES: "true"
+          X_POST_HASHTAGS: ""
+          X_POST_TEMPLATE: "{repo} released {version}: {name}\\n{url}"
+          RELEASE_REPO: ${{ github.event_name == 'workflow_dispatch' && github.repository || '' }}
+          RELEASE_NAME: ${{ github.event_name == 'workflow_dispatch' && inputs.release_name || '' }}
+          RELEASE_VERSION: ${{ github.event_name == 'workflow_dispatch' && inputs.release_version || '' }}
+          RELEASE_URL: ${{ github.event_name == 'workflow_dispatch' && inputs.release_url || '' }}
+        run: node scripts/post-github-release-to-x.mjs
